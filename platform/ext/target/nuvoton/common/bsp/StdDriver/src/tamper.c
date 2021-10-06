@@ -41,7 +41,7 @@
   *                                 - \ref TAMPER_INTEN_RTCLKIEN_Msk
   *                                 - \ref TAMPER_INTEN_BODIEN_Msk
   *
-  * @return     None
+  *
   *
   * @details    This API is used to enable the specify tamper interrupt function.
   */
@@ -71,7 +71,7 @@ void TAMPER_EnableInt(uint32_t u32IntFlagMask)
   *                                 - \ref TAMPER_INTEN_RTCLKIEN_Msk
   *                                 - \ref TAMPER_INTEN_BODIEN_Msk
   *
-  * @return     None
+  *
   *
   * @details    This API is used to disable the specify tamper interrupt function.
   */
@@ -99,7 +99,7 @@ void TAMPER_DisableInt(uint32_t u32IntFlagMask)
   *                                 - \ref TAMPER_TAMPER_DEBOUNCE_ENABLE
   *                                 - \ref TAMPER_TAMPER_DEBOUNCE_DISABLE
   *
-  * @return     None
+  *
   *
   * @details    This API is used to enable the tamper pin detect function with specify trigger condition.
   *             User needs to disable dynamic tamper function before use this API.
@@ -138,7 +138,7 @@ void TAMPER_StaticTamperEnable(uint32_t u32TamperSelect, uint32_t u32DetecLevel,
   *                                 - \ref TAMPER_TAMPER4_SELECT
   *                                 - \ref TAMPER_TAMPER5_SELECT
   *
-  * @return     None
+  *
   *
   * @details    This API is used to disable the static tamper pin detect.
   */
@@ -183,7 +183,7 @@ void TAMPER_StaticTamperDisable(uint32_t u32TamperSelect)
   *                                 0: Pair 2 source select tamper 4
   *                                 1: Pair 2 source select tamper 0
   *
-  * @return     None
+  *
   *
   * @details    This API is used to enable the dynamic tamper.
   */
@@ -248,7 +248,7 @@ void TAMPER_DynamicTamperEnable(uint32_t u32PairSel, uint32_t u32DebounceEn, uin
   *                                 - \ref TAMPER_PAIR1_SELECT
   *                                 - \ref TAMPER_PAIR2_SELECT
   *
-  * @return     None
+  *
   *
   * @details    This API is used to disable the dynamic tamper.
   */
@@ -309,7 +309,7 @@ void TAMPER_DynamicTamperDisable(uint32_t u32PairSel)
   *
   * @param[in]  u32Seed             Seed Value (0x0 ~ 0xFFFFFFFF)
   *
-  * @return     None
+  *
   *
   * @details    This API is used to config dynamic tamper setting.
   */
@@ -340,7 +340,7 @@ void TAMPER_DynamicTamperConfig(uint32_t u32ChangeRate, uint32_t u32SeedReload, 
   *                                 0: Pair 1 source select tamper 2
   *                                 1: Pair 1 source select tamper 0
   *
-  * @return     None
+  *
   *
   * @details    This API is used to enable the active shield dynamic tamper.
   */
@@ -400,7 +400,7 @@ void TAMPER_ActiveShieldDynamicTamperEnable(uint32_t u32PairSel1, uint32_t u32Pa
   *                                 - \ref TAMPER_PAIR1_SELECT
   *                                 - \ref TAMPER_PAIR2_SELECT
   *
-  * @return     None
+  *
   *
   * @details    This API is used to disable the active shield dynamic tamper.
   */
@@ -470,7 +470,7 @@ void TAMPER_ActiveShieldDynamicTamperDisable(uint32_t u32PairSel1, uint32_t u32P
   *
   * @param[in]  u32Seed/2           Seed Value (0x0 ~ 0xFFFFFFFF)
   *
-  * @return     None
+  *
   *
   * @details    This API is used to config active shield dynamic tamper setting.
   */

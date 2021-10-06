@@ -321,7 +321,7 @@ extern const S_USBD_INFO_T gsInfo;
   *             This parameter decides which interrupts will be enabled.
   *             (USBD_INT_WAKEUP, USBD_INT_FLDET, USBD_INT_USB, USBD_INT_BUS)
   *
-  * @return     None
+  *
   *
   * @details    Enable USB related interrupt functions specified by intr parameter.
   *
@@ -348,7 +348,7 @@ extern const S_USBD_INFO_T gsInfo;
   *             This parameter decides which interrupt flags will be cleared.
   *             (USBD_INTSTS_WAKEUP, USBD_INTSTS_FLDET, USBD_INTSTS_BUS, USBD_INTSTS_USB)
   *
-  * @return     None
+  *
   *
   * @details    Clear USB related interrupt flags specified by flag parameter.
   *
@@ -403,7 +403,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Write 1 to CLRRDY bit of USB_CFGPx register to stop USB transaction of the specified endpoint ID.
   *
@@ -415,7 +415,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Set DSQ_SYNC bit of USB_CFGx register to specify the DATA1 PID for the following IN token transaction.
   *             Base on this setting, hardware will toggle PID between DATA0 and DATA1 automatically for IN token transactions in single buffer mode.
@@ -428,7 +428,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Clear DSQ_SYNC bit of USB_CFGx register to specify the DATA0 PID for the following IN token transaction.
   *             Base on this setting, hardware will toggle PID between DATA0 and DATA1 automatically for IN token transactions in single buffer mode.
@@ -443,7 +443,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  size The transfer length.
   *
-  * @return     None
+  *
   *
   * @details    This macro will write the transfer length to USB_MXPLDx register for IN data transaction.
   *
@@ -469,7 +469,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  config The USB configuration.
   *
-  * @return     None
+  *
   *
   * @details    This macro will write config parameter to USB_CFGx register of specified endpoint ID.
   *
@@ -483,7 +483,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  offset The SRAM offset.
   *
-  * @return     None
+  *
   *
   * @details    This macro will set the SRAM offset for the specified endpoint ID.
   *
@@ -544,7 +544,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Set DBEN bit of USB_CFGx register to enable the double buffer mode of the specified endpoint ID.
   *
@@ -556,7 +556,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Clear DBEN bit of USB_CFGx register to enable the single buffer mode of the specified endpoint ID.
   *
@@ -581,7 +581,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Set DBTGACTIVE bit of USB_CFGx register for toggle active in the double buffer mode of the specified endpoint ID.
   *
@@ -593,7 +593,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  ep The USB endpoint ID. This parameter could be 0, 1, 2 ~ maximum available endpoint ID.
   *
-  * @return     None
+  *
   *
   * @details    Clear DBTGACTIVE bit of USB_CFGx register for toggle inactive in the double buffer mode of the specified endpoint ID.
   *
@@ -609,7 +609,7 @@ extern const S_USBD_INFO_T gsInfo;
   *
   * @param[in]  size Byte count.
   *
-  * @return     None
+  *
   *
   * @details    This function will copy the number of data specified by size and src parameters to the address specified by dest parameter.
   *

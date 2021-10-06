@@ -22,7 +22,7 @@
 
 /**
   * @brief      Initial key store
-  * @return     None
+  *
   * @details    This function is used to initial the key store.
   *             It is necessary to be called before using other APIs of Key Store.
   */

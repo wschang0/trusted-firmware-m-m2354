@@ -62,9 +62,9 @@ extern "C"
 /**
   * @brief      Clear EWDT Reset System Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro clears EWDT time-out reset system flag.
   * \hideinitializer
@@ -74,9 +74,9 @@ extern "C"
 /**
   * @brief      Clear EWDT Time-out Interrupt Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro clears EWDT time-out interrupt flag.
   * \hideinitializer
@@ -86,9 +86,9 @@ extern "C"
 /**
   * @brief      Clear EWDT Wake-up Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro clears EWDT time-out wake-up system flag.
   * \hideinitializer
@@ -98,7 +98,7 @@ extern "C"
 /**
   * @brief      Get EWDT Time-out Reset Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   EWDT time-out reset system did not occur
   * @retval     1   EWDT time-out reset system occurred
@@ -111,7 +111,7 @@ extern "C"
 /**
   * @brief      Get EWDT Time-out Interrupt Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   EWDT time-out interrupt did not occur
   * @retval     1   EWDT time-out interrupt occurred
@@ -124,7 +124,7 @@ extern "C"
 /**
   * @brief      Get EWDT Time-out Wake-up Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   EWDT time-out interrupt does not cause CPU wake-up
   * @retval     1   EWDT time-out interrupt event cause CPU wake-up
@@ -137,9 +137,9 @@ extern "C"
 /**
   * @brief      Reset EWDT Counter
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to reset the internal 20-bit EWDT up counter value.
   * @note       If EWDT is activated and time-out reset system function is enabled also, user should \n
@@ -161,9 +161,9 @@ __STATIC_INLINE void EWDT_DisableInt(void);
 /**
   * @brief      Stop EWDT Counting
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This function will stop EWDT counting and disable EWDT module.
   */
@@ -176,9 +176,9 @@ __STATIC_INLINE void EWDT_Close(void)
 /**
   * @brief      Enable EWDT Time-out Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This function will enable the EWDT time-out interrupt function.
   */
@@ -190,9 +190,9 @@ __STATIC_INLINE void EWDT_EnableInt(void)
 /**
   * @brief      Disable EWDT Time-out Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This function will disable the EWDT time-out interrupt function.
   */

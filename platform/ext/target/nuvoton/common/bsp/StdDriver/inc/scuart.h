@@ -52,7 +52,7 @@ extern "C"
   * @param[in]  sc      The pointer of smartcard module.
   * @param[in]  u8Data  Data byte to transmit.
   *
-  * @return     None
+  *
   *
   * @details    By writing data to DAT register, the SC will send out an 8-bit data.
   * \hideinitializer
@@ -93,7 +93,7 @@ extern "C"
   *
   * @param[in]  sc      The pointer of smartcard module.
   *
-  * @return     None
+  *
   *
   * @details    TXACT (SC_STATUS[31]) is cleared automatically when Tx transfer is finished or the last byte transmission has completed.
   *
@@ -243,7 +243,7 @@ extern "C"
   *                         - \ref SC_INTEN_TBEIEN_Msk
   *                         - \ref SC_INTEN_RDAIEN_Msk
   *
-  * @return     None
+  *
   *
   * @details    The macro is used to enable receiver buffer time-out interrupt, transfer error interrupt,
   *             transmit buffer empty interrupt or receive data reach trigger level interrupt.
@@ -261,7 +261,7 @@ extern "C"
   *                         - \ref SC_INTEN_TBEIEN_Msk
   *                         - \ref SC_INTEN_RDAIEN_Msk
   *
-  * @return     None
+  *
   *
   * @details    The macro is used to disable receiver buffer time-out interrupt, transfer error interrupt,
   *             transmit buffer empty interrupt or receive data reach trigger level interrupt.
@@ -295,7 +295,7 @@ extern "C"
   * @param[in]  sc      The pointer of smartcard module.
   * @param[in] u32Type  Interrupt flag/status to clear, only \ref SC_INTSTS_TERRIF_Msk valid for this macro.
   *
-  * @return     None
+  *
   *
   * @details    The macro is used to clear transfer error interrupt flag.
   * \hideinitializer
@@ -326,7 +326,7 @@ extern "C"
   *                         - \ref SC_STATUS_FEF_Msk
   *                         - \ref SC_STATUS_BEF_Msk
   *
-  * @return     None
+  *
   *
   * @details    The macro is used to clear receiver parity error flag, frame error flag or break error flag.
   * \hideinitializer

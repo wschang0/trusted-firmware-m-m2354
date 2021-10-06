@@ -61,9 +61,9 @@ extern "C"
 /**
   * @brief      Clear EWWDT Reset System Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to clear EWWDT time-out reset system flag.
   * \hideinitializer
@@ -73,9 +73,9 @@ extern "C"
 /**
   * @brief      Clear EWWDT Compared Match Interrupt Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to clear EWWDT compared match interrupt flag.
   * \hideinitializer
@@ -85,7 +85,7 @@ extern "C"
 /**
   * @brief      Get EWWDT Reset System Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   EWWDT time-out reset system did not occur
   * @retval     1   EWWDT time-out reset system occurred
@@ -98,7 +98,7 @@ extern "C"
 /**
   * @brief      Get EWWDT Compared Match Interrupt Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   EWWDT compare match interrupt did not occur
   * @retval     1   EWWDT compare match interrupt occurred
@@ -111,7 +111,7 @@ extern "C"
 /**
   * @brief      Get EWWDT Counter
   *
-  * @param      None
+  *
   *
   * @return     EWWDT Counter Value
   *
@@ -123,9 +123,9 @@ extern "C"
 /**
   * @brief      Reload EWWDT Counter
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to reload the EWWDT counter value to 0x3F.
   * @note       User can only write EWWDT_RLDCNT register to reload EWWDT counter value when current EWWDT counter value \n

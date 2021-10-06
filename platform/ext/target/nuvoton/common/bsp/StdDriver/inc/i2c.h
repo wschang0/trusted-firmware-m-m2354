@@ -67,7 +67,7 @@ extern "C"
  *    @param[in]    i2c        Specify I2C port
  *    @param[in]    u8Ctrl     A byte writes to I2C control register
  *
- *    @return       None
+ *
  *
  *    @details      Set I2C_CTL register to control I2C bus conditions of START, STOP, SI, ACK.
  */
@@ -78,7 +78,7 @@ extern "C"
  *
  *    @param[in]    i2c        Specify I2C port
  *
- *    @return       None
+ *
  *
  *    @details      Set the I2C bus START condition in I2C_CTL register.
  */
@@ -89,7 +89,7 @@ extern "C"
  *
  *    @param[in]    i2c        Specify I2C port
  *
- *    @return       None
+ *
  *
  *    @details      When a new status is presented of I2C bus, the SI flag will be set in I2C_CTL register.
  */
@@ -112,7 +112,7 @@ extern "C"
  *    @param[in]    i2c         Specify I2C port
  *    @param[in]    u8Data      A byte that writes to data register
  *
- *    @return       None
+ *
  *
  *    @details      When write a data to I2C_DAT register, the I2C controller will shift it to I2C bus.
  */
@@ -158,7 +158,7 @@ extern "C"
  *
  *    @param[in]    i2c     Specify I2C port
  *
- *    @return       None
+ *
  *
  *    @details      If wake-up flag is set, use this macro to clear it.
  */
@@ -183,7 +183,7 @@ extern "C"
  *
  *    @param[in]    i2c     Specify I2C port
  *
- *    @return       None
+ *
  *
  *    @details      If wake-up done is set, use this macro to clear it.
  *
@@ -394,7 +394,7 @@ extern "C"
 /**
   * @brief      Enable RX PDMA function.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    Set RXPDMAEN bit of I2C_CTL1 register to enable RX PDMA transfer function.
   */
 #define I2C_ENABLE_RX_PDMA(i2c)   ((i2c)->CTL1 |= I2C_CTL1_RXPDMAEN_Msk)
@@ -402,7 +402,7 @@ extern "C"
 /**
   * @brief      Enable TX PDMA function.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    Set TXPDMAEN bit of I2C_CTL1 register to enable TX PDMA transfer function.
   */
 #define I2C_ENABLE_TX_PDMA(i2c)   ((i2c)->CTL1 |= I2C_CTL1_TXPDMAEN_Msk)
@@ -410,7 +410,7 @@ extern "C"
 /**
   * @brief      Disable RX PDMA transfer.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    Clear RXPDMAEN bit of I2C_CTL1 register to disable RX PDMA transfer function.
   */
 #define I2C_DISABLE_RX_PDMA(i2c)   ((i2c)->CTL1 &= ~I2C_CTL1_RXPDMAEN_Msk)
@@ -418,7 +418,7 @@ extern "C"
 /**
   * @brief      Disable TX PDMA transfer.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    Clear TXPDMAEN bit of I2C_CTL1 register to disable TX PDMA transfer function.
   */
 #define I2C_DISABLE_TX_PDMA(i2c)   ((i2c)->CTL1 &= ~I2C_CTL1_TXPDMAEN_Msk)
@@ -426,7 +426,7 @@ extern "C"
 /**
   * @brief      Enable PDMA stretch function.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    Enable this function is to stretch bus by hardware after PDMA transfer is done if SI is not cleared.
   */
 #define I2C_ENABLE_PDMA_STRETCH(i2c)   ((i2c)->CTL1 |= I2C_CTL1_PDMASTR_Msk)
@@ -434,7 +434,7 @@ extern "C"
 /**
   * @brief      Disable PDMA stretch function.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    I2C wil send STOP after PDMA transfers done automatically.
   */
 #define I2C_DISABLE_PDMA_STRETCH(i2c)   ((i2c)->CTL1 &= ~I2C_CTL1_PDMASTR_Msk)
@@ -442,7 +442,7 @@ extern "C"
 /**
   * @brief      Reset PDMA function.
   * @param[in]  i2c The pointer of the specified I2C module.
-  * @return     None.
+  *
   * @details    I2C PDMA engine will be reset after this function is called.
   */
 #define I2C_DISABLE_RST_PDMA(i2c)   ((i2c)->CTL1 |= I2C_CTL1_PDMARST_Msk)
@@ -457,7 +457,7 @@ static __INLINE void I2C_STOP(I2C_T *i2c);
  *
  *    @param[in]    i2c        Specify I2C port
  *
- *    @return       None
+ *
  *
  *    @details      Set the I2C bus STOP condition in I2C_CTL register.
  */

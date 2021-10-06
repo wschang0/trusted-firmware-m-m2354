@@ -26,7 +26,7 @@
   * @param[in]  u32dpm  The pointer of the specified DPM module
   *                     - \ref SECURE_DPM
   *                     - \ref NONSECURE_DPM
-  * @return     None
+  *
   * @details    This macro sets Secure or Non-secure DPM debug disable.
   *             The debug disable function works after reset (chip reset or pin reset).
   */
@@ -54,7 +54,7 @@ void DPM_SetDebugDisable(uint32_t u32dpm)
   * @param[in]  u32dpm  Select DPM module. Valid values are:
   *                     - \ref SECURE_DPM
   *                     - \ref NONSECURE_DPM
-  * @return     None
+  *
   * @details    This macro sets Secure or Non-secure DPM debug lock.
   *             The debug lock function works after reset (chip reset or pin reset).
   */
@@ -306,7 +306,7 @@ uint32_t DPM_GetPasswordErrorFlag(uint32_t u32dpm)
 
 /**
   * @brief      Get DPM Interrupt Flag
-  * @param      None
+  *
   * @return     Secure DPM interrupt flag.
   * @details    This macro returns Secure DPM interrupt flag.
   *             Secure DPM interrupt flag includes Secure and Non-secure DPM password compare error flag.
@@ -351,7 +351,7 @@ void DPM_ClearPasswordErrorFlag(uint32_t u32dpm)
   * @param[in]  u32dpm        Select DPM module. Valid values are:
   *                           - \ref SECURE_DPM
   *                           - \ref NONSECURE_DPM
-  * @return     None.
+  *.
   * @details    This macro enables external debugger to write Secure or Non-secure DPM registers.
   */
 void DPM_EnableDebuggerWriteAccess(uint32_t u32dpm)
@@ -378,7 +378,7 @@ void DPM_EnableDebuggerWriteAccess(uint32_t u32dpm)
   * @param[in]  u32dpm        Select DPM module. Valid values are:
   *                           - \ref SECURE_DPM
   *                           - \ref NONSECURE_DPM
-  * @return     None.
+  *.
   * @details    This macro disables external debugger to write Secure or Non-secure DPM registers.
   */
 void DPM_DisableDebuggerWriteAccess(uint32_t u32dpm)

@@ -29,7 +29,7 @@
   * @param[in]  u32FuncMask Input capture function select
   *                         - \ref ECAP_DISABLE_COMPARE
   *                         - \ref ECAP_COMPARE_FUNCTION
-  * @return     None
+  *
   * @details    This macro enable input capture function and select compare and reload function.
   */
 void ECAP_Open(ECAP_T* ecap, uint32_t u32FuncMask)
@@ -46,7 +46,7 @@ void ECAP_Open(ECAP_T* ecap, uint32_t u32FuncMask)
 /**
   * @brief      Disable ECAP function
   * @param[in]  ecap        The pointer of the specified ECAP module.
-  * @return     None
+  *
   * @details    This macro disable input capture function.
   */
 void ECAP_Close(ECAP_T* ecap)

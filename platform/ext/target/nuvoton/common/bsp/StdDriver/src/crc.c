@@ -40,7 +40,7 @@
   *                             - \ref CRC_CPU_WDATA_16
   *                             - \ref CRC_CPU_WDATA_32
   *
-  * @return     None
+  *
   *
   * @details    This function will enable the CRC controller by specify CRC operation mode, attribute, initial seed and write data length. \n
   *             After that, user can start to perform CRC calculate by calling CRC_WRITE_DATA macro or CRC_DAT register directly.

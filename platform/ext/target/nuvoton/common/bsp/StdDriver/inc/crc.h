@@ -62,7 +62,7 @@ extern "C"
   * @param[in]  crc         The pointer of CRC module.
   * @param[in]  u32Seed     Seed value
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set CRC seed value.
   *
@@ -90,7 +90,7 @@ extern "C"
   * @param[in]  crc         The pointer of CRC module.
   * @param[in]  u32Data     Write data
   *
-  * @return     None
+  *
   *
   * @details    User can write data directly to CRC Write Data Register(CRC_DAT) by this macro to perform CRC operation.
  * \hideinitializer

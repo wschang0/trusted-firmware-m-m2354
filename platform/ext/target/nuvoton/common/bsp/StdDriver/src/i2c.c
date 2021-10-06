@@ -64,7 +64,7 @@ uint32_t I2C_Open(I2C_T *i2c, uint32_t u32BusClock)
   *
   * @param[in]  i2c         Specify I2C port
     *
-  * @return     None
+  *
   *
   * @details    Reset I2C Controller and disable specify I2C port.
     *
@@ -81,7 +81,7 @@ void I2C_Close(I2C_T *i2c)
   *
   * @param[in]  i2c         Specify I2C port
     *
-  * @return     None
+  *
   *
   * @details    When Time-out flag will be set, use this function to clear I2C Bus Time-out counter flag .
     *
@@ -100,7 +100,7 @@ void I2C_ClearTimeoutFlag(I2C_T *i2c)
   * @param[in]  u8Si        Clear SI flag
   * @param[in]  u8Ack       Set I2C ACK bit
   *
-  * @return     None
+  *
   *
   * @details    The function set I2C Control bit of I2C Bus protocol.
   *
@@ -134,7 +134,7 @@ void I2C_Trigger(I2C_T *i2c, uint8_t u8Start, uint8_t u8Stop, uint8_t u8Si, uint
   *
   * @param[in]  i2c         Specify I2C port
   *
-  * @return     None
+  *
   *
   * @details    The function is used for disable I2C interrupt
   *
@@ -149,7 +149,7 @@ void I2C_DisableInt(I2C_T *i2c)
   *
   * @param[in]  i2c         Specify I2C port
   *
-  * @return     None
+  *
   *
   * @details    The function is used for enable I2C interrupt
   *

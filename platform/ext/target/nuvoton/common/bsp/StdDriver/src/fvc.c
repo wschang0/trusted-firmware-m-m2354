@@ -24,7 +24,7 @@
 
 /**
   * @brief      Initial firmware version counter
-  * @param      None
+  *
   * @retval     0       Successful
   * @retval     -1      Failed
   * @details    FVC needs to be initialed before using it. This function is used to initial the FVC.

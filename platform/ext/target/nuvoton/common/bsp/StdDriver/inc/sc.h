@@ -68,7 +68,7 @@ extern "C"
   *                         - \ref SC_INTEN_TBEIEN_Msk
   *                         - \ref SC_INTEN_RDAIEN_Msk
   *
-  * @return     None
+  *
   *
   * @details    The macro is used to enable Auto-convention error interrupt, Receiver buffer time-out interrupt, Initial end interrupt,
   *             Card detect interrupt, Block guard time interrupt, Timer2 interrupt, Timer1 interrupt, Timer0 interrupt,
@@ -94,7 +94,7 @@ extern "C"
   *                         - \ref SC_INTEN_TBEIEN_Msk
   *                         - \ref SC_INTEN_RDAIEN_Msk
   *
-  * @return     None
+  *
   *
   * @details    The macro is used to disable Auto-convention error interrupt, Receiver buffer time-out interrupt, Initial end interrupt,
   *             Card detect interrupt, Block guard time interrupt, Timer2 interrupt, Timer1 interrupt, Timer0 interrupt,
@@ -109,7 +109,7 @@ extern "C"
   * @param[in]  sc          The pointer of smartcard module.
   * @param[in]  u32State    Pin state of VCC pin, valid parameters are \ref SC_PIN_STATE_HIGH and \ref SC_PIN_STATE_LOW.
   *
-  * @return     None
+  *
   *
   * @details    User can set PWREN (SC_PINCTL[0]) and PWRINV (SC_PINCTL[11]) to decide SC_PWR pin is in high or low level.
   * \hideinitializer
@@ -130,7 +130,7 @@ extern "C"
   * @param[in]  sc          The pointer of smartcard module.
   * @param[in] u32OnOff     Clock on or off for selected smartcard module, valid values are \ref SC_CLK_ON and \ref SC_CLK_OFF.
   *
-  * @return     None
+  *
   *
   * @details    User can set CLKKEEP (SC_PINCTL[6]) to decide SC_CLK pin always keeps free running or not.
   * \hideinitializer
@@ -150,7 +150,7 @@ extern "C"
   * @param[in]  sc          The pointer of smartcard module.
   * @param[in] u32State     Pin state of I/O pin, valid parameters are \ref SC_PIN_STATE_HIGH and \ref SC_PIN_STATE_LOW.
   *
-  * @return     None
+  *
   *
   * @details    User can set SCDATA (SC_PINCTL[9]) to decide SC_DATA pin to high or low.
   * \hideinitializer
@@ -170,7 +170,7 @@ extern "C"
   * @param[in]  sc          The pointer of smartcard module.
   * @param[in] u32State     Pin state of RST pin, valid parameters are \ref SC_PIN_STATE_HIGH and \ref SC_PIN_STATE_LOW.
   *
-  * @return     None
+  *
   *
   * @details    User can set SCRST (SC_PINCTL[1]) to decide SC_RST pin to high or low.
   * \hideinitializer
@@ -202,7 +202,7 @@ extern "C"
   * @param[in]  sc      The pointer of smartcard module.
   * @param[in]  u8Data  Data to write to transmit FIFO.
   *
-  * @return     None
+  *
   *
   * @details    By writing data to DAT register, the SC will send out an 8-bit data.
   * \hideinitializer
@@ -215,7 +215,7 @@ extern "C"
   * @param[in]  sc      The pointer of smartcard module.
   * @param[in]  u32Len  Stop bit length, ether 1 or 2.
   *
-  * @return     None
+  *
   *
   * @details    Stop bit length must be 1 for T = 1 protocol and 2 for T = 0 protocol.
   * \hideinitializer
@@ -237,7 +237,7 @@ __STATIC_INLINE void SC_SetRxRetry(SC_T *sc, uint32_t u32Count);
   * @param[in]  sc          The pointer of smartcard module.
   * @param[in]  u32Count    The number of times of Tx error retry count, between 0~8. 0 means disable Tx error retry.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable/disable transmitter retry function when parity error has occurred, and set error retry count.
   */
@@ -261,7 +261,7 @@ __STATIC_INLINE void SC_SetTxRetry(SC_T *sc, uint32_t u32Count)
   * @param[in]  sc          The pointer of smartcard module.
   * @param[in]  u32Count    The number of times of Rx error retry count, between 0~8. 0 means disable Rx error retry.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable/disable receiver retry function when parity error has occurred, and set error retry count.
   */

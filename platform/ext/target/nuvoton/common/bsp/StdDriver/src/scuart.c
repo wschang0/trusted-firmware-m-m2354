@@ -26,7 +26,7 @@
   *
   * @param      sc      The pointer of smartcard module.
   *
-  * @return     None
+  *
   *
   * @details    The function is used to disable smartcard interface UART mode.
   */
@@ -225,7 +225,7 @@ uint32_t SCUART_SetLineConfig(SC_T* sc, uint32_t u32Baudrate, uint32_t u32DataWi
   * @param[in]  u32TOC  Rx time-out counter, using baudrate as counter unit. Valid range are 0~0x1FF,
   *                     set this value to 0 will disable time-out counter.
   *
-  * @return     None
+  *
   *
   * @details    The time-out counter resets and starts counting whenever the Rx buffer received a
   *             new data word. Once the counter decrease to 1 and no new data is received or CPU
@@ -243,7 +243,7 @@ void SCUART_SetTimeoutCnt(SC_T* sc, uint32_t u32TOC)
   * @param[in]  pu8TxBuf        The buffer containing data to send to transmit FIFO.
   * @param[in]  u32WriteBytes   Number of data to send.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to write data into Tx FIFO to send data out.
   *

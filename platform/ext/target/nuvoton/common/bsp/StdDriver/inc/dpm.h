@@ -52,8 +52,8 @@ extern "C"
 
 /**
   * @brief      Enable DPM Interrupt
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro enables DPM interrupt.
   *             This macro is for Secure DPM and Secure region only.
   */
@@ -65,8 +65,8 @@ extern "C"
 
 /**
   * @brief      Disable DPM Interrupt
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables DPM interrupt.
   *             This macro is for Secure DPM and Secure region only.
   */
@@ -78,8 +78,8 @@ extern "C"
 
 /**
   * @brief      Enable Debugger to Access DPM Registers
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro enables debugger to access Secure and Non-secure DPM registers.
   *             This macro is for Secure DPM and Secure region only.
   */
@@ -91,8 +91,8 @@ extern "C"
 
 /**
   * @brief      Disable Debugger to Access DPM Registers
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables debugger to access Secure and Non-secure DPM registers.
   *             This macro is for Secure DPM and Secure region only.
   */

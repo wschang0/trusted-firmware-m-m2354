@@ -124,7 +124,7 @@ extern "C"
 /**
   * @brief      Clear the unit transfer interrupt flag.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Write 1 to UNITIF bit of SPI_STATUS register to clear the unit transfer interrupt flag.
   */
 #define SPI_CLR_UNIT_TRANS_INT_FLAG(spi)   ( (spi)->STATUS = SPI_STATUS_UNITIF_Msk )
@@ -132,7 +132,7 @@ extern "C"
 /**
   * @brief      Disable Slave 3-wire mode.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear SLV3WIRE bit of SPI_SSCTL register to disable Slave 3-wire mode.
   */
 #define SPI_DISABLE_3WIRE_MODE(spi)   ( (spi)->SSCTL &= ~SPI_SSCTL_SLV3WIRE_Msk )
@@ -140,7 +140,7 @@ extern "C"
 /**
   * @brief      Enable Slave 3-wire mode.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set SLV3WIRE bit of SPI_SSCTL register to enable Slave 3-wire mode.
   */
 #define SPI_ENABLE_3WIRE_MODE(spi)   ( (spi)->SSCTL |= SPI_SSCTL_SLV3WIRE_Msk )
@@ -148,7 +148,7 @@ extern "C"
 /**
   * @brief      Trigger RX PDMA function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set RXPDMAEN bit of SPI_PDMACTL register to enable RX PDMA transfer function.
   */
 #define SPI_TRIGGER_RX_PDMA(spi)   ( (spi)->PDMACTL |= SPI_PDMACTL_RXPDMAEN_Msk )
@@ -156,7 +156,7 @@ extern "C"
 /**
   * @brief      Trigger TX PDMA function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set TXPDMAEN bit of SPI_PDMACTL register to enable TX PDMA transfer function.
   */
 #define SPI_TRIGGER_TX_PDMA(spi)   ( (spi)->PDMACTL |= SPI_PDMACTL_TXPDMAEN_Msk )
@@ -164,7 +164,7 @@ extern "C"
 /**
   * @brief      Trigger TX and RX PDMA function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set TXPDMAEN bit and RXPDMAEN bit of SPI_PDMACTL register to enable TX and RX PDMA transfer function.
   */
 #define SPI_TRIGGER_TX_RX_PDMA(spi)   ( (spi)->PDMACTL |= (SPI_PDMACTL_TXPDMAEN_Msk | SPI_PDMACTL_RXPDMAEN_Msk) )
@@ -172,7 +172,7 @@ extern "C"
 /**
   * @brief      Disable RX PDMA transfer.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear RXPDMAEN bit of SPI_PDMACTL register to disable RX PDMA transfer function.
   */
 #define SPI_DISABLE_RX_PDMA(spi) ( (spi)->PDMACTL &= ~SPI_PDMACTL_RXPDMAEN_Msk )
@@ -180,7 +180,7 @@ extern "C"
 /**
   * @brief      Disable TX PDMA transfer.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear TXPDMAEN bit of SPI_PDMACTL register to disable TX PDMA transfer function.
   */
 #define SPI_DISABLE_TX_PDMA(spi) ( (spi)->PDMACTL &= ~SPI_PDMACTL_TXPDMAEN_Msk )
@@ -188,7 +188,7 @@ extern "C"
 /**
   * @brief      Disable TX and RX PDMA transfer.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear TXPDMAEN bit and RXPDMAEN bit of SPI_PDMACTL register to disable TX and RX PDMA transfer function.
   */
 #define SPI_DISABLE_TX_RX_PDMA(spi)   ( (spi)->PDMACTL &= ~(SPI_PDMACTL_TXPDMAEN_Msk | SPI_PDMACTL_RXPDMAEN_Msk) )
@@ -240,7 +240,7 @@ extern "C"
   * @brief      Write datum to TX register.
   * @param[in]  spi The pointer of the specified SPI module.
   * @param[in]  u32TxData The datum which user attempt to transfer through SPI bus.
-  * @return     None.
+  *.
   * @details    Write u32TxData to SPI_TX register.
   */
 #define SPI_WRITE_TX(spi, u32TxData)   ( (spi)->TX = (u32TxData) )
@@ -248,7 +248,7 @@ extern "C"
 /**
   * @brief      Set SPIx_SS pin to high state.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Disable automatic slave selection function and set SPIx_SS pin to high state.
   */
 #define SPI_SET_SS_HIGH(spi)   ( (spi)->SSCTL = ((spi)->SSCTL & (~SPI_SSCTL_AUTOSS_Msk)) | (SPI_SSCTL_SSACTPOL_Msk | SPI_SSCTL_SS_Msk) )
@@ -256,7 +256,7 @@ extern "C"
 /**
   * @brief      Set SPIx_SS pin to low state.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Disable automatic slave selection function and set SPIx_SS pin to low state.
   */
 #define SPI_SET_SS_LOW(spi)   ( (spi)->SSCTL = ((spi)->SSCTL & (~(SPI_SSCTL_AUTOSS_Msk | SPI_SSCTL_SSACTPOL_Msk))) | SPI_SSCTL_SS_Msk )
@@ -264,7 +264,7 @@ extern "C"
 /**
   * @brief      Enable Byte Reorder function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Enable Byte Reorder function. The suspend interval depends on the setting of SUSPITV (SPI_CTL[7:4]).
   */
 #define SPI_ENABLE_BYTE_REORDER(spi)   ( (spi)->CTL |=  SPI_CTL_REORDER_Msk )
@@ -272,7 +272,7 @@ extern "C"
 /**
   * @brief      Disable Byte Reorder function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear REORDER bit field of SPI_CTL register to disable Byte Reorder function.
   */
 #define SPI_DISABLE_BYTE_REORDER(spi)   ( (spi)->CTL &= ~SPI_CTL_REORDER_Msk )
@@ -281,7 +281,7 @@ extern "C"
   * @brief      Set the length of suspend interval.
   * @param[in]  spi The pointer of the specified SPI module.
   * @param[in]  u32SuspCycle Decides the length of suspend interval. It could be 0 ~ 15.
-  * @return     None.
+  *.
   * @details    Set the length of suspend interval according to u32SuspCycle.
   *             The length of suspend interval is ((u32SuspCycle + 0.5) * the length of one SPI bus clock cycle).
   */
@@ -290,7 +290,7 @@ extern "C"
 /**
   * @brief      Set the SPI transfer sequence with LSB first.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set LSB bit of SPI_CTL register to set the SPI transfer sequence with LSB first.
   */
 #define SPI_SET_LSB_FIRST(spi)   ( (spi)->CTL |= SPI_CTL_LSB_Msk )
@@ -298,7 +298,7 @@ extern "C"
 /**
   * @brief      Set the SPI transfer sequence with MSB first.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear LSB bit of SPI_CTL register to set the SPI transfer sequence with MSB first.
   */
 #define SPI_SET_MSB_FIRST(spi)   ( (spi)->CTL &= ~SPI_CTL_LSB_Msk )
@@ -307,7 +307,7 @@ extern "C"
   * @brief      Set the data width of a SPI transaction.
   * @param[in]  spi The pointer of the specified SPI module.
   * @param[in]  u32Width The bit width of one transaction.
-  * @return     None.
+  *.
   * @details    The data width can be 8 ~ 32 bits.
   */
 #define SPI_SET_DATA_WIDTH(spi, u32Width)   ( (spi)->CTL = ((spi)->CTL & ~SPI_CTL_DWIDTH_Msk) | (((u32Width) & 0x1F) << SPI_CTL_DWIDTH_Pos) )
@@ -324,7 +324,7 @@ extern "C"
 /**
   * @brief      Enable SPI controller.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set SPIEN (SPI_CTL[0]) to enable SPI controller.
   */
 #define SPI_ENABLE(spi)   ( (spi)->CTL |= SPI_CTL_SPIEN_Msk )
@@ -332,7 +332,7 @@ extern "C"
 /**
   * @brief      Disable SPI controller.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear SPIEN (SPI_CTL[0]) to disable SPI controller.
   */
 #define SPI_DISABLE(spi)   ( (spi)->CTL &= ~SPI_CTL_SPIEN_Msk )

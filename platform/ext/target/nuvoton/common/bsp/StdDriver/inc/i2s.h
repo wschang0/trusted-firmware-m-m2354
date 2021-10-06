@@ -125,7 +125,7 @@ extern "C"
   * @brief  Enable zero cross detect function.
   * @param[in] i2s is the base address of I2S module.
   * @param[in] u32ChMask is the mask for channel number (valid value is from (1~8).
-  * @return none
+  *
   * \hideinitializer
   */
 __STATIC_INLINE void I2S_ENABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
@@ -140,7 +140,7 @@ __STATIC_INLINE void I2S_ENABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
   * @brief  Disable zero cross detect function.
   * @param[in] i2s is the base address of I2S module.
   * @param[in] u32ChMask is the mask for channel number (valid value is from (1~8).
-  * @return none
+  *
   * \hideinitializer
   */
 __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
@@ -154,7 +154,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S Tx DMA function. I2S requests DMA to transfer data to Tx FIFO.
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_ENABLE_TXDMA(i2s)  ( (i2s)->CTL0 |= I2S_CTL0_TXPDMAEN_Msk )
@@ -162,7 +162,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S Tx DMA function. I2S requests DMA to transfer data to Tx FIFO.
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_DISABLE_TXDMA(i2s) ( (i2s)->CTL0 &= ~I2S_CTL0_TXPDMAEN_Msk )
@@ -170,7 +170,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S Rx DMA function. I2S requests DMA to transfer data from Rx FIFO.
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_ENABLE_RXDMA(i2s) ( (i2s)->CTL0 |= I2S_CTL0_RXPDMAEN_Msk )
@@ -178,7 +178,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S Rx DMA function. I2S requests DMA to transfer data from Rx FIFO.
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_DISABLE_RXDMA(i2s) ( (i2s)->CTL0 &= ~I2S_CTL0_RXPDMAEN_Msk )
@@ -186,7 +186,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S Tx function .
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_ENABLE_TX(i2s) ( (i2s)->CTL0 |= I2S_CTL0_TXEN_Msk )
@@ -194,7 +194,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S Tx function .
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_DISABLE_TX(i2s) ( (i2s)->CTL0 &= ~I2S_CTL0_TXEN_Msk )
@@ -202,7 +202,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S Rx function .
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_ENABLE_RX(i2s) ( (i2s)->CTL0 |= I2S_CTL0_RXEN_Msk )
@@ -210,7 +210,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S Rx function .
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_DISABLE_RX(i2s) ( (i2s)->CTL0 &= ~I2S_CTL0_RXEN_Msk )
@@ -218,7 +218,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable Tx Mute function .
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_ENABLE_TX_MUTE(i2s)  ( (i2s)->CTL0 |= I2S_CTL0_MUTE_Msk )
@@ -226,7 +226,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable Tx Mute function .
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_DISABLE_TX_MUTE(i2s) ( (i2s)->CTL0 &= ~I2S_CTL0_MUTE_Msk )
@@ -234,7 +234,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Clear Tx FIFO. Internal pointer is reset to FIFO start point.
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_CLR_TX_FIFO(i2s) ( (i2s)->CTL0 |= I2S_CTL0_TXFBCLR_Msk )
@@ -242,7 +242,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Clear Rx FIFO. Internal pointer is reset to FIFO start point.
   * @param[in] i2s is the base address of I2S module.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_CLR_RX_FIFO(i2s) ( (i2s)->CTL0 |= I2S_CTL0_RXFBCLR_Msk )
@@ -253,7 +253,7 @@ __STATIC_INLINE void I2S_DISABLE_TX_ZCD(I2S_T *i2s, uint32_t u32ChMask)
   * @param[in] u32Ch left or right channel. Valid values are:
   *                - \ref I2S_MONO_LEFT
   *                - \ref I2S_MONO_RIGHT
-  * @return none
+  *
   * \hideinitializer
   */
 __STATIC_INLINE void I2S_SET_MONO_RX_CHANNEL(I2S_T *i2s, uint32_t u32Ch)
@@ -267,7 +267,7 @@ __STATIC_INLINE void I2S_SET_MONO_RX_CHANNEL(I2S_T *i2s, uint32_t u32Ch)
   * @brief  Write data to I2S Tx FIFO.
   * @param[in] i2s is the base address of I2S module.
   * @param[in] u32Data: The data written to FIFO.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_WRITE_TX_FIFO(i2s, u32Data)  ( (i2s)->TXFIFO = (u32Data) )
@@ -293,7 +293,7 @@ __STATIC_INLINE void I2S_SET_MONO_RX_CHANNEL(I2S_T *i2s, uint32_t u32Ch)
   * @brief  This function clears the interrupt flag according to the mask parameter.
   * @param[in] i2s is the base address of I2S module.
   * @param[in] u32Mask is the mask for the all interrupt flags.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_CLR_INT_FLAG(i2s, u32Mask) ( (i2s)->STATUS0 |= (u32Mask) )
@@ -311,7 +311,7 @@ __STATIC_INLINE void I2S_SET_MONO_RX_CHANNEL(I2S_T *i2s, uint32_t u32Ch)
   * @brief  This function clears the zero crossing interrupt flag according to the mask parameter.
   * @param[in] i2s is the base address of I2S module.
   * @param[in] u32Mask is the mask for the all interrupt flags.
-  * @return none
+  *
   * \hideinitializer
   */
 #define I2S_CLR_ZC_INT_FLAG(i2s, u32Mask) ( (i2s)->STATUS1 |= (u32Mask) )

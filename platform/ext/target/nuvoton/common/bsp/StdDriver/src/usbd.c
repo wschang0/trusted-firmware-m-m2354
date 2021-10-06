@@ -64,7 +64,7 @@ uint32_t g_USBD_u32EpStallLock           = 0UL;     /*!< Bit map flag to lock sp
   * @param[in]  pfnClassReq     USB Class request callback function.
   * @param[in]  pfnSetInterface USB Set Interface request callback function.
   *
-  * @return     None
+  *
   *
   * @details    This function will enable USB controller, USB PHY transceiver and pull-up resistor of USB_D+ pin. USB PHY will drive SE0 to bus.
   */
@@ -124,7 +124,7 @@ void USBD_Start(void)
   *
   * @param[in]  buf A buffer pointer used to store 8-byte SETUP packet.
   *
-  * @return     None
+  *
   *
   * @details    Store SETUP packet to a user-specified buffer.
   *
@@ -534,7 +534,7 @@ void USBD_StandardRequest(void)
   * @param[in]  pu8Buf  The pointer of data sent to USB host.
   * @param[in]  u32Size The IN transfer size.
   *
-  * @return     None
+  *
   *
   * @details    Prepare data for Control IN transfer.
   *
@@ -628,7 +628,7 @@ void USBD_CtrlIn(void)
   * @param[in]  pu8Buf  The pointer of data received from USB host.
   * @param[in]  u32Size The OUT transfer size.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to prepare the first Control OUT transfer.
   *

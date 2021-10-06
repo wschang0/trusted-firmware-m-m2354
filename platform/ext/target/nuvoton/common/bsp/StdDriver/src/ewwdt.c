@@ -44,7 +44,7 @@
   * @param[in]  u32CmpValue     Setting the window compared value. Valid values are between 0x0 to 0x3F.
   * @param[in]  u32EnableInt    Enable WWDT time-out interrupt function. Valid values are TRUE and FALSE.
   *
-  * @return     None
+  *
   *
   * @details    This function makes EWWDT module start counting with different counter period by pre-scale setting and compared window value.
   * @note       Application can call this function only once after boot up.

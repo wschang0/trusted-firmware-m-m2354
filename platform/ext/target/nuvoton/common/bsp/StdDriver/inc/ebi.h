@@ -107,7 +107,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank0.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 8-bit data to specify address on EBI bank0.
   * \hideinitializer
@@ -134,7 +134,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank0.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 16-bit data to specify address on EBI bank0.
   * \hideinitializer
@@ -161,7 +161,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank0.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 32-bit data to specify address on EBI bank0.
   * \hideinitializer
@@ -188,7 +188,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank1.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 8-bit data to specify address on EBI bank1.
   * \hideinitializer
@@ -215,7 +215,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank1.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 16-bit data to specify address on EBI bank1.
   * \hideinitializer
@@ -242,7 +242,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank1.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 32-bit data to specify address on EBI bank1.
   * \hideinitializer
@@ -269,7 +269,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank2.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 8-bit data to specify address on EBI bank2.
   * \hideinitializer
@@ -295,7 +295,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank2.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 16-bit data to specify address on EBI bank2.
   * \hideinitializer
@@ -321,7 +321,7 @@ extern "C"
   * @param[in]  u32Addr     The data address on EBI bank2.
   * @param[in]  u32Data     Specify data to be written.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to write 32-bit data to specify address on EBI bank2.
   * \hideinitializer
@@ -333,7 +333,7 @@ extern "C"
   *
   * @param[in]  ebi         The pointer of EBI module.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to improve EBI write operation for all EBI banks.
   * \hideinitializer
@@ -345,7 +345,7 @@ extern "C"
   *
   * @param[in]  ebi         The pointer of EBI module.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable EBI write buffer function.
   * \hideinitializer

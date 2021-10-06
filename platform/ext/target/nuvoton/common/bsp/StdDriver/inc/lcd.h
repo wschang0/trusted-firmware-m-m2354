@@ -125,9 +125,9 @@ typedef struct
 /**
   * @brief      Enable LCD Display
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to enable LCD display.
   */
@@ -136,9 +136,9 @@ typedef struct
 /**
   * @brief      Disable LCD Display
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to disable LCD display.
   */
@@ -153,7 +153,7 @@ typedef struct
   *                             - \ref LCD_WAVEFORM_TYPE_A_INVERSE
   *                             - \ref LCD_WAVEFORM_TYPE_B_INVERSE
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the attribute of LCD output waveform.
   */
@@ -164,7 +164,7 @@ typedef struct
   *
   * @param[in]  div         The frequency divider, valid value is between 1 to 1024.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the LCD operarion frequency is (LCD source frequency / div).
   */
@@ -181,7 +181,7 @@ typedef struct
   *                             - \ref LCD_CP_VOLTAGE_LV_4, 3.4 V
   *                             - \ref LCD_CP_VOLTAGE_LV_5, 3.6 V
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set charge pump voltage for VLCD.
   */
@@ -193,7 +193,7 @@ typedef struct
   * @param[in]  unit        The tuning units, valid value is between 0 to 7.
   *                         One unit of voltage is about 0.03V, and the charge pump voltage is decreased (unit * 0.03)V.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to decrease charge pump voltage by specific units.
   */
@@ -205,7 +205,7 @@ typedef struct
   * @param[in]  unit        The tuning units, valid value is between 1 to 8.
   *                         One unit of voltage is about 0.03V, and the charge pump voltage is increased (unit * 0.03)V.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to increase charge pump voltage by specific units.
   */
@@ -214,9 +214,9 @@ typedef struct
 /**
   * @brief      Set LCD Blinking ON
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to enable LCD blinking.
   */
@@ -225,9 +225,9 @@ typedef struct
 /**
   * @brief      Set LCD Blinking OFF
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to disable LCD blinking.
   */
@@ -238,7 +238,7 @@ typedef struct
   *
   * @param[in]  value       Frame counting value. Valid value is between 1 to 1024.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the LCD frame counting value to configure the blink interval.
   * @note       For type-B waveform, the frame counter increases at the end of odd frames, not even frames.
@@ -251,7 +251,7 @@ typedef struct
   * @param[in]  unit        The unit parameter is used to determine the null frame time, valid value is between 0 to 15.
   *                         And one unit time is one LCD operation clock period.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the one null frame time.
   * @note       All COM and SEG output voltages will keep at 0V during a null frame.
@@ -263,7 +263,7 @@ typedef struct
   *
   * @param[in]  frame       The continuous frames, valid setting is between 1 to 16 frames.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to specify the number of continuous frames reached to insert one null frame.
   */
@@ -277,7 +277,7 @@ typedef struct
   *                             - \ref LCD_VOLTAGE_SOURCE_AVDD
   *                             - \ref LCD_VOLTAGE_SOURCE_CP
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to select LCD operation voltage source.
   */
@@ -293,7 +293,7 @@ typedef struct
   *                             - \ref LCD_HIGH_DRIVING_AND_BUF_OFF_AND_PWR_SAVING
   *                             - \ref LCD_LOW_DRIVING_AND_BUF_ON_AND_PWR_SAVING
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set LCD operation drivig mode.
   */
@@ -306,7 +306,7 @@ typedef struct
   *                             - \ref LCD_PWR_SAVING_NORMAL_MODE
   *                             - \ref LCD_PWR_SAVING_REVERSE_MODE
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the LCD power saving mode.
   *             When the timing of power saving mode is reversed, the original power saving period becomes no power saving,
@@ -320,7 +320,7 @@ typedef struct
   * @param[in]  t1      The number of t1 to determine T1 period, valid value is between 1 to 16.
   *                     And one unit of t1 period is half of LCD operation clock period.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to configure the T1 (Enable Time) period of power saving.
   */
@@ -332,7 +332,7 @@ typedef struct
   * @param[in]  t2      The number of t2 to determine T2 period, valid value is between 1 to 16.
   *                     And one unit of t1 period is half of LCD operation clock period.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to configure the T2 (On Time) period of power saving.
   */
@@ -344,7 +344,7 @@ typedef struct
   * @param[in]  value   The maximum timeout value, valid value is between 1 to 8192.
   *                     And one unit of timeout value is one LCD operation clock period.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set maximum timeout time of charge pump charging timer.
   */
@@ -356,7 +356,7 @@ typedef struct
   * @param[in]  pak     Select device package type.
   *                     0 for 128-pin package, and 1 for 64-pin package.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to select device output pins for LCD controller with different package type.
   */
@@ -365,9 +365,9 @@ typedef struct
 /**
   * @brief      Enable LCD Frame Counting End Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to enable frame count end interrupt function.
   */
@@ -376,9 +376,9 @@ typedef struct
 /**
   * @brief      Disable LCD Frame Counting End Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to disable frame count end interrupt function.
   */
@@ -387,9 +387,9 @@ typedef struct
 /**
   * @brief      Enable LCD Frame End Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to enable frame end interrupt function.
   */
@@ -398,9 +398,9 @@ typedef struct
 /**
   * @brief      Disable LCD Frame End Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to disable frame end interrupt function.
   */
@@ -409,9 +409,9 @@ typedef struct
 /**
   * @brief      Enable Charging Timeout Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to enable charge pump charging timeout interrupt function.
   */
@@ -420,9 +420,9 @@ typedef struct
 /**
   * @brief      Disable Charging Timeout Interrupt
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to disable charge pump charging timeout interrupt function.
   */
@@ -431,7 +431,7 @@ typedef struct
 /**
   * @brief      Get LCD Frame Counting End Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   Frame count end flag did not occur
   * @retval     1   Frame count end flag occurred
@@ -443,9 +443,9 @@ typedef struct
 /**
   * @brief      Clear LCD Frame Counting End Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro clears frame count end flag.
   */
@@ -454,7 +454,7 @@ typedef struct
 /**
   * @brief      Get LCD Frame End Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   Frame end flag did not occur
   * @retval     1   Frame end flag occurred
@@ -466,9 +466,9 @@ typedef struct
 /**
   * @brief      Clear LCD Frame End Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro clears frame end flag.
   */
@@ -477,7 +477,7 @@ typedef struct
 /**
   * @brief      Get Charging Timeout Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   Charge pump timer timeout flag did not occur
   * @retval     1   Charge pump timer timeout flag occurred
@@ -489,9 +489,9 @@ typedef struct
 /**
   * @brief      Clear Charging Timeout Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro clears charge pump charging timeout flag.
   */
@@ -500,7 +500,7 @@ typedef struct
 /**
   * @brief      Get Charging Time
   *
-  * @param      None
+  *
   *
   * @return     Current 13-bit charging timer value
   *

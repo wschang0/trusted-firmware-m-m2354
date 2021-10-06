@@ -180,7 +180,7 @@ uint32_t LCD_Open(S_LCD_CFG_T *pLCDCfg)
   *
   * @param[in]  None
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable LCD display.
   */
@@ -197,7 +197,7 @@ void LCD_Close(void)
   * @param[in]  u32OnFlag   0 : Segment not display
   *                         1 : Segment display
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable specified segment display on the LCD.
   */
@@ -225,7 +225,7 @@ void LCD_SetPixel(uint32_t u32Com, uint32_t u32Seg, uint32_t u32OnFlag)
   * @param[in]  u32OnOff    0 : Disable all segments display
   *                         1 : Enable all segments display
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable/disable all LCD segments display.
   */
@@ -289,7 +289,7 @@ uint32_t LCD_EnableBlink(uint32_t u32ms)
   *
   * @param[in]  None
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable LCD blink display.
   */
@@ -305,7 +305,7 @@ void LCD_DisableBlink(void)
   * @param[in]  IntSrc      Interrupt Source. It could be a combination of
   *                             \ref LCD_FRAME_COUNTING_END_INT, \ref LCD_FRAME_END_INT and \ref LCD_CPTOUT_INT.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the specific LCD interrupt.
   */
@@ -320,7 +320,7 @@ void LCD_EnableInt(uint32_t u32IntSrc)
   * @param[in]  IntSrc      Interrupt Source. It could be a combination of
   *                             \ref LCD_FRAME_COUNTING_END_INT, \ref LCD_FRAME_END_INT and \ref LCD_CPTOUT_INT.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable the specific LCD interrupt.
   */
