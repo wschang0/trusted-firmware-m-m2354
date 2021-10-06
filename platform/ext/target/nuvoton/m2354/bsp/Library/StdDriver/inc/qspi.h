@@ -75,7 +75,7 @@ extern "C"
 /**
   * @brief      Clear the unit transfer interrupt flag.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Write 1 to UNITIF bit of QSPI_STATUS register to clear the unit transfer interrupt flag.
   */
 #define QSPI_CLR_UNIT_TRANS_INT_FLAG(qspi)   ( (qspi)->STATUS = QSPI_STATUS_UNITIF_Msk )
@@ -83,7 +83,7 @@ extern "C"
 /**
   * @brief      Disable 2-bit Transfer mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear TWOBIT bit of QSPI_CTL register to disable 2-bit Transfer mode.
   */
 #define QSPI_DISABLE_2BIT_MODE(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_TWOBIT_Msk )
@@ -91,7 +91,7 @@ extern "C"
 /**
   * @brief      Disable Slave 3-wire mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear SLV3WIRE bit of QSPI_SSCTL register to disable Slave 3-wire mode.
   */
 #define QSPI_DISABLE_3WIRE_MODE(qspi)   ( (qspi)->SSCTL &= ~QSPI_SSCTL_SLV3WIRE_Msk )
@@ -99,7 +99,7 @@ extern "C"
 /**
   * @brief      Disable Dual I/O mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear DUALIOEN bit of QSPI_CTL register to disable Dual I/O mode.
   */
 #define QSPI_DISABLE_DUAL_MODE(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_DUALIOEN_Msk )
@@ -107,7 +107,7 @@ extern "C"
 /**
   * @brief      Disable Quad I/O mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear QUADIOEN bit of QSPI_CTL register to disable Quad I/O mode.
   */
 #define QSPI_DISABLE_QUAD_MODE(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_QUADIOEN_Msk )
@@ -115,7 +115,7 @@ extern "C"
 /**
   * @brief      Disable TX DTR mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear TXDTREN bit of QSPI_CTL register to disable TX DTR mode.
   */
 #define QSPI_DISABLE_TXDTR_MODE(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_TXDTREN_Msk )
@@ -123,7 +123,7 @@ extern "C"
 /**
   * @brief      Enable 2-bit Transfer mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set TWOBIT bit of QSPI_CTL register to enable 2-bit Transfer mode.
   */
 #define QSPI_ENABLE_2BIT_MODE(qspi)   ( (qspi)->CTL |= QSPI_CTL_TWOBIT_Msk )
@@ -131,7 +131,7 @@ extern "C"
 /**
   * @brief      Enable Slave 3-wire mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set SLV3WIRE bit of QSPI_SSCTL register to enable Slave 3-wire mode.
   */
 #define QSPI_ENABLE_3WIRE_MODE(qspi)   ( (qspi)->SSCTL |= QSPI_SSCTL_SLV3WIRE_Msk )
@@ -139,7 +139,7 @@ extern "C"
 /**
   * @brief      Enable Dual input mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear DATDIR bit and set DUALIOEN bit of QSPI_CTL register to enable Dual input mode.
   */
 #define QSPI_ENABLE_DUAL_INPUT_MODE(qspi)   ( (qspi)->CTL = ((qspi)->CTL & (~QSPI_CTL_DATDIR_Msk)) | QSPI_CTL_DUALIOEN_Msk )
@@ -147,7 +147,7 @@ extern "C"
 /**
   * @brief      Enable Dual output mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set DATDIR bit and DUALIOEN bit of QSPI_CTL register to enable Dual output mode.
   */
 #define QSPI_ENABLE_DUAL_OUTPUT_MODE(qspi)   ( (qspi)->CTL |= (QSPI_CTL_DATDIR_Msk | QSPI_CTL_DUALIOEN_Msk) )
@@ -155,7 +155,7 @@ extern "C"
 /**
   * @brief      Enable Quad input mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear DATDIR bit and set QUADIOEN bit of QSPI_CTL register to enable Quad input mode.
   */
 #define QSPI_ENABLE_QUAD_INPUT_MODE(qspi)   ( (qspi)->CTL = ((qspi)->CTL & (~QSPI_CTL_DATDIR_Msk)) | QSPI_CTL_QUADIOEN_Msk )
@@ -163,7 +163,7 @@ extern "C"
 /**
   * @brief      Enable Quad output mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set DATDIR bit and QUADIOEN bit of QSPI_CTL register to enable Quad output mode.
   */
 #define QSPI_ENABLE_QUAD_OUTPUT_MODE(qspi)   ( (qspi)->CTL |= (QSPI_CTL_DATDIR_Msk | QSPI_CTL_QUADIOEN_Msk) )
@@ -171,7 +171,7 @@ extern "C"
 /**
   * @brief      Enable TX DTR mode.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set TXDTREN bit of QSPI_CTL register to enable TX DTR mode.
   */
 #define QSPI_ENABLE_TXDTR_MODE(qspi)   ( (qspi)->CTL |= QSPI_CTL_TXDTREN_Msk )
@@ -179,7 +179,7 @@ extern "C"
 /**
   * @brief      Trigger RX PDMA function.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set RXPDMAEN bit of QSPI_PDMACTL register to enable RX PDMA transfer function.
   */
 #define QSPI_TRIGGER_RX_PDMA(qspi)   ( (qspi)->PDMACTL |= QSPI_PDMACTL_RXPDMAEN_Msk )
@@ -187,7 +187,7 @@ extern "C"
 /**
   * @brief      Trigger TX PDMA function.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set TXPDMAEN bit of QSPI_PDMACTL register to enable TX PDMA transfer function.
   */
 #define QSPI_TRIGGER_TX_PDMA(qspi)   ( (qspi)->PDMACTL |= QSPI_PDMACTL_TXPDMAEN_Msk )
@@ -195,7 +195,7 @@ extern "C"
 /**
   * @brief      Trigger TX and RX PDMA function.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set TXPDMAEN bit and RXPDMAEN bit of QSPI_PDMACTL register to enable TX and RX PDMA transfer function.
   */
 #define QSPI_TRIGGER_TX_RX_PDMA(qspi)   ( (qspi)->PDMACTL |= (QSPI_PDMACTL_TXPDMAEN_Msk | QSPI_PDMACTL_RXPDMAEN_Msk) )
@@ -203,7 +203,7 @@ extern "C"
 /**
   * @brief      Disable RX PDMA transfer.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear RXPDMAEN bit of QSPI_PDMACTL register to disable RX PDMA transfer function.
   */
 #define QSPI_DISABLE_RX_PDMA(qspi)   ( (qspi)->PDMACTL &= ~QSPI_PDMACTL_RXPDMAEN_Msk )
@@ -211,7 +211,7 @@ extern "C"
 /**
   * @brief      Disable TX PDMA transfer.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear TXPDMAEN bit of QSPI_PDMACTL register to disable TX PDMA transfer function.
   */
 #define QSPI_DISABLE_TX_PDMA(qspi)   ( (qspi)->PDMACTL &= ~QSPI_PDMACTL_TXPDMAEN_Msk )
@@ -219,7 +219,7 @@ extern "C"
 /**
   * @brief      Disable TX and RX PDMA transfer.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear TXPDMAEN bit and RXPDMAEN bit of QSPI_PDMACTL register to disable TX and RX PDMA transfer function.
   */
 #define QSPI_DISABLE_TX_RX_PDMA(qspi)   ( (qspi)->PDMACTL &= ~(QSPI_PDMACTL_TXPDMAEN_Msk | QSPI_PDMACTL_RXPDMAEN_Msk) )
@@ -271,7 +271,7 @@ extern "C"
   * @brief      Write datum to TX register.
   * @param[in]  qspi The pointer of the specified QSPI module.
   * @param[in]  u32TxData The datum which user attempt to transfer through QSPI bus.
-  * @return     None.
+  *.
   * @details    Write u32TxData to QSPI_TX register.
   */
 #define QSPI_WRITE_TX(qspi, u32TxData)   ( (qspi)->TX = (u32TxData) )
@@ -279,7 +279,7 @@ extern "C"
 /**
   * @brief      Set QSPIx_SS pin to high state.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Disable automatic slave selection function and set QSPIx_SS pin to high state.
   */
 #define QSPI_SET_SS_HIGH(qspi)   ( (qspi)->SSCTL = ((qspi)->SSCTL & (~QSPI_SSCTL_AUTOSS_Msk)) | (QSPI_SSCTL_SSACTPOL_Msk | QSPI_SSCTL_SS_Msk) )
@@ -287,7 +287,7 @@ extern "C"
 /**
   * @brief      Set QSPIx_SS pin to low state.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Disable automatic slave selection function and set QSPIx_SS pin to low state.
   */
 #define QSPI_SET_SS_LOW(qspi)   ( (qspi)->SSCTL = ((qspi)->SSCTL & (~(QSPI_SSCTL_AUTOSS_Msk | QSPI_SSCTL_SSACTPOL_Msk))) | QSPI_SSCTL_SS_Msk )
@@ -295,7 +295,7 @@ extern "C"
 /**
   * @brief      Enable Byte Reorder function.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Enable Byte Reorder function. The suspend interval depends on the setting of SUSPITV (QSPI_CTL[7:4]).
   */
 #define QSPI_ENABLE_BYTE_REORDER(qspi)   ( (qspi)->CTL |=  QSPI_CTL_REORDER_Msk )
@@ -303,7 +303,7 @@ extern "C"
 /**
   * @brief      Disable Byte Reorder function.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear REORDER bit field of QSPI_CTL register to disable Byte Reorder function.
   */
 #define QSPI_DISABLE_BYTE_REORDER(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_REORDER_Msk )
@@ -312,7 +312,7 @@ extern "C"
   * @brief      Set the length of suspend interval.
   * @param[in]  qspi The pointer of the specified QSPI module.
   * @param[in]  u32SuspCycle Decides the length of suspend interval. It could be 0 ~ 15.
-  * @return     None.
+  *.
   * @details    Set the length of suspend interval according to u32SuspCycle.
   *             The length of suspend interval is ((u32SuspCycle + 0.5) * the length of one QSPI bus clock cycle).
   */
@@ -321,7 +321,7 @@ extern "C"
 /**
   * @brief      Set the QSPI transfer sequence with LSB first.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set LSB bit of QSPI_CTL register to set the QSPI transfer sequence with LSB first.
   */
 #define QSPI_SET_LSB_FIRST(qspi)   ( (qspi)->CTL |= QSPI_CTL_LSB_Msk )
@@ -329,7 +329,7 @@ extern "C"
 /**
   * @brief      Set the QSPI transfer sequence with MSB first.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear LSB bit of QSPI_CTL register to set the QSPI transfer sequence with MSB first.
   */
 #define QSPI_SET_MSB_FIRST(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_LSB_Msk )
@@ -338,7 +338,7 @@ extern "C"
   * @brief      Set the data width of a QSPI transaction.
   * @param[in]  qspi The pointer of the specified QSPI module.
   * @param[in]  u32Width The bit width of one transaction.
-  * @return     None.
+  *.
   * @details    The data width can be 8 ~ 32 bits.
   */
 #define QSPI_SET_DATA_WIDTH(qspi, u32Width)   ( (qspi)->CTL = ((qspi)->CTL & ~QSPI_CTL_DWIDTH_Msk) | (((u32Width) & 0x1F) << QSPI_CTL_DWIDTH_Pos) )
@@ -355,7 +355,7 @@ extern "C"
 /**
   * @brief      Enable QSPI controller.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Set SPIEN (QSPI_CTL[0]) to enable QSPI controller.
   */
 #define QSPI_ENABLE(qspi)   ( (qspi)->CTL |= QSPI_CTL_SPIEN_Msk )
@@ -363,7 +363,7 @@ extern "C"
 /**
   * @brief      Disable QSPI controller.
   * @param[in]  qspi The pointer of the specified QSPI module.
-  * @return     None.
+  *.
   * @details    Clear SPIEN (QSPI_CTL[0]) to disable QSPI controller.
   */
 #define QSPI_DISABLE(qspi)   ( (qspi)->CTL &= ~QSPI_CTL_SPIEN_Msk )

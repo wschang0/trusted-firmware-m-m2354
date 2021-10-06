@@ -61,9 +61,9 @@ extern "C"
 /**
   * @brief      Clear WWDT Reset System Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to clear WWDT time-out reset system flag.
   * \hideinitializer
@@ -73,9 +73,9 @@ extern "C"
 /**
   * @brief      Clear WWDT Compared Match Interrupt Flag
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to clear WWDT compared match interrupt flag.
   * \hideinitializer
@@ -85,7 +85,7 @@ extern "C"
 /**
   * @brief      Get WWDT Reset System Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   WWDT time-out reset system did not occur
   * @retval     1   WWDT time-out reset system occurred
@@ -98,7 +98,7 @@ extern "C"
 /**
   * @brief      Get WWDT Compared Match Interrupt Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   WWDT compare match interrupt did not occur
   * @retval     1   WWDT compare match interrupt occurred
@@ -111,7 +111,7 @@ extern "C"
 /**
   * @brief      Get WWDT Counter
   *
-  * @param      None
+  *
   *
   * @return     WWDT Counter Value
   *
@@ -123,9 +123,9 @@ extern "C"
 /**
   * @brief      Reload WWDT Counter
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    This macro is used to reload the WWDT counter value to 0x3F.
   * @note       User can only write WWDT_RLDCNT register to reload WWDT counter value when current WWDT counter value \n

@@ -172,7 +172,7 @@ typedef struct
   *
   * @param[in]  rtc         The pointer of RTC module.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear RTC alarm interrupt flag.
   * \hideinitializer
@@ -184,7 +184,7 @@ typedef struct
   *
   * @param[in]  rtc         The pointer of RTC module.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear RTC tick interrupt flag.
   * \hideinitializer
@@ -203,7 +203,7 @@ typedef struct
   *                             - \ref RTC_INTSTS_TAMP4IF_Msk    \n
   *                             - \ref RTC_INTSTS_TAMP5IF_Msk
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear RTC tamper pin interrupt flag.
   * \hideinitializer
@@ -241,7 +241,7 @@ typedef struct
   *
   * @param[in]  rtc         The pointer of RTC module.
   *
-  * @return     None
+  *
   *
   * @details    This macro sets the PF.4~11 pin I/O is controlled by GPIO module.
   * \hideinitializer
@@ -253,7 +253,7 @@ typedef struct
   *
   * @param[in]  rtc         The pointer of RTC module.
   *
-  * @return     None
+  *
   *
   * @details    This macro sets the PF.4~11 pin I/O is controlled by RTC module.
   * \hideinitializer
@@ -308,7 +308,7 @@ typedef struct
   *
   * @param[in]  rtc         The pointer of RTC module.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable RTC tick interrupt wake-up function.
   * \hideinitializer
@@ -320,7 +320,7 @@ typedef struct
   *
   * @param[in]  rtc         The pointer of RTC module.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable RTC tick interrupt wake-up function.
   * \hideinitializer
@@ -347,7 +347,7 @@ typedef struct
   * @param[in]  u32RegNum       The spare register number, 0~19.
   * @param[in]  u32RegValue     The spare register value.
   *
-  * @return     None
+  *
   *
   * @details    Write specify data to spare register.
   * \hideinitializer

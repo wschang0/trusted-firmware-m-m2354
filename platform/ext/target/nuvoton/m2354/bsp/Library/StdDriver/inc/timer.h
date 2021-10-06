@@ -89,7 +89,7 @@ extern "C"
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   * @param[in]  u32Value    Timer compare value. Valid values are between 2 to 0xFFFFFF.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set timer compared value to adjust timer time-out interval.
   * @note       1. Never write 0x0 or 0x1 in this field, or the core will run into unknown state. \n
@@ -105,7 +105,7 @@ extern "C"
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   * @param[in]  u32Value    Timer prescale value. Valid values are between 0 to 0xFF.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set timer prescale value and timer source clock will be divided by (prescale + 1) \n
   *             before it is fed into timer.
@@ -134,7 +134,7 @@ extern "C"
   *                         - \ref TIMER_TOUT_PIN_FROM_TMX
   *                         - \ref TIMER_TOUT_PIN_FROM_TMX_EXT
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to select timer toggle-output pin is output on TMx or TMx_EXT pin.
   * \hideinitializer
@@ -151,7 +151,7 @@ extern "C"
   *                         - \ref TIMER_TOGGLE_MODE
   *                         - \ref TIMER_CONTINUOUS_MODE
   *
-  * @return     None
+  *
   * \hideinitializer
   */
 #define TIMER_SET_OPMODE(timer, u32OpMode)   ((timer)->CTL = ((timer)->CTL & ~TIMER_CTL_OPMODE_Msk) | (u32OpMode))
@@ -191,7 +191,7 @@ __STATIC_INLINE void TIMER_ResetCounter(TIMER_T *timer);
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to start Timer counting.
   */
@@ -205,7 +205,7 @@ __STATIC_INLINE void TIMER_Start(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to stop/suspend Timer counting.
   */
@@ -219,7 +219,7 @@ __STATIC_INLINE void TIMER_Stop(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the timer interrupt wake-up function and interrupt source could be time-out interrupt, \n
   *             counter event interrupt or capture trigger interrupt.
@@ -235,7 +235,7 @@ __STATIC_INLINE void TIMER_EnableWakeup(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable the timer interrupt wake-up function.
   */
@@ -249,7 +249,7 @@ __STATIC_INLINE void TIMER_DisableWakeup(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to start Timer capture function.
   */
@@ -263,7 +263,7 @@ __STATIC_INLINE void TIMER_StartCapture(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to stop Timer capture function.
   */
@@ -277,7 +277,7 @@ __STATIC_INLINE void TIMER_StopCapture(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the detect de-bounce function of capture pin.
   */
@@ -291,7 +291,7 @@ __STATIC_INLINE void TIMER_EnableCaptureDebounce(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable the detect de-bounce function of capture pin.
   */
@@ -305,7 +305,7 @@ __STATIC_INLINE void TIMER_DisableCaptureDebounce(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the detect de-bounce function of counter pin.
   */
@@ -319,7 +319,7 @@ __STATIC_INLINE void TIMER_EnableEventCounterDebounce(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable the detect de-bounce function of counter pin.
   */
@@ -333,7 +333,7 @@ __STATIC_INLINE void TIMER_DisableEventCounterDebounce(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the timer time-out interrupt function.
   */
@@ -347,7 +347,7 @@ __STATIC_INLINE void TIMER_EnableInt(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable the timer time-out interrupt function.
   */
@@ -361,7 +361,7 @@ __STATIC_INLINE void TIMER_DisableInt(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the timer capture trigger interrupt function.
   */
@@ -375,7 +375,7 @@ __STATIC_INLINE void TIMER_EnableCaptureInt(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable the timer capture trigger interrupt function.
   */
@@ -404,7 +404,7 @@ __STATIC_INLINE uint32_t TIMER_GetIntFlag(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function clears timer time-out interrupt flag to 0.
   */
@@ -433,7 +433,7 @@ __STATIC_INLINE uint32_t TIMER_GetCaptureIntFlag(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function clears timer capture trigger interrupt flag to 0.
   */
@@ -462,7 +462,7 @@ __STATIC_INLINE uint32_t TIMER_GetWakeupFlag(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function clears the timer wake-up system flag to 0.
   */
@@ -504,7 +504,7 @@ __STATIC_INLINE uint32_t TIMER_GetCounter(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to reset current counter value and internal prescale counter value.
   */

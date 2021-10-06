@@ -68,7 +68,7 @@ uint32_t TIMER_Open(TIMER_T *timer, uint32_t u32Mode, uint32_t u32Freq)
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This API stops timer counting and disable all timer interrupt function.
   */
@@ -84,7 +84,7 @@ void TIMER_Close(TIMER_T *timer)
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   * @param[in]  u32Usec     Delay period in micro seconds. Valid values are between 100~1000000 (100 micro second ~ 1 second).
   *
-  * @return     None
+  *
   *
   * @details    This API is used to create a delay loop for u32usec micro seconds by using timer one-shot mode.
   * @note       This API overwrites the register setting of the timer used to count the delay time.
@@ -167,7 +167,7 @@ void TIMER_Delay(TIMER_T *timer, uint32_t u32Usec)
   *                         - \ref TIMER_CAPTURE_EVENT_GET_LOW_PERIOD
   *                         - \ref TIMER_CAPTURE_EVENT_GET_HIGH_PERIOD
   *
-  * @return     None
+  *
   *
   * @details    This API is used to enable timer capture function with specify capture trigger edge \n
   *             to get current counter value or reset counter value to 0.
@@ -184,7 +184,7 @@ void TIMER_EnableCapture(TIMER_T *timer, uint32_t u32CapMode, uint32_t u32Edge)
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This API is used to disable the timer capture function.
   */
@@ -201,7 +201,7 @@ void TIMER_DisableCapture(TIMER_T *timer)
   *                         - \ref TIMER_COUNTER_EVENT_FALLING, or
   *                         - \ref TIMER_COUNTER_EVENT_RISING
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable the timer counter function with specify detection edge.
   * @note       Timer compare value should be configured separately by using \ref TIMER_SET_CMP_VALUE macro or program registers directly.
@@ -218,7 +218,7 @@ void TIMER_EnableEventCounter(TIMER_T *timer, uint32_t u32Edge)
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This API is used to disable the timer event counter function.
   */
@@ -299,7 +299,7 @@ uint32_t TIMER_GetModuleClock(TIMER_T *timer)
   * @param[in]  u32Timeout      This parameter has no effect in this BSP
   * @param[in]  u32EnableInt    Enable interrupt assertion after capture complete or not. Valid values are TRUE and FALSE
   *
-  * @return     None
+  *
   *
   * @details    This function is used to calculate input event frequency. After enable
   *             this function, a pair of timers, TIMER0 and TIMER1, TIMER2 and TIMER3, or TIMER4 and TIMER5
@@ -355,7 +355,7 @@ void TIMER_EnableFreqCounter(TIMER_T *timer,
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @brief      This function is used to disable the Timer frequency counter function.
   */
@@ -372,7 +372,7 @@ void TIMER_DisableFreqCounter(TIMER_T *timer)
   *                     - \ref TIMER_TRGSRC_TIMEOUT_EVENT
   *                     - \ref TIMER_TRGSRC_CAPTURE_EVENT
   *
-  * @return     None
+  *
   *
   * @brief      This function is used to select the interrupt source used to trigger other modules.
   */
@@ -391,7 +391,7 @@ void TIMER_SetTriggerSource(TIMER_T *timer, uint32_t u32Src)
   *                     - \ref TIMER_TRG_TO_DAC and
   *                     - \ref TIMER_TRG_TO_PDMA
   *
-  * @return     None
+  *
   *
   * @details    This function is used to set EPWM, EADC, DAC and PDMA module triggered by timer interrupt event.
   * @note       The \ref TIMER_TRG_TO_PWM and \ref TIMER_TRG_TO_DAC are only available on TIMER0 ~ TIMER3.

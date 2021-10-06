@@ -142,7 +142,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable specified Timer channel as PWM counter mode, then timer counter mode is invalid.
   * @note       All registers about time counter function will be cleared to 0 and timer clock source will be changed to PCLKx automatically after executing this macro.
@@ -164,7 +164,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable specified Timer channel as PWM counter mode, then timer counter mode is available.
   * @note       All registers about PWM counter function will be cleared to 0 after executing this macro.
@@ -187,7 +187,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable independent mode of TIMER PWM module and complementary mode will be disabled.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -200,7 +200,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable complementary mode of Timer PWM module and independent mode will be disabled.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -217,7 +217,7 @@ extern "C"
   *                             - \ref TPWM_DOWN_COUNT
   *                             - \ref TPWM_UP_DOWN_COUNT
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set Timer PWM counter type.
   * @note       NOT available on TIMER4 and TIMER5. Both TIMER4 and TIMER5 are only support count up.
@@ -230,7 +230,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable PWM generator and start counter counting.
   * \hideinitializer
@@ -242,7 +242,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to stop PWM counter after current period is completed.
   * \hideinitializer
@@ -258,7 +258,7 @@ extern "C"
   *                         Valid values are between 0x0~0xFFF for TIMER0, TIMER1, TIMER2, TIMER3, and
   *                         valid values are between 0x0~0xFF for TIMER4 and TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the prescaler of specified TIMER PWM.
   * @note       If prescaler is 0, then there is no scaling in counter clock source.
@@ -285,7 +285,7 @@ extern "C"
   *
   * @param[in]  period      Period of specified channel. Valid values are between 0x0~0xFFFF.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the period of specified TIMER PWM.
   * \hideinitializer
@@ -311,7 +311,7 @@ extern "C"
   *
   * @param[in]  cmp     Comparator of specified channel. Valid values are between 0x0~0xFFFF.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set the comparator value of specified TIMER PWM.
   * \hideinitializer
@@ -335,7 +335,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear counter of specified TIMER PWM.
   * \hideinitializer
@@ -351,7 +351,7 @@ extern "C"
   *                             - \ref TPWM_BRAKE_EDGE
   *                             - \ref TPWM_BRAKE_LEVEL
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to trigger brake event by writing PWMSWBRK register.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -368,7 +368,7 @@ extern "C"
   *                         For TIMER0 ~ TIMER3, the valid value could be a combination of \ref TPWM_CH0 and \ref TPWM_CH1.
   *                         For TIMER4, TIMER5, the valid value could be \ref TPWM_CH0 or \ref TPWM_CH1.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable output function of specified output pins.
   * \hideinitializer
@@ -394,7 +394,7 @@ extern "C"
   *                         For TIMER0 ~ TIMER3, the valid value could be a combination of \ref TPWM_CH0 and \ref TPWM_CH1.
   *                         But this parameter is no effect on TIMER4 and TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable output inverse of specified output pins.
   * \hideinitializer
@@ -417,7 +417,7 @@ extern "C"
   *
   * @param[in]  level    Output to high or low on specified mask channel.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable output mask function of specified output pins.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -437,7 +437,7 @@ extern "C"
   *                         - \ref TPWM_CNTR_SYNC_START_BY_TIMER2
   *                         - \ref TPWM_CNTR_SYNC_CLEAR_BY_TIMER2
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set counter synchronous mode of specified Timer PWM module.
   * @note       Only support all PWM counters are synchronous by TIMER0 PWM or TIMER0~1 PWM counter synchronous by TIMER0 PWM and
@@ -452,7 +452,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to trigger synchronous event by specified TIMER PWM.
   * @note       1. This macro is only available for TIMER0 PWM and TIMER2 PWM. \n
@@ -467,7 +467,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER4 or TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable the timer pwm interrupt wake-up function.
   * @note       Only available on TIMER4 and TIMER5.
@@ -480,7 +480,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER4 or TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable the timer pwm interrupt wake-up function.
   * @note       Only available on TIMER4 and TIMER5.
@@ -493,7 +493,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable the zero event interrupt function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -506,7 +506,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable the zero event interrupt function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -533,7 +533,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro clears zero event interrupt flag.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -546,7 +546,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable the period event interrupt function.
   * \hideinitializer
@@ -558,7 +558,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable the period event interrupt function.
   * \hideinitializer
@@ -583,7 +583,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro clears period event interrupt flag.
   * \hideinitializer
@@ -595,7 +595,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable the compare up event interrupt function.
   * \hideinitializer
@@ -607,7 +607,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable the compare up event interrupt function.
   * \hideinitializer
@@ -632,7 +632,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro clears compare up event interrupt flag.
   * \hideinitializer
@@ -644,7 +644,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to enable the compare down event interrupt function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -657,7 +657,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to disable the compare down event interrupt function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -684,7 +684,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro clears compare down event interrupt flag.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -710,7 +710,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro clears reach maximum count status.
   * \hideinitializer
@@ -735,7 +735,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear PWM counter compare event trigger ADC status.
   * \hideinitializer
@@ -761,7 +761,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER4 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear PWM counter compare event trigger PDMA status.
   * @note       Only available on TIMER4 and TIMER5.
@@ -787,7 +787,7 @@ extern "C"
   *
   * @param[in]  timer   The pointer of the specified Timer module. It could be TIMER4 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear PWM interrupt wakeup status.
   * @note       Only available on TIMER4 and TIMER5.
@@ -800,7 +800,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set detect brake event when external brake pin at high level or transfer from low to high.
   * @note       The default brake pin detection is high level or from low to high.
@@ -814,7 +814,7 @@ extern "C"
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set detect brake event when external brake pin at low level or transfer from high to low.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -832,7 +832,7 @@ extern "C"
   *                                 - \ref TPWM_TM_BRAKE2
   *                                 - \ref TPWM_TM_BRAKE3
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set detect brake event when external brake pin at high level or transfer from low to high.
   * @note       NOT available on TIMER4 and TIMER5.

@@ -110,7 +110,7 @@ typedef enum NSATTR
   * @param[in]  nsattr     The secure/non-secure attribution of specified module.
                            The possible value could be refer to \ref NSATTR.
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to set a peripheral to be non-secure peripheral.
   *
@@ -252,7 +252,7 @@ typedef enum NSATTR
   *             - \ref SCU_SVINTSTS_SYSIF_Msk
   *             - \ref SCU_SVINTSTS_CRPTIF_Msk
   *
-  * @return     None
+  *
   *
   * @details    Clear SCU related interrupt flags specified by flag parameter.
   *
@@ -268,7 +268,7 @@ typedef enum NSATTR
   *              - true     The counter keeps counting when CPU is in idle.
                  - false    The counter will stop when CPU is in idle.
   *
-  * @return     None
+  *
   *
   * @details    To control non-secure monitor counter when CPU is in idle.
   *
@@ -282,7 +282,7 @@ typedef enum NSATTR
   *              - true     The counter keeps counting when CPU is in debug.
                  - false    The counter will stop when CPU is in debug.
   *
-  * @return     None
+  *
   *
   * @details    To control non-secure monitor counter when CPU is in debug.
   *
@@ -302,7 +302,7 @@ __STATIC_INLINE void SCU_TimerConfig(uint32_t u32Ticks, uint32_t u32Prescale);
   * @param[in]  u32Prescale    A pre-scale divider to non-secure monitor clock
 
   *
-  * @return     None
+  *
   *
   * @details    This function is used to configure non-secure monitor. If the CPU state stay in non-secure state for
   *             a specified period. The non-secure monitor will timeout and assert an interrupt. Otherwise, the
@@ -327,7 +327,7 @@ __STATIC_INLINE void SCU_NSMConfig(uint32_t u32Ticks, uint32_t u32Prescale)
   * @param[in]  u32Prescale    A pre-scale divider to timer clock source.
 
   *
-  * @return     None
+  *
   *
   * @details    This function is used to configure non-secure monitor as a timer. In other words, the timer counter
   *             keeps counting even CPU is in secure state.

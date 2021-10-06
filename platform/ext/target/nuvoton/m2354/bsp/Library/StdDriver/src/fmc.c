@@ -585,7 +585,7 @@ int32_t FMC_ReadConfig(uint32_t u32Config[], uint32_t u32Count)
   *             It must be a word aligned address.
   * @param[in]  u32Data The word data to be programmed.
   *
-  * @return     None
+  *
   *
   * @ details   Execute ISP FMC_ISPCMD_PROGRAM to program a word to flash.
   */

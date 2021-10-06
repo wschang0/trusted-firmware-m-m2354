@@ -725,8 +725,8 @@ extern "C"
 
 /**
   * @brief      Disable Wake-up Timer
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up timer at Standby or Deep Power-down mode.
   */
 #define CLK_DISABLE_WKTMR() \
@@ -737,8 +737,8 @@ extern "C"
 
 /**
   * @brief      Enable Wake-up Timer
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro enables Wake-up timer at Standby or Deep Power-down mode.
   */
 #define CLK_ENABLE_WKTMR() \
@@ -749,8 +749,8 @@ extern "C"
 
 /**
   * @brief      Disable DPD Mode Wake-up Pin
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up pin at Deep Power-down mode.
   */
 #define CLK_DISABLE_DPDWKPIN() \
@@ -761,8 +761,8 @@ extern "C"
 
 /**
   * @brief      Disable DPD Mode Wake-up Pin 0
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up pin 0 (GPC.0) at Deep Power-down mode.
   */
 #define CLK_DISABLE_DPDWKPIN0() \
@@ -773,8 +773,8 @@ extern "C"
 
 /**
   * @brief      Disable DPD Mode Wake-up Pin 1
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up pin 1 (GPB.0) at Deep Power-down mode.
   */
 #define CLK_DISABLE_DPDWKPIN1() \
@@ -785,8 +785,8 @@ extern "C"
 
 /**
   * @brief      Disable DPD Mode Wake-up Pin 2
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up pin 2 (GPB.2) at Deep Power-down mode.
   */
 #define CLK_DISABLE_DPDWKPIN2() \
@@ -797,8 +797,8 @@ extern "C"
 
 /**
   * @brief      Disable DPD Mode Wake-up Pin 3
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up pin 3 (GPB.12) at Deep Power-down mode.
   */
 #define CLK_DISABLE_DPDWKPIN3() \
@@ -809,8 +809,8 @@ extern "C"
 
 /**
   * @brief      Disable DPD Mode Wake-up Pin 4
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables Wake-up pin 4 (GPF.6) at Deep Power-down mode.
   */
 #define CLK_DISABLE_DPDWKPIN4() \
@@ -821,8 +821,8 @@ extern "C"
 
 /**
   * @brief      Disable SPD Mode ACMP Wake-up
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables ACMP wake-up at Standby Power-down mode.
   */
 #define CLK_DISABLE_SPDACMP() \
@@ -833,8 +833,8 @@ extern "C"
 
 /**
   * @brief      Enable SPD Mode ACMP Wake-up
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro enables ACMP wake-up at Standby Power-down mode.
   */
 #define CLK_ENABLE_SPDACMP() \
@@ -845,8 +845,8 @@ extern "C"
 
 /**
   * @brief      Disable SPD and DPD Mode RTC Wake-up
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables RTC Wake-up at Standby or Deep Power-down mode.
   */
 #define CLK_DISABLE_RTCWK() \
@@ -857,8 +857,8 @@ extern "C"
 
 /**
   * @brief      Enable SPD and DPD Mode RTC Wake-up
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro enables RTC Wake-up at Standby or Deep Power-down mode.
   */
 #define CLK_ENABLE_RTCWK() \
@@ -923,8 +923,8 @@ extern "C"
 
 /**
   * @brief      Disable SPD Mode Tamper Wake-up
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro disables tamper Wake-up at Standby Power-down mode.
   */
 #define CLK_DISABLE_SPDTAMPER() \
@@ -935,8 +935,8 @@ extern "C"
 
 /**
   * @brief      Enable SPD and DPD Mode RTC Wake-up
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This macro enables tamper Wake-up at Standby Power-down mode.
   */
 #define CLK_ENABLE_SPDTAMPER() \
@@ -959,7 +959,7 @@ __STATIC_INLINE void CLK_SysTickLongDelay(uint32_t us);
   * @param[in]  us  Delay time. The Max value is (2^24-1) / CPU Clock(MHz). Ex:
   *                             96MHz => 174762us, 84MHz => 199728us,
   *                             64MHz => 262143us, 48MHz => 349525us ...
-  * @return     None
+  *
   * @details    Use the SysTick to generate the delay time and the UNIT is in us.
   *             The SysTick clock source is from HCLK, i.e the same as system core clock.
   *             User can use SystemCoreClockUpdate() to calculate CyclesPerUs automatically before using this function.
@@ -982,7 +982,7 @@ __STATIC_INLINE void CLK_SysTickDelay(uint32_t us)
 /**
   * @brief      This function execute long delay function.
   * @param[in]  us  Delay time.
-  * @return     None
+  *
   * @details    Use the SysTick to generate the long delay time and the UNIT is in us.
   *             The SysTick clock source is from HCLK, i.e the same as system core clock.
   *             User can use SystemCoreClockUpdate() to calculate CyclesPerUs automatically before using this function.

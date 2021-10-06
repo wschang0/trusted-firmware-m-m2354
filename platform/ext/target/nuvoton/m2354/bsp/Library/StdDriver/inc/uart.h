@@ -154,7 +154,7 @@ extern "C"
  *    @param[in]    uart    The pointer of the specified UART module
  *    @param[in]    u8Data  Data byte to transmit.
  *
- *    @return       None
+ *
  *
  *    @details      This macro write Data to Tx data register.
  */
@@ -218,7 +218,7 @@ extern "C"
  *
  *    @param[in]    uart    The pointer of the specified UART module
  *
- *    @return       None
+ *
  *
  *    @details      This macro wait specified uart port transmission is over.
  */
@@ -319,7 +319,7 @@ extern "C"
  *                              - \ref UART_INTEN_THREIEN_Msk    : Tx empty interrupt
  *                              - \ref UART_INTEN_RDAIEN_Msk     : Rx ready interrupt
  *
- *    @return       None
+ *
  *
  *    @details      This macro enable specified UART interrupt.
  */
@@ -342,7 +342,7 @@ extern "C"
  *                              - \ref UART_INTEN_THREIEN_Msk    : Transmit Holding Register Empty Interrupt
  *                              - \ref UART_INTEN_RDAIEN_Msk     : Receive Data Available Interrupt
  *
- *    @return       None
+ *
  *
  *    @details      This macro enable specified UART interrupt.
  */
@@ -404,7 +404,7 @@ static __INLINE void UART_SET_RTS(UART_T* uart);
  *
  *    @param[in]    uart    The pointer of the specified UART module
  *
- *    @return       None
+ *
  *
  *    @details      This macro set RTS pin to low.
  */
@@ -420,7 +420,7 @@ __STATIC_INLINE void UART_CLEAR_RTS(UART_T* uart)
  *
  *    @param[in]    uart    The pointer of the specified UART module
  *
- *    @return       None
+ *
  *
  *    @details      This macro set RTS pin to high.
  */
@@ -435,7 +435,7 @@ __STATIC_INLINE void UART_SET_RTS(UART_T* uart)
  *
  *    @param[in]    uart    The pointer of the specified UART module
  *
- *    @return       None
+ *
  *
  *    @details      This macro clear RS-485 address byte detection flag.
  */
@@ -463,7 +463,7 @@ __STATIC_INLINE void UART_SET_RTS(UART_T* uart)
  *                             - \ref UART_INTEN_TXPDMAEN_Msk
  *                             - \ref UART_INTEN_RXPDMAEN_Msk
  *
- *    @return       None
+ *
  *
  *    @details      This macro enable specified UART PDMA function.
  */
@@ -478,7 +478,7 @@ __STATIC_INLINE void UART_SET_RTS(UART_T* uart)
  *                             - \ref UART_INTEN_TXPDMAEN_Msk
  *                             - \ref UART_INTEN_RXPDMAEN_Msk
  *
- *    @return       None
+ *
  *
  *    @details      This macro disable specified UART PDMA function.
  */

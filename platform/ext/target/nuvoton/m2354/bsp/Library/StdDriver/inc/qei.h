@@ -58,7 +58,7 @@ extern "C"
 /**
   * @brief      Disable QEI compare function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro disable QEI counter compare function.
   * \hideinitializer
   */
@@ -67,7 +67,7 @@ extern "C"
 /**
   * @brief      Enable QEI compare function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro enable QEI counter compare function.
   * \hideinitializer
   */
@@ -76,7 +76,7 @@ extern "C"
 /**
   * @brief      Disable QEI index latch function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro disable QEI index trigger counter latch function.
   * \hideinitializer
   */
@@ -85,7 +85,7 @@ extern "C"
 /**
   * @brief      Enable QEI index latch function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro enable QEI index trigger counter latch function.
   * \hideinitializer
   */
@@ -94,7 +94,7 @@ extern "C"
 /**
   * @brief      Disable QEI index reload function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro disable QEI index trigger counter reload function.
   * \hideinitializer
   */
@@ -103,7 +103,7 @@ extern "C"
 /**
   * @brief      Enable QEI index reload function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro enable QEI index trigger counter reload function.
   * \hideinitializer
   */
@@ -116,7 +116,7 @@ extern "C"
   *                             - \ref QEI_CTL_CHAEN_Msk    : QEA input
   *                             - \ref QEI_CTL_CHAEN_Msk    : QEB input
   *                             - \ref QEI_CTL_IDXEN_Msk    : IDX input
-  * @return     None
+  *
   * @details    This macro disable specified QEI signal input.
   * \hideinitializer
   */
@@ -129,7 +129,7 @@ extern "C"
   *                             - \ref QEI_CTL_CHAEN_Msk    : QEA input
   *                             - \ref QEI_CTL_CHBEN_Msk    : QEB input
   *                             - \ref QEI_CTL_IDXEN_Msk    : IDX input
-  * @return     None
+  *
   * @details    This macro enable specified QEI signal input.
   * \hideinitializer
   */
@@ -142,7 +142,7 @@ extern "C"
   *                             - \ref QEI_CTL_CHAINV_Msk   : QEA Input
   *                             - \ref QEI_CTL_CHBINV_Msk   : QEB Input
   *                             - \ref QEI_CTL_IDXINV_Msk   : IDX Input
-  * @return     None
+  *
   * @details    This macro disable specified QEI signal inverted input polarity.
   * \hideinitializer
   */
@@ -155,7 +155,7 @@ extern "C"
   *                             - \ref QEI_CTL_CHAINV_Msk   : QEA Input
   *                             - \ref QEI_CTL_CHBINV_Msk   : QEB Input
   *                             - \ref QEI_CTL_IDXINV_Msk   : IDX Input
-  * @return     None
+  *
   * @details    This macro inverse specified QEI signal input polarity.
   * \hideinitializer
   */
@@ -169,7 +169,7 @@ extern "C"
   *                         - \ref QEI_CTL_OVUNIEN_Msk  : Counter overflow or underflow interrupt
   *                         - \ref QEI_CTL_CMPIEN_Msk   : Compare-match interrupt
   *                         - \ref QEI_CTL_IDXIEN_Msk   : Index detected interrupt
-  * @return     None
+  *
   * @details    This macro disable specified QEI interrupt.
   * \hideinitializer
   */
@@ -183,7 +183,7 @@ extern "C"
   *                         - \ref QEI_CTL_OVUNIEN_Msk  : Counter overflow or underflow interrupt
   *                         - \ref QEI_CTL_CMPIEN_Msk   : Compare-match interrupt
   *                         - \ref QEI_CTL_IDXIEN_Msk   : Index detected interrupt
-  * @return     None
+  *
   * @details    This macro enable specified QEI interrupt.
   * \hideinitializer
   */
@@ -192,7 +192,7 @@ extern "C"
 /**
   * @brief      Disable QEI noise filter
   * @param[in]  qei         The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This macro disable QEI noise filter function.
   * \hideinitializer
   */
@@ -208,7 +208,7 @@ extern "C"
   *                         - \ref QEI_CTL_NFCLKSEL_DIV16
   *                         - \ref QEI_CTL_NFCLKSEL_DIV32
   *                         - \ref QEI_CTL_NFCLKSEL_DIV64
-  * @return     None
+  *
   * @details    This macro enable QEI noise filter function and select noise filter clock.
   * \hideinitializer
   */
@@ -286,7 +286,7 @@ extern "C"
   *                         - \ref QEI_STATUS_OVUNF_Msk     : Counter overflow or underflow flag
   *                         - \ref QEI_STATUS_CMPF_Msk      : Compare-match flag
   *                         - \ref QEI_STATUS_IDXF_Msk      : Index detected flag
-  * @return     None
+  *
   * @details    This macro clear QEI specified interrupt flag.
   * \hideinitializer
   */
@@ -296,7 +296,7 @@ extern "C"
   * @brief      Set QEI counter compare value
   * @param[in]  qei         The pointer of the specified QEI module.
   * @param[in]  u32Value    The counter compare value.
-  * @return     None
+  *
   * @details    This macro set QEI pulse counter compare value.
   * \hideinitializer
   */
@@ -306,7 +306,7 @@ extern "C"
   * @brief      Set QEI counter value
   * @param[in]  qei         The pointer of the specified QEI module.
   * @param[in]  u32Value    The counter compare value.
-  * @return     None
+  *
   * @details    This macro set QEI pulse counter value.
   * \hideinitializer
   */
@@ -321,7 +321,7 @@ extern "C"
   *                         - \ref QEI_CTL_HOLDTMR1_Msk     : Hold QEI_CNT by Timer1
   *                         - \ref QEI_CTL_HOLDTMR2_Msk     : Hold QEI_CNT by Timer2
   *                         - \ref QEI_CTL_HOLDTMR3_Msk     : Hold QEI_CNT by Timer3
-  * @return     None
+  *
   * @details    This macro enable QEI counter hold mode.
   * \hideinitializer
   */
@@ -336,7 +336,7 @@ extern "C"
   *                         - \ref QEI_CTL_HOLDTMR1_Msk     : Hold QEI_CNT by Timer1
   *                         - \ref QEI_CTL_HOLDTMR2_Msk     : Hold QEI_CNT by Timer2
   *                         - \ref QEI_CTL_HOLDTMR3_Msk     : Hold QEI_CNT by Timer3
-  * @return     None
+  *
   * @details    This macro disable QEI counter hold mode.
   * \hideinitializer
   */
@@ -360,7 +360,7 @@ extern "C"
   *                         - \ref QEI_CTL_X2_FREE_COUNTING_MODE
   *                         - \ref QEI_CTL_X4_COMPARE_COUNTING_MODE
   *                         - \ref QEI_CTL_X2_COMPARE_COUNTING_MODE
-  * @return     None
+  *
   * @details    This macro set QEI counting mode.
   * \hideinitializer
   */

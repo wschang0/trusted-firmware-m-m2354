@@ -31,7 +31,7 @@
   *             - \ref SYS_RSTSTS_WDTRF_Msk
   *             - \ref SYS_RSTSTS_PINRF_Msk
   *             - \ref SYS_RSTSTS_PORF_Msk
-  * @return     None
+  *
   * @details    This function clear the selected system reset source.
   */
 void SYS_ClearResetSrc(uint32_t u32Src)
@@ -41,7 +41,7 @@ void SYS_ClearResetSrc(uint32_t u32Src)
 
 /**
   * @brief      Get Brown-out detector output status
-  * @param      None
+  *
   * @retval     0 System voltage is higher than BODVL setting or BODEN is 0.
   * @retval     1 System voltage is lower than BODVL setting.
   * @details    This function get Brown-out detector output status.
@@ -53,7 +53,7 @@ uint32_t SYS_GetBODStatus(void)
 
 /**
   * @brief      Get reset status register value
-  * @param      None
+  *
   * @return     Reset source
   * @details    This function get the system reset status register value.
   */
@@ -64,7 +64,7 @@ uint32_t SYS_GetResetSrc(void)
 
 /**
   * @brief      Check if register is locked nor not
-  * @param      None
+  *
   * @retval     0 Write-protection function is disabled.
   *             1 Write-protection function is enabled.
   * @details    This function check register write-protection bit setting.
@@ -76,7 +76,7 @@ uint32_t SYS_IsRegLocked(void)
 
 /**
   * @brief      Get product ID
-  * @param      None
+  *
   * @return     Product ID
   * @details    This function get product ID.
   */
@@ -87,8 +87,8 @@ uint32_t  SYS_ReadPDID(void)
 
 /**
   * @brief      Reset chip with chip reset
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This function reset chip with chip reset.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -99,8 +99,8 @@ void SYS_ResetChip(void)
 
 /**
   * @brief      Reset chip with CPU reset
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This function reset CPU with CPU reset.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -163,7 +163,7 @@ void SYS_ResetCPU(void)
   *             - \ref QEI1_RST
   *             - \ref ECAP0_RST
   *             - \ref ECAP1_RST
-  * @return     None
+  *
   * @details    This function reset selected module.
   */
 void SYS_ResetModule(uint32_t u32ModuleIndex)
@@ -194,7 +194,7 @@ void SYS_ResetModule(uint32_t u32ModuleIndex)
   *             - \ref SYS_BODCTL_BODVL_2_6V
   *             - \ref SYS_BODCTL_BODVL_2_8V
   *             - \ref SYS_BODCTL_BODVL_3_0V
-  * @return     None
+  *
   * @details    This function configure Brown-out detector reset or interrupt mode, enable Brown-out function and set Brown-out voltage level.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -210,8 +210,8 @@ void SYS_EnableBOD(int32_t i32Mode, uint32_t u32BODLevel)
 
 /**
   * @brief      Disable Brown-out detector function
-  * @param      None
-  * @return     None
+  *
+  *
   * @details    This function disable Brown-out detector function.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -229,7 +229,7 @@ void SYS_DisableBOD(void)
   *             - \ref SYS_PLCTL_PLSEL_PL1  : Supports system clock up to 84MHz.
   *             - \ref SYS_PLCTL_PLSEL_PL2  : Supports system clock up to 48MHz.
   *             - \ref SYS_PLCTL_PLSEL_PL3  : Supports system clock up to 4MHz.
-  * @return     None
+  *
   * @details    This function select power level.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -339,7 +339,7 @@ uint32_t SYS_SetPowerRegulator(uint32_t u32PowerRegulator)
   *             - \ref SYS_SRAMPC1_SRAM_NORMAL
   *             - \ref SYS_SRAMPC1_SRAM_RETENTION
   *             - \ref SYS_SRAMPC1_SRAM_POWER_SHUT_DOWN
-  * @return     None
+  *
   * @details    This function set system SRAM power mode.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -388,7 +388,7 @@ void SYS_SetSSRAMPowerMode(uint32_t u32SRAMSel, uint32_t u32PowerMode)
   *             - \ref SYS_SRAMPC1_SRAM_NORMAL
   *             - \ref SYS_SRAMPC1_SRAM_RETENTION
   *             - \ref SYS_SRAMPC1_SRAM_POWER_SHUT_DOWN
-  * @return     None
+  *
   * @details    This function set peripheral SRAM power mode.
   *             The register write-protection function should be disabled before using this function.
   */
@@ -423,7 +423,7 @@ void SYS_SetPSRAMPowerMode(uint32_t u32SRAMSel, uint32_t u32PowerMode)
   *             - \ref SYS_VREFCTL_VREF_2_5V
   *             - \ref SYS_VREFCTL_VREF_3_0V
   *             - \ref SYS_VREFCTL_VREF_AVDD
-  * @return     None
+  *
   * @details    This function select reference voltage.
   *             The register write-protection function should be disabled before using this function.
   */

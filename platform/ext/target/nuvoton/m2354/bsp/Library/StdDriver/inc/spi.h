@@ -124,7 +124,7 @@ extern "C"
 /**
   * @brief      Clear the unit transfer interrupt flag.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Write 1 to UNITIF bit of SPI_STATUS register to clear the unit transfer interrupt flag.
   */
 #define SPI_CLR_UNIT_TRANS_INT_FLAG(spi)   ( (spi)->STATUS = SPI_STATUS_UNITIF_Msk )
@@ -132,7 +132,7 @@ extern "C"
 /**
   * @brief      Disable Slave 3-wire mode.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear SLV3WIRE bit of SPI_SSCTL register to disable Slave 3-wire mode.
   */
 #define SPI_DISABLE_3WIRE_MODE(spi)   ( (spi)->SSCTL &= ~SPI_SSCTL_SLV3WIRE_Msk )
@@ -140,7 +140,7 @@ extern "C"
 /**
   * @brief      Enable Slave 3-wire mode.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set SLV3WIRE bit of SPI_SSCTL register to enable Slave 3-wire mode.
   */
 #define SPI_ENABLE_3WIRE_MODE(spi)   ( (spi)->SSCTL |= SPI_SSCTL_SLV3WIRE_Msk )
@@ -148,7 +148,7 @@ extern "C"
 /**
   * @brief      Trigger RX PDMA function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set RXPDMAEN bit of SPI_PDMACTL register to enable RX PDMA transfer function.
   */
 #define SPI_TRIGGER_RX_PDMA(spi)   ( (spi)->PDMACTL |= SPI_PDMACTL_RXPDMAEN_Msk )
@@ -156,7 +156,7 @@ extern "C"
 /**
   * @brief      Trigger TX PDMA function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set TXPDMAEN bit of SPI_PDMACTL register to enable TX PDMA transfer function.
   */
 #define SPI_TRIGGER_TX_PDMA(spi)   ( (spi)->PDMACTL |= SPI_PDMACTL_TXPDMAEN_Msk )
@@ -164,7 +164,7 @@ extern "C"
 /**
   * @brief      Trigger TX and RX PDMA function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set TXPDMAEN bit and RXPDMAEN bit of SPI_PDMACTL register to enable TX and RX PDMA transfer function.
   */
 #define SPI_TRIGGER_TX_RX_PDMA(spi)   ( (spi)->PDMACTL |= (SPI_PDMACTL_TXPDMAEN_Msk | SPI_PDMACTL_RXPDMAEN_Msk) )
@@ -172,7 +172,7 @@ extern "C"
 /**
   * @brief      Disable RX PDMA transfer.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear RXPDMAEN bit of SPI_PDMACTL register to disable RX PDMA transfer function.
   */
 #define SPI_DISABLE_RX_PDMA(spi) ( (spi)->PDMACTL &= ~SPI_PDMACTL_RXPDMAEN_Msk )
@@ -180,7 +180,7 @@ extern "C"
 /**
   * @brief      Disable TX PDMA transfer.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear TXPDMAEN bit of SPI_PDMACTL register to disable TX PDMA transfer function.
   */
 #define SPI_DISABLE_TX_PDMA(spi) ( (spi)->PDMACTL &= ~SPI_PDMACTL_TXPDMAEN_Msk )
@@ -188,7 +188,7 @@ extern "C"
 /**
   * @brief      Disable TX and RX PDMA transfer.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear TXPDMAEN bit and RXPDMAEN bit of SPI_PDMACTL register to disable TX and RX PDMA transfer function.
   */
 #define SPI_DISABLE_TX_RX_PDMA(spi)   ( (spi)->PDMACTL &= ~(SPI_PDMACTL_TXPDMAEN_Msk | SPI_PDMACTL_RXPDMAEN_Msk) )
@@ -240,7 +240,7 @@ extern "C"
   * @brief      Write datum to TX register.
   * @param[in]  spi The pointer of the specified SPI module.
   * @param[in]  u32TxData The datum which user attempt to transfer through SPI bus.
-  * @return     None.
+  *.
   * @details    Write u32TxData to SPI_TX register.
   */
 #define SPI_WRITE_TX(spi, u32TxData)   ( (spi)->TX = (u32TxData) )
@@ -248,7 +248,7 @@ extern "C"
 /**
   * @brief      Set SPIx_SS pin to high state.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Disable automatic slave selection function and set SPIx_SS pin to high state.
   */
 #define SPI_SET_SS_HIGH(spi)   ( (spi)->SSCTL = ((spi)->SSCTL & (~SPI_SSCTL_AUTOSS_Msk)) | (SPI_SSCTL_SSACTPOL_Msk | SPI_SSCTL_SS_Msk) )
@@ -256,7 +256,7 @@ extern "C"
 /**
   * @brief      Set SPIx_SS pin to low state.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Disable automatic slave selection function and set SPIx_SS pin to low state.
   */
 #define SPI_SET_SS_LOW(spi)   ( (spi)->SSCTL = ((spi)->SSCTL & (~(SPI_SSCTL_AUTOSS_Msk | SPI_SSCTL_SSACTPOL_Msk))) | SPI_SSCTL_SS_Msk )
@@ -264,7 +264,7 @@ extern "C"
 /**
   * @brief      Enable Byte Reorder function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Enable Byte Reorder function. The suspend interval depends on the setting of SUSPITV (SPI_CTL[7:4]).
   */
 #define SPI_ENABLE_BYTE_REORDER(spi)   ( (spi)->CTL |=  SPI_CTL_REORDER_Msk )
@@ -272,7 +272,7 @@ extern "C"
 /**
   * @brief      Disable Byte Reorder function.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear REORDER bit field of SPI_CTL register to disable Byte Reorder function.
   */
 #define SPI_DISABLE_BYTE_REORDER(spi)   ( (spi)->CTL &= ~SPI_CTL_REORDER_Msk )
@@ -281,7 +281,7 @@ extern "C"
   * @brief      Set the length of suspend interval.
   * @param[in]  spi The pointer of the specified SPI module.
   * @param[in]  u32SuspCycle Decides the length of suspend interval. It could be 0 ~ 15.
-  * @return     None.
+  *.
   * @details    Set the length of suspend interval according to u32SuspCycle.
   *             The length of suspend interval is ((u32SuspCycle + 0.5) * the length of one SPI bus clock cycle).
   */
@@ -290,7 +290,7 @@ extern "C"
 /**
   * @brief      Set the SPI transfer sequence with LSB first.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set LSB bit of SPI_CTL register to set the SPI transfer sequence with LSB first.
   */
 #define SPI_SET_LSB_FIRST(spi)   ( (spi)->CTL |= SPI_CTL_LSB_Msk )
@@ -298,7 +298,7 @@ extern "C"
 /**
   * @brief      Set the SPI transfer sequence with MSB first.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear LSB bit of SPI_CTL register to set the SPI transfer sequence with MSB first.
   */
 #define SPI_SET_MSB_FIRST(spi)   ( (spi)->CTL &= ~SPI_CTL_LSB_Msk )
@@ -307,7 +307,7 @@ extern "C"
   * @brief      Set the data width of a SPI transaction.
   * @param[in]  spi The pointer of the specified SPI module.
   * @param[in]  u32Width The bit width of one transaction.
-  * @return     None.
+  *.
   * @details    The data width can be 8 ~ 32 bits.
   */
 #define SPI_SET_DATA_WIDTH(spi, u32Width)   ( (spi)->CTL = ((spi)->CTL & ~SPI_CTL_DWIDTH_Msk) | (((u32Width) & 0x1F) << SPI_CTL_DWIDTH_Pos) )
@@ -324,7 +324,7 @@ extern "C"
 /**
   * @brief      Enable SPI controller.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Set SPIEN (SPI_CTL[0]) to enable SPI controller.
   */
 #define SPI_ENABLE(spi)   ( (spi)->CTL |= SPI_CTL_SPIEN_Msk )
@@ -332,7 +332,7 @@ extern "C"
 /**
   * @brief      Disable SPI controller.
   * @param[in]  spi The pointer of the specified SPI module.
-  * @return     None.
+  *.
   * @details    Clear SPIEN (SPI_CTL[0]) to disable SPI controller.
   */
 #define SPI_DISABLE(spi)   ( (spi)->CTL &= ~SPI_CTL_SPIEN_Msk )
@@ -343,7 +343,7 @@ extern "C"
   * @param[in] u32ChMask The mask for left or right channel. Valid values are:
   *                    - \ref SPII2S_RIGHT
   *                    - \ref SPII2S_LEFT
-  * @return None
+  *
   * @details This function will set RZCEN or LZCEN bit of SPI_I2SCTL register to enable zero cross detection function.
   */
 __STATIC_INLINE void SPII2S_ENABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
@@ -364,7 +364,7 @@ __STATIC_INLINE void SPII2S_ENABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
   * @param[in] u32ChMask The mask for left or right channel. Valid values are:
   *                    - \ref SPII2S_RIGHT
   *                    - \ref SPII2S_LEFT
-  * @return None
+  *
   * @details This function will clear RZCEN or LZCEN bit of SPI_I2SCTL register to disable zero cross detection function.
   */
 __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
@@ -382,7 +382,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S TX DMA function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will set TXPDMAEN bit of SPI_PDMACTL register to transmit data with PDMA.
   */
 #define SPII2S_ENABLE_TXDMA(i2s)  ( (i2s)->PDMACTL |= SPI_PDMACTL_TXPDMAEN_Msk )
@@ -390,7 +390,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S TX DMA function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear TXPDMAEN bit of SPI_PDMACTL register to disable TX DMA function.
   */
 #define SPII2S_DISABLE_TXDMA(i2s) ( (i2s)->PDMACTL &= ~SPI_PDMACTL_TXPDMAEN_Msk )
@@ -398,7 +398,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S RX DMA function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will set RXPDMAEN bit of SPI_PDMACTL register to receive data with PDMA.
   */
 #define SPII2S_ENABLE_RXDMA(i2s) ( (i2s)->PDMACTL |= SPI_PDMACTL_RXPDMAEN_Msk )
@@ -406,7 +406,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S RX DMA function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear RXPDMAEN bit of SPI_PDMACTL register to disable RX DMA function.
   */
 #define SPII2S_DISABLE_RXDMA(i2s) ( (i2s)->PDMACTL &= ~SPI_PDMACTL_RXPDMAEN_Msk )
@@ -414,7 +414,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S TX function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will set TXEN bit of SPI_I2SCTL register to enable I2S TX function.
   */
 #define SPII2S_ENABLE_TX(i2s) ( (i2s)->I2SCTL |= SPI_I2SCTL_TXEN_Msk )
@@ -422,7 +422,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S TX function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear TXEN bit of SPI_I2SCTL register to disable I2S TX function.
   */
 #define SPII2S_DISABLE_TX(i2s) ( (i2s)->I2SCTL &= ~SPI_I2SCTL_TXEN_Msk )
@@ -430,7 +430,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable I2S RX function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will set RXEN bit of SPI_I2SCTL register to enable I2S RX function.
   */
 #define SPII2S_ENABLE_RX(i2s) ( (i2s)->I2SCTL |= SPI_I2SCTL_RXEN_Msk )
@@ -438,7 +438,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable I2S RX function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear RXEN bit of SPI_I2SCTL register to disable I2S RX function.
   */
 #define SPII2S_DISABLE_RX(i2s) ( (i2s)->I2SCTL &= ~SPI_I2SCTL_RXEN_Msk )
@@ -446,7 +446,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Enable TX Mute function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will set MUTE bit of SPI_I2SCTL register to enable I2S TX mute function.
   */
 #define SPII2S_ENABLE_TX_MUTE(i2s)  ( (i2s)->I2SCTL |= SPI_I2SCTL_MUTE_Msk )
@@ -454,7 +454,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Disable TX Mute function.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear MUTE bit of SPI_I2SCTL register to disable I2S TX mute function.
   */
 #define SPII2S_DISABLE_TX_MUTE(i2s) ( (i2s)->I2SCTL &= ~SPI_I2SCTL_MUTE_Msk )
@@ -462,7 +462,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Clear TX FIFO.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear TX FIFO. The internal TX FIFO pointer will be reset to FIFO start point.
   */
 #define SPII2S_CLR_TX_FIFO(i2s) ( (i2s)->FIFOCTL |= SPI_FIFOCTL_TXFBCLR_Msk )
@@ -470,7 +470,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
 /**
   * @brief  Clear RX FIFO.
   * @param[in] i2s The pointer of the specified I2S module.
-  * @return None
+  *
   * @details This macro will clear RX FIFO. The internal RX FIFO pointer will be reset to FIFO start point.
   */
 #define SPII2S_CLR_RX_FIFO(i2s) ( (i2s)->FIFOCTL |= SPI_FIFOCTL_RXFBCLR_Msk )
@@ -481,7 +481,7 @@ __STATIC_INLINE void SPII2S_DISABLE_TX_ZCD(SPI_T *i2s, uint32_t u32ChMask)
   * @param[in] u32Ch left or right channel. Valid values are:
   *                - \ref SPII2S_MONO_LEFT
   *                - \ref SPII2S_MONO_RIGHT
-  * @return None
+  *
   * @details This function selects the recording source channel of monaural mode.
   */
 __STATIC_INLINE void SPII2S_SET_MONO_RX_CHANNEL(SPI_T *i2s, uint32_t u32Ch)
@@ -495,7 +495,7 @@ __STATIC_INLINE void SPII2S_SET_MONO_RX_CHANNEL(SPI_T *i2s, uint32_t u32Ch)
   * @brief  Write data to I2S TX FIFO.
   * @param[in] i2s The pointer of the specified I2S module.
   * @param[in] u32Data The value written to TX FIFO.
-  * @return None
+  *
   * @details This macro will write a value to TX FIFO.
   */
 #define SPII2S_WRITE_TX_FIFO(i2s, u32Data)  ( (i2s)->TX = (u32Data) )
@@ -521,7 +521,7 @@ __STATIC_INLINE void SPII2S_SET_MONO_RX_CHANNEL(SPI_T *i2s, uint32_t u32Ch)
   * @brief  Clear the interrupt flag.
   * @param[in] i2s The pointer of the specified I2S module.
   * @param[in] u32Mask The mask value for all interrupt flags.
-  * @return None
+  *
   * @details This macro will clear the interrupt flags specified by the u32mask parameter.
   * @note Except TX and RX FIFO threshold interrupt flags, the other interrupt flags can be cleared by writing 1 to itself.
   */

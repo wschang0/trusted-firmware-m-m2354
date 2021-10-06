@@ -26,7 +26,7 @@
 /**
   * @brief      Close QEI function
   * @param[in]  qei         The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This function reset QEI configuration and stop QEI counting.
   */
 void QEI_Close(QEI_T* qei)
@@ -43,7 +43,7 @@ void QEI_Close(QEI_T* qei)
   *                         - \ref QEI_CTL_OVUNIEN_Msk  : Counter overflow or underflow interrupt
   *                         - \ref QEI_CTL_CMPIEN_Msk   : Compare-match interrupt
   *                         - \ref QEI_CTL_IDXIEN_Msk   : Index detected interrupt
-  * @return     None
+  *
   * @details    This function disable QEI specified interrupt.
   */
 void QEI_DisableInt(QEI_T* qei, uint32_t u32IntSel)
@@ -70,7 +70,7 @@ void QEI_DisableInt(QEI_T* qei, uint32_t u32IntSel)
   *                         - \ref QEI_CTL_OVUNIEN_Msk  : Counter overflow or underflow interrupt
   *                         - \ref QEI_CTL_CMPIEN_Msk   : Compare-match interrupt
   *                         - \ref QEI_CTL_IDXIEN_Msk   : Index detected interrupt
-  * @return     None
+  *
   * @details    This function enable QEI specified interrupt.
   */
 void QEI_EnableInt(QEI_T* qei, uint32_t u32IntSel)
@@ -98,7 +98,7 @@ void QEI_EnableInt(QEI_T* qei, uint32_t u32IntSel)
   *                         - \ref QEI_CTL_X4_COMPARE_COUNTING_MODE
   *                         - \ref QEI_CTL_X2_COMPARE_COUNTING_MODE
   * @param[in]  u32Value    The counter maximum value in compare-counting mode.
-  * @return     None
+  *
   * @details    This function set QEI in specified mode and enable input.
   */
 void QEI_Open(QEI_T* qei, uint32_t u32Mode, uint32_t u32Value)
@@ -115,7 +115,7 @@ void QEI_Open(QEI_T* qei, uint32_t u32Mode, uint32_t u32Value)
 /**
   * @brief      Start QEI function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This function enable QEI function and start QEI counting.
   */
 void QEI_Start(QEI_T* qei)
@@ -127,7 +127,7 @@ void QEI_Start(QEI_T* qei)
 /**
   * @brief      Stop QEI function
   * @param[in]  qei     The pointer of the specified QEI module.
-  * @return     None
+  *
   * @details    This function disable QEI function and stop QEI counting.
   */
 void QEI_Stop(QEI_T* qei)

@@ -32,7 +32,7 @@
   *                                 - \ref TPWM_CNTR_CLKSRC_TIMER2_INT
   *                                 - \ref TPWM_CNTR_CLKSRC_TIMER3_INT
   *
-  * @return     None
+  *
   *
   * @details    This function is used to set PWM counter clock source.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -187,7 +187,7 @@ uint32_t TPWM_ConfigOutputFreqAndDuty(TIMER_T *timer, uint32_t u32Frequency, uin
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   * @param[in]  u32DTCount  Dead-Time duration in PWM clock count, valid values are between 0x0~0xFFF, but 0x0 means there is no Dead-Time insertion.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable Dead-Time function and counter source is the same as Timer PWM clock source.
   * @note       The register write-protection function should be disabled before using this function.
@@ -204,7 +204,7 @@ void TPWM_EnableDeadTime(TIMER_T *timer, uint32_t u32DTCount)
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   * @param[in]  u32DTCount  Dead-Time duration in PWM clock count, valid values are between 0x0~0xFFF, but 0x0 means there is no Dead-Time insertion.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable Dead-Time function and counter source is the Timer PWM clock source with prescale.
   * @note       The register write-protection function should be disabled before using this function.
@@ -220,7 +220,7 @@ void TPWM_EnableDeadTimeWithPrescale(TIMER_T *timer, uint32_t u32DTCount)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable Dead-time of selected channel.
   * @note       The register write-protection function should be disabled before using this function.
@@ -236,7 +236,7 @@ void TPWM_DisableDeadTime(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable PWM generator and start counter counting.
   */
@@ -250,7 +250,7 @@ void TPWM_EnableCounter(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details This function is used to disable PWM counter immediately by clear CNTEN (TIMERx_PWMCTL[0]) bit.
   */
@@ -271,7 +271,7 @@ void TPWM_DisableCounter(TIMER_T *timer)
   *                                 - \ref TPWM_TRIGGER_EVENT_AT_COMPARE_DOWN_POINT
   *                                 - \ref TPWM_TRIGGER_EVENT_AT_PERIOD_OR_COMPARE_UP_POINT
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable specified counter compare event to trigger ADC.
   * @note       TIMER4 and TIMER5 only supports \ref TPWM_TRIGGER_EVENT_AT_PERIOD_POINT, \ref TPWM_TRIGGER_EVENT_AT_COMPARE_UP_POINT,
@@ -287,7 +287,7 @@ void TPWM_EnableTriggerADC(TIMER_T *timer, uint32_t u32Condition)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0 ~ TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable counter compare event to trigger ADC.
   */
@@ -305,7 +305,7 @@ void TPWM_DisableTriggerADC(TIMER_T *timer)
   *                                 - \ref TPWM_TRIGGER_EVENT_AT_COMPARE_UP_POINT
   *                                 - \ref TPWM_TRIGGER_EVENT_AT_PERIOD_OR_COMPARE_UP_POINT
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable specified counter compare event to trigger PDMA.
   * @note       Only available on TIMER4 and TIMER5.
@@ -320,7 +320,7 @@ void TPWM_EnableTriggerPDMA(TIMER_T *timer, uint32_t u32Condition)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER4 or TIMER5.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable counter compare event to trigger ADC.
   * @note       Only available on TIMER4 and TIMER5.
@@ -360,7 +360,7 @@ void TPWM_DisableTriggerPDMA(TIMER_T *timer)
   *                                 - \ref TPWM_BRAKE_SOURCE_LEVEL_SYS_COR
   *                                 - \ref TPWM_BRAKE_SOURCE_LEVEL_SYS_RAM
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable fault brake function.
   * @note       The register write-protection function should be disabled before using this function.
@@ -381,7 +381,7 @@ void TPWM_EnableFaultBrake(TIMER_T *timer, uint32_t u32CH0Level, uint32_t u32CH1
   *                                 - \ref TPWM_BRAKE_EDGE
   *                                 - \ref TPWM_BRAKE_LEVEL
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable fault brake interrupt.
   * @note       The register write-protection function should be disabled before using this function.
@@ -400,7 +400,7 @@ void TPWM_EnableFaultBrakeInt(TIMER_T *timer, uint32_t u32IntSource)
   *                                 - \ref TPWM_BRAKE_EDGE
   *                                 - \ref TPWM_BRAKE_LEVEL
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable fault brake interrupt.
   * @note       The register write-protection function should be disabled before using this function.
@@ -439,7 +439,7 @@ uint32_t TPWM_GetFaultBrakeIntFlag(TIMER_T *timer, uint32_t u32IntSource)
   *                                 - \ref TPWM_BRAKE_EDGE
   *                                 - \ref TPWM_BRAKE_LEVEL
   *
-  * @return     None
+  *
   *
   * @details    This function is used to clear fault brake interrupt flags of selected source.
   * @note       The register write-protection function should be disabled before using this function.
@@ -459,7 +459,7 @@ void TPWM_ClearFaultBrakeIntFlag(TIMER_T *timer, uint32_t u32IntSource)
   *                             - \ref TPWM_LOAD_MODE_IMMEDIATE
   *                             - \ref TPWM_LOAD_MODE_CENTER
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable load mode of selected channel.
   * @note       The default loading mode is period loading mode.
@@ -491,7 +491,7 @@ void TPWM_SetLoadMode(TIMER_T *timer, uint32_t u32LoadMode)
   *                                 - \ref TPWM_BKP_DBCLK_PCLK_DIV_64
   *                                 - \ref TPWM_BKP_DBCLK_PCLK_DIV_128
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable external brake pin detector noise filter function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -509,7 +509,7 @@ void TPWM_EnableBrakePinDebounce(TIMER_T *timer, uint32_t u32BrakePinSrc, uint32
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable external brake pin detector noise filter function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -524,7 +524,7 @@ void TPWM_DisableBrakePinDebounce(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to enable PWM brake pin inverse function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -539,7 +539,7 @@ void TPWM_EnableBrakePinInverse(TIMER_T *timer)
   *
   * @param[in]  timer       The pointer of the specified Timer module. It could be TIMER0, TIMER1, TIMER2, TIMER3.
   *
-  * @return     None
+  *
   *
   * @details    This function is used to disable PWM brake pin inverse function.
   * @note       NOT available on TIMER4 and TIMER5.
@@ -559,7 +559,7 @@ void TPWM_DisableBrakePinInverse(TIMER_T *timer)
   *                                 - \ref TPWM_TM_BRAKE2
   *                                 - \ref TPWM_TM_BRAKE3
   *
-  * @return     None
+  *
   *
   * @details    This function is used to set PWM brake pin source.
   * @note       NOT available on TIMER4 and TIMER5.

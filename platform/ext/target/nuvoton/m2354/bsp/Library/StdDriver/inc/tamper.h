@@ -79,9 +79,9 @@ extern "C"
 /**
   * @brief      Reset Tamper Coreblock
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    To set TAMPER INIT control register to reset the tamper coreblock.
   *
@@ -91,9 +91,9 @@ extern "C"
 /**
   * @brief      Release Tamper Coreblock
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    To set TAMPER INIT control register to release the tamper coreblock.
   *
@@ -103,7 +103,7 @@ extern "C"
 /**
   * @brief      Get the Voltage Regulator Power Ready Status
   *
-  * @param      None
+  *
   *
   * @retval     0   The power status of voltage regulator is not ready.
   * @retval     1   The power status of voltage regulator is ready.
@@ -116,9 +116,9 @@ extern "C"
 /**
   * @brief      Enable LXT Clock Detection
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    To set TAMPER FUNEN control register to enable LXT clock detection.
   *
@@ -128,9 +128,9 @@ extern "C"
 /**
   * @brief      Disable LXT Clock Detection
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    To set TAMPER FUNEN control register to disable LXT clock detection.
   *
@@ -148,7 +148,7 @@ extern "C"
   *                               - \ref TAMPER_TAMPER4_SELECT
   *                               - \ref TAMPER_TAMPER5_SELECT
   *
-  * @return     None
+  *
   *
   * @details    To set TAMPER FUNEN control register to select tamper I/O 0~5 and its function is detected through TAMPER block.
   *
@@ -177,7 +177,7 @@ __STATIC_INLINE void TAMPER_IOSEL_TAMPER(uint32_t u32TamperSelect)
   *                               - \ref TAMPER_TAMPER4_SELECT
   *                               - \ref TAMPER_TAMPER5_SELECT
   *
-  * @return     None
+  *
   *
   * @details    To set TAMPER FUNEN control register to select tamper I/O 0~5 and its function is detected through RTC block.
   *
@@ -198,9 +198,9 @@ __STATIC_INLINE void TAMPER_IOSEL_RTC(uint32_t u32TamperSelect)
 /**
   * @brief      Enable HIRC48M
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    To set TAMPER FUNEN control register to enable HIRC48M.
   *
@@ -210,9 +210,9 @@ __STATIC_INLINE void TAMPER_IOSEL_RTC(uint32_t u32TamperSelect)
 /**
   * @brief      Disable HIRC48M
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    To set TAMPER FUNEN control register to disable HIRC48M.
   *
@@ -225,7 +225,7 @@ __STATIC_INLINE void TAMPER_IOSEL_RTC(uint32_t u32TamperSelect)
   * @param[in]  u32VGSampleRate Voltage Glitch sampling rate select. Possible option is
   *                             - \ref TAMPER_VG_192M_SAMPLE
   *
-  * @return     None
+  *
   *
   * @details    To set TAMPER FUNEN control register to enable voltage glitch channel 0~3 to select voltage glitch sampling rate.
   *
@@ -243,9 +243,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Enable to Trigger Key Store
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Set KSTRIGEN bit of TAMPER TRIEN control register to trigger Key Store when Tamper event is detected.
   *
@@ -255,9 +255,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Disable to Trigger Key Store
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Clear KSTRIGEN bit of TAMPER TRIEN control register to not trigger Key Store when Tamper event is detected.
   *
@@ -267,9 +267,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Enable Wake-up Function
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Set WAKEUPEN bit of TAMPER TRIEN control register to wake-up the system when Tamper event is detected.
   *
@@ -279,9 +279,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Disable Wake-up Function
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Clear WAKEUPEN bit of TAMPER TRIEN control register to not wake-up the system when Tamper event is detected.
   *
@@ -291,9 +291,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Enable to Clear Crypto Function
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Set CRYPTOEN bit of TAMPER TRIEN control register to reset Crypto when Tamper event is detected.
   *
@@ -303,9 +303,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Disable to Clear Crypto Function
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Clear CRYPTOEN bit of TAMPER TRIEN control register to not reset Crypto when Tamper event is detected.
   *
@@ -315,9 +315,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Enable to Trigger Chip Reset
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Set CHIPRSTEN bit of TAMPER TRIEN control register to reset the system when Tamper event is detected.
   *
@@ -327,9 +327,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Disable to Trigger Chip Reset
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Clear CHIPRSTEN bit of TAMPER TRIEN control register to not reset the system when Tamper event is detected.
   *
@@ -339,9 +339,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Enable to Clear RTC Spare Register
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Set RTCSPCLREN bit of TAMPER TRIEN control register to reset RTC spare register when Tamper event is detected.
   *
@@ -351,9 +351,9 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Disable to Clear RTC Spare Register
   *
-  * @param      None
   *
-  * @return     None
+  *
+  *
   *
   * @details    Clear RTCSPCLREN bit of TAMPER TRIEN control register to not reset RTC spare register when Tamper event is detected.
   *
@@ -363,7 +363,7 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Get Tamper Interrupt Flag
   *
-  * @param      None
+  *
   *
   * @retval     0   Tamper event Interrupt did not occur
   * @retval     1   Tamper event Interrupt occurred
@@ -397,7 +397,7 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
   *                             - \ref TAMPER_INTSTS_ACTST21IF_Msk
   *                             - \ref TAMPER_INTSTS_ACTST23IF_Msk
   *
-  * @return     None
+  *
   *
   * @details    This macro is used to clear Tamper event flag.
   *
@@ -407,7 +407,7 @@ __STATIC_INLINE void TAMPER_VG_SAMPLE_SEL(uint32_t u32VGSampleRate)
 /**
   * @brief      Get Tamper Interrupt Status
   *
-  * @param      None
+  *
   *
   * @retval     TAMPER_INTSTS_TAMP0IF_Msk
   * @retval     TAMPER_INTSTS_TAMP1IF_Msk

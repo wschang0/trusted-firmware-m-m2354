@@ -119,9 +119,9 @@ extern "C"
 /**
  * @brief      Enable ISP Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set ISPEN bit of ISPCTL control register to enable ISP function.
  *
@@ -131,9 +131,9 @@ extern "C"
 /**
  * @brief      Disable ISP Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear ISPEN bit of ISPCTL control register to disable ISP function.
  *
@@ -143,9 +143,9 @@ extern "C"
 /**
  * @brief      Disable Non Secure ISP Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear ISPEN bit of ISPCTL control register to disable Non Secure ISP function.
  *
@@ -156,9 +156,9 @@ extern "C"
 /**
  * @brief      Disable LDROM Update Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set ISPEN bit of ISPCTL control register to disable LDROM update function.
  *
@@ -168,9 +168,9 @@ extern "C"
 /**
  * @brief      Enable User Configuration Update Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set CFGUEN bit of ISPCTL control register to enable User Configuration update function.
  *             User needs to set CFGUEN bit before they can update User Configuration area.
@@ -181,9 +181,9 @@ extern "C"
 /**
  * @brief      Disable User Configuration Update Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear CFGUEN bit of ISPCTL control register to disable User Configuration update function.
  *
@@ -194,9 +194,9 @@ extern "C"
 /**
  * @brief      Enable APROM Update Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set APUEN bit of ISPCTL control register to enable APROM update function.
  *             User needs to set APUEN bit before they can update APROM in APROM boot mode.
@@ -207,9 +207,9 @@ extern "C"
 /**
  * @brief      Disable APROM Update Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear APUEN bit of ISPCTL control register to disable APROM update function.
  *
@@ -219,9 +219,9 @@ extern "C"
 /**
  * @brief      Get ISP Fail Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function is used to get ISP fail flag when do ISP actoin.
  *
@@ -231,9 +231,9 @@ extern "C"
 /**
  * @brief      Clear ISP Fail Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function is used to clear ISP fail flag when ISP fail flag set.
  *
@@ -243,9 +243,9 @@ extern "C"
 /**
  * @brief      Enable ISP Interrupt
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will enable ISP action interrupt.
  *
@@ -255,9 +255,9 @@ extern "C"
 /**
  * @brief      Disable ISP Interrupt
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will disable ISP action interrupt.
  *
@@ -267,9 +267,9 @@ extern "C"
 /**
  * @brief      Get ISP Interrupt Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will get ISP action interrupt status
  *
@@ -279,9 +279,9 @@ extern "C"
 /**
  * @brief      Clear ISP Interrupt Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear ISP interrupt flag
  *
@@ -291,9 +291,9 @@ extern "C"
 /**
  * @brief      Enable Data Flash Scrambling Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set SCRAMEN bit of DFCTL control register to enable Data Flash Scrambling Function.
  *
@@ -303,9 +303,9 @@ extern "C"
 /**
  * @brief      Disable Data Flash Scrambling Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear SCRAMEN bit of DFCTL control register to disable Data Flash Scrambling Function.
  *
@@ -315,9 +315,9 @@ extern "C"
 /**
  * @brief      Enable Data Flash Silent Access Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set SILENTEN bit of DFCTL control register to enable Data Flash Silent Access Function.
  *
@@ -327,9 +327,9 @@ extern "C"
 /**
  * @brief      Disable Data Flash Silent Access Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear SILENTEN bit of DFCTL control register to disable Data Flash Silent Access Function.
  *
@@ -339,9 +339,9 @@ extern "C"
 /**
  * @brief      Enable Data Flash Temper Attack Program Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will set TMPCLR bit of DFCTL control register to enable Data Flash Temper Attack Program Function.
  *
@@ -351,9 +351,9 @@ extern "C"
 /**
  * @brief      Disable Data Flash Temper Attack Program Function
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear TMPCLR bit of DFCTL control register to disable Data Flash Temper Attack Program Function.
  *
@@ -363,9 +363,9 @@ extern "C"
 /**
  * @brief      Get Data Flash Temper Attack Programming Done Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will get Data Flash Temper Attack Programming Done flag
  *
@@ -375,9 +375,9 @@ extern "C"
 /**
  * @brief      Get Data Flash Temper Attack Programming Busy Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will get Data Flash Temper Attack Programming Busy flag
  *
@@ -387,9 +387,9 @@ extern "C"
 /**
  * @brief      Clear Data Flash Temper Attack Programming Done Flag
  *
- * @param      None
  *
- * @return     None
+ *
+ *
  *
  * @details    This function will clear Data Flash Temper Attack Programming Done flag
  *
@@ -410,7 +410,7 @@ __STATIC_INLINE void FMC_SetScrambleKey(uint32_t u32ScrambleKey);
 /**
  * @brief       Get current vector mapping address.
  *
- * @param       None
+ *
  *
  * @return      The current vector mapping address.
  *
@@ -425,7 +425,6 @@ __STATIC_INLINE uint32_t FMC_GetVECMAP(void)
 /**
   * @brief    Read company ID
   *
-  * @param    None
   *
   * @return   The company ID (32-bit)
   *
@@ -447,7 +446,6 @@ __STATIC_INLINE uint32_t FMC_ReadCID(void)
 /**
   * @brief    Read product ID
   *
-  * @param    None
   *
   * @return   The product ID (32-bit)
   *
@@ -518,8 +516,6 @@ __STATIC_INLINE uint32_t FMC_ReadUCID(uint32_t u32Index)
  *
  * @param[in]   u32PageAddr  The page address to remap to address 0x0. The address must be page alignment.
  *
- * @return      To set VECMAP to remap specified page address to 0x0.
- *
  * @details     This function is used to set VECMAP to map specified page to vector page (0x0).
  */
 __STATIC_INLINE void FMC_SetVectorPageAddr(uint32_t u32PageAddr)
@@ -536,9 +532,8 @@ __STATIC_INLINE void FMC_SetVectorPageAddr(uint32_t u32PageAddr)
 /**
  * @brief       Set Data Flash scrambling key
  *
- * @param[in]   u32ScramKey  The value of scrambling key.
+ * @param[in]   u32ScrambleKey  The value of scrambling key.
  *
- * @return      NULL
  *
  * @details     This function is used to set Data Flash scrambling key.
  */
