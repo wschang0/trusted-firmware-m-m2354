@@ -64,7 +64,8 @@ void SystemInit (void)
 #endif
 
 //#if __DOMAIN_NS == 0
-#if defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3L)
+
+#if (defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3L))
 
   /* Initial the system */
   SYS_UnlockReg();
@@ -84,6 +85,36 @@ void SystemInit (void)
   CLK->CLKSEL0 = (CLK->CLKSEL0 & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_PLL;
   CLK->CLKDIV0 = 0;
 
+  CLK->AHBCLK |= CLK_AHBCLK_SDH0CKEN_Msk;
+
+    /* Set multi-function pin for SDH */
+    /* CD: PB12(9) */
+    SYS->GPB_MFPH = (SYS->GPB_MFPH & (~SYS_GPB_MFPH_PB12MFP_Msk)) | SD0_nCD_PB12;
+
+    /* CLK: PB1(3), PE6(3) */
+    SYS->GPB_MFPL = (SYS->GPB_MFPL & (~SYS_GPB_MFPL_PB1MFP_Msk)) | SD0_CLK_PB1;
+    //SYS->GPE_MFPL = (SYS->GPE_MFPL & (~SYS_GPE_MFPL_PE6MFP_Msk)) | SD0_CLK_PE6;
+
+    /* CMD: PB0(3), PE7(3) */
+    SYS->GPB_MFPL = (SYS->GPB_MFPL & (~SYS_GPB_MFPL_PB0MFP_Msk)) | SD0_CMD_PB0;
+    //SYS->GPE_MFPL = (SYS->GPE_MFPL & (~SYS_GPE_MFPL_PE7MFP_Msk)) | SD0_CMD_PE7;
+
+    /* D0: PB2(3), PE2(3) */
+    SYS->GPB_MFPL = (SYS->GPB_MFPL & (~SYS_GPB_MFPL_PB2MFP_Msk)) | SD0_DAT0_PB2;
+    //SYS->GPE_MFPL = (SYS->GPE_MFPL & (~SYS_GPE_MFPL_PE2MFP_Msk)) | SD0_DAT0_PE2;
+
+    /* D1: PB3(3), PE3(3) */
+    SYS->GPB_MFPL = (SYS->GPB_MFPL & (~SYS_GPB_MFPL_PB3MFP_Msk)) | SD0_DAT1_PB3;
+    //SYS->GPE_MFPL = (SYS->GPE_MFPL & (~SYS_GPE_MFPL_PE3MFP_Msk)) | SD0_DAT1_PE3;
+
+    /* D2: PB4(3), PE4(3) */
+    SYS->GPB_MFPL = (SYS->GPB_MFPL & (~SYS_GPB_MFPL_PB4MFP_Msk)) | SD0_DAT2_PB4;
+    //SYS->GPE_MFPL = (SYS->GPE_MFPL & (~SYS_GPE_MFPL_PE4MFP_Msk)) | SD0_DAT2_PE4;
+
+    /* D3: PB5(3)-, PE5(3) */
+    SYS->GPB_MFPL = (SYS->GPB_MFPL & (~SYS_GPB_MFPL_PB5MFP_Msk)) | SD0_DAT3_PB5;
+    //SYS->GPE_MFPL = (SYS->GPE_MFPL & (~SYS_GPE_MFPL_PE5MFP_Msk)) | SD0_DAT3_PE5;
+  
   /* Enable IP clock */
   CLK->APBCLK0 |= CLK_APBCLK0_UART0CKEN_Msk | CLK_APBCLK0_TMR0CKEN_Msk | CLK_APBCLK0_TMR2CKEN_Msk;
 
@@ -118,6 +149,8 @@ void SystemInit (void)
   /* PD2 LED */
   PD2 = 1;
   PD->MODE = (PD->MODE & (~(0x3 << 2))) | (1 << 2);
+
+  NVIC_DisableIRQ(SDH0_IRQn);
 
 #endif
 

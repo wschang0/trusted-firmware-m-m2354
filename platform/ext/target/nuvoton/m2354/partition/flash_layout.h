@@ -66,12 +66,12 @@
 #if !defined(MCUBOOT_IMAGE_NUMBER) || (MCUBOOT_IMAGE_NUMBER == 1)
 /* Secure + Non-secure image primary slot */
 #define FLASH_AREA_0_ID            (1)
-#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000)        /* 0x10000 */
-#define FLASH_AREA_0_SIZE          (FLASH_S_PARTITION_SIZE + FLASH_NS_PARTITION_SIZE)   /* 480 KB */
+#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000) /* 0x10000 */
+#define FLASH_AREA_0_SIZE          (FLASH_S_PARTITION_SIZE + FLASH_NS_PARTITION_SIZE)
 /* Secure + Non-secure secondary slot */
 #define FLASH_AREA_2_ID            (FLASH_AREA_0_ID + 1)
-#define FLASH_AREA_2_OFFSET        (0x100000)
-#define FLASH_AREA_2_SIZE          (0x800)
+#define FLASH_AREA_2_OFFSET        (0x0)
+#define FLASH_AREA_2_SIZE          (FLASH_S_PARTITION_SIZE + FLASH_NS_PARTITION_SIZE)
 
 /* Scratch area */
 #define FLASH_AREA_SCRATCH_ID      (FLASH_AREA_2_ID + 1)
@@ -118,7 +118,10 @@
 /* Flash device name used by BL2
  * Name is defined in flash driver file: Driver_Flash.c
  */
-#define FLASH_DEV_NAME Driver_FLASH0
+#define FLASH_DEV_NAME      Driver_FLASH0
+#define FLASH_DEV_NAME_2    Driver_SD
+#define FLASH_DEVICE_ID_2   102
+
 /* Smallest flash programmable unit in bytes */
 #define TFM_HAL_FLASH_PROGRAM_UNIT       (0x4)
 

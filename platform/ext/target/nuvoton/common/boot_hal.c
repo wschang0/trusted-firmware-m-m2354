@@ -7,6 +7,15 @@
 
 #include "cmsis.h"
 #include "region.h"
+#include "target_cfg.h"
+#include "cmsis.h"
+#include "boot_hal.h"
+#include "Driver_Flash.h"
+#include "flash_layout.h"
+
+ /* Flash device name must be specified by target */
+extern ARM_DRIVER_FLASH FLASH_DEV_NAME;
+extern ARM_DRIVER_FLASH FLASH_DEV_NAME_2;
 
 REGION_DECLARE(Image$$, ER_DATA, $$Base)[];
 REGION_DECLARE(Image$$, ARM_LIB_HEAP, $$ZI$$Limit)[];
@@ -32,3 +41,23 @@ __attribute__((naked)) void boot_clear_bl2_ram_area(void)
         : "r0", "memory"
     );
 }
+
+
+/* bootloader platform-specific hw initialization */
+int32_t boot_platform_init(void)
+{
+    int32_t result;
+
+    result = FLASH_DEV_NAME.Initialize(NULL);
+    if(result != ARM_DRIVER_OK) {
+        return 1;
+    }
+    
+    result = FLASH_DEV_NAME_2.Initialize(NULL);
+    if(result != ARM_DRIVER_OK) {
+        return 1;
+    }
+
+    return 0;
+}
+

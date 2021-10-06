@@ -71,6 +71,7 @@ target_include_directories(platform_s
         ../common/
         ../common/cmsis_drivers/config
         ../common/native_drivers
+        ../common/third_party/FatFs/src
         partition
         device/include
         device/config
@@ -95,6 +96,7 @@ target_sources(platform_s
         bsp/Library/StdDriver/src/fmc.c
         ../common/services/src/tfm_platform_system.c
         target_cfg.c
+        nv_counters.c
         ../common/spm_hal.c
         ../common/tfm_hal_isolation.c
         ../common/tfm_hal_platform.c
@@ -147,8 +149,14 @@ if(BL2)
             device/source/system_core_init.c
             ../common/cmsis_drivers/Driver_Flash.c
             ../common/native_drivers/arm_uart_drv.c
+            ../common/cmsis_drivers/Driver_SD.c
             ../common/cmsis_drivers/Driver_USART.c
             bsp/Library/StdDriver/src/fmc.c
+            bsp/Library/StdDriver/src/clk.c
+            ../common/bsp/StdDriver/src/sdh.c
+            ../common/third_party/FatFs/src/ff.c
+            ../common/SDGlue.c
+            ../common/diskio.c
     )
     target_include_directories(platform_bl2
         PUBLIC
@@ -160,6 +168,8 @@ if(BL2)
             device/include
             device/config
             ../common/cmsis_drivers/config
+            ../common/third_party/FatFs/src
+            nv_counters.c
         PRIVATE
             .
             ../common/
@@ -169,5 +179,9 @@ if(BL2)
     target_compile_options(platform_bl2
         PUBLIC
             ${COMPILER_CMSE_FLAG}
+        PRIVATE
+            -DUSE_SDH
     )
+
+
 endif()

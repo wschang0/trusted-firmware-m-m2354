@@ -112,10 +112,8 @@
 #define NS_PARTITION_SIZE (FLASH_NS_PARTITION_SIZE)
 
 /* Secondary partition for new images in case of firmware upgrade */
-#define SECONDARY_PARTITION_START \
-            (NS_ROM_ALIAS(S_IMAGE_SECONDARY_PARTITION_OFFSET))
-#define SECONDARY_PARTITION_SIZE (FLASH_S_PARTITION_SIZE + \
-                                  FLASH_NS_PARTITION_SIZE)
+#define SECONDARY_PARTITION_START   (0x200000)//(NS_ROM_ALIAS(0x200000))
+#define SECONDARY_PARTITION_SIZE    (FLASH_S_PARTITION_SIZE + FLASH_NS_PARTITION_SIZE)
 
 #ifdef BL2
 /* Bootloader regions */

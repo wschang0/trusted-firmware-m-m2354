@@ -20,6 +20,7 @@ LR_CODE BL2_CODE_START {
     ER_CODE BL2_CODE_START BL2_CODE_SIZE {
         *.o (RESET +First)
         * (+RO)
+        anon$$obj.o(Veneer$$CMSE)
     }
 
     /* Base address of bootloader data area */
