@@ -85,7 +85,7 @@ void SystemInit (void)
   CLK->CLKSEL0 = (CLK->CLKSEL0 & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_PLL;
   CLK->CLKDIV0 = 0;
 
-  CLK->AHBCLK |= CLK_AHBCLK_SDH0CKEN_Msk;
+  CLK->AHBCLK |= CLK_AHBCLK_SDH0CKEN_Msk | CLK_AHBCLK_CRPTCKEN_Msk;
 
     /* Set multi-function pin for SDH */
     /* CD: PB12(9) */

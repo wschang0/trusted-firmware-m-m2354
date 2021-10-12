@@ -13,3 +13,5 @@
 # Set architecture and CPU
 set(TFM_SYSTEM_PROCESSOR cortex-m23)
 set(TFM_SYSTEM_ARCHITECTURE armv8-m.base)
+
+set(CRYPTO_HW_ACCELERATOR_TYPE nuvoton)

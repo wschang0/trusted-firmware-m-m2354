@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------
 # Copyright (c) 2020-2021, Arm Limited. All rights reserved.
-# Copyright (c) 2020 Nuvoton Technology Corp. All rights reserved.
+# Copyright (c) 2022 Nuvoton Technology Corp. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -96,11 +96,9 @@ target_sources(platform_s
         bsp/Library/StdDriver/src/fmc.c
         ../common/services/src/tfm_platform_system.c
         target_cfg.c
-        nv_counters.c
         ../common/spm_hal.c
         ../common/tfm_hal_isolation.c
         ../common/tfm_hal_platform.c
-        ../common/boot_hal.c
         ${PLATFORM_DIR}/ext/common/uart_stdout.c
         ${PLATFORM_DIR}/ext/common/tfm_platform.c
         ${CMAKE_SOURCE_DIR}/platform/ext/common/tfm_hal_isolation_mpu_v8m.c
@@ -169,9 +167,9 @@ if(BL2)
             device/config
             ../common/cmsis_drivers/config
             ../common/third_party/FatFs/src
-            nv_counters.c
         PRIVATE
             .
+            ./
             ../common/
             ${PLATFORM_DIR}/..
             ../common/native_drivers
