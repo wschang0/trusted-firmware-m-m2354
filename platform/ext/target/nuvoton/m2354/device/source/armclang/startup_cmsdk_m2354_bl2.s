@@ -169,6 +169,14 @@ Reset_Handler   PROC
                 EXPORT  Reset_Handler             [WEAK]
                 IMPORT  SystemInit
                 IMPORT  __main
+
+                ; Enable SRAM
+                LDR     R0, =0x00700000
+                LDR     R1, =0x40000204 ;AHBCLK
+                LDR     R2, [R1]
+                ORRS    R0, R0, R2
+                STR     R0, [R1]
+
                 LDR     R0, =SystemInit
                 BLX     R0
                 LDR     R0, =__main

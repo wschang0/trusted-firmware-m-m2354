@@ -37,6 +37,9 @@
 
 
 static FIL *s_pfile = NULL;
+#if (MCUBOOT_IMAGE_NUMBER == 2)
+static int32_t s_nsflag = 0;
+#endif
 static __attribute__((aligned(4))) FIL fobj;
 static __attribute__((aligned(4))) FILINFO finfo;
 
@@ -208,7 +211,8 @@ static int32_t SD_Initialize(ARM_Flash_SignalEvent_t cb_event)
 
     TCHAR       sd_path[] = { '0', ':', 0 };    /* SD drive started from 0 */
     FRESULT     res;
-    TCHAR       *fname = "fwimage.bin";
+    TCHAR       *fname   = "fwimg.bin";
+    TCHAR       *fnamens = "fwimg_ns.bin";
 
     ARG_UNUSED(cb_event);
     
@@ -237,6 +241,32 @@ static int32_t SD_Initialize(ARM_Flash_SignalEvent_t cb_event)
             {
                 printf("Cannot open image file %s\n\r", fname);
                 s_pfile = NULL;
+            }
+        }
+        else
+        {
+            /* Cannot find fwimage.bin, try to open fwimage_ns.bin here */
+            res = f_stat(fnamens, &finfo);
+            if(res == FR_OK)
+            {
+                printf("image name %s\n\r", finfo.fname);
+                printf("file size = %lu\n\r", finfo.fsize);
+
+                s_pfile = &fobj;
+                res = f_open(s_pfile, fnamens, FA_READ);
+                if(res != FR_OK)
+                {
+                    printf("Cannot open image file %s\n\r", fnamens);
+                    s_pfile = NULL;
+                }
+                /* Set non-secure image flag */
+                s_nsflag = 1;
+            }
+            else
+            {
+                /* Cannot open file. Just return driver error */
+                s_pfile = NULL;
+                printf("No image file found(fwimage.bin or fwimage_ns.bin).\n\r");
             }
         }
     }
@@ -281,6 +311,8 @@ static int32_t SD_ReadData(uint32_t addr, void *data, uint32_t cnt)
     uint32_t len;
     FRESULT res;
 
+    printf("read file 0x%08x %d\n\r", start_addr, cnt);
+
     /* Check flash memory boundaries */
     rc = is_range_valid(SD0_DEV, addr + cnt - 1);
     if (rc != 0) {
@@ -292,6 +324,26 @@ static int32_t SD_ReadData(uint32_t addr, void *data, uint32_t cnt)
     if(s_pfile == NULL)
         return ARM_DRIVER_ERROR;
         
+#if (MCUBOOT_IMAGE_NUMBER == 2)
+    if(s_nsflag)
+    {
+        /* This is non-secure only image. Just return 0xff if the address within secure image */
+        if(start_addr < FLASH_AREA_3_OFFSET)
+        {
+            /* Should not cross boundary */
+            if(start_addr + cnt > FLASH_AREA_3_OFFSET)
+                return ARM_DRIVER_ERROR_PARAMETER;
+
+            memset(pu8, 0xff, cnt);
+            len = cnt;
+            return ARM_DRIVER_OK;
+        }
+
+        start_addr -= FLASH_AREA_3_OFFSET;
+        printf("Nonsecure image only. change offset to 0x%08x\n\r", start_addr);
+    }
+#endif
+
     /* seek and read */
     res = f_lseek(s_pfile, start_addr);
     if(res != FR_OK)
@@ -305,10 +357,11 @@ static int32_t SD_ReadData(uint32_t addr, void *data, uint32_t cnt)
         return ARM_DRIVER_ERROR;
     }
 
-    //printf("read file 0x%08x %d ret %d\n\r", start_addr, cnt, len);
+    printf("read file 0x%08x %d ret %d\n\r", start_addr, cnt, len);
 
     /* padding 0xff if no enough data to read */
     memset(&pu8[len], 0xff, cnt - len);
+
 
     return ARM_DRIVER_OK;
 }
@@ -321,6 +374,8 @@ static int32_t SD_ProgramData(uint32_t addr, const void *data, uint32_t cnt)
     FRESULT res;
     int32_t rc = 0;
 
+    printf("write addr 0x%08x size %d\n\r", start_addr, cnt);
+
     if(s_pfile == NULL)
         return ARM_DRIVER_ERROR;
 
@@ -328,6 +383,7 @@ static int32_t SD_ProgramData(uint32_t addr, const void *data, uint32_t cnt)
     if(rc != 0) {
         return ARM_DRIVER_ERROR_PARAMETER;
     }
+
 
     res = f_lseek(s_pfile, start_addr);
     if(res != FR_OK)

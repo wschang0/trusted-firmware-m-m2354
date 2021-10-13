@@ -87,11 +87,39 @@
 #define MCUBOOT_MAX_IMG_SECTORS    ((FLASH_S_PARTITION_SIZE + \
                                      FLASH_NS_PARTITION_SIZE) / \
                                     FLASH_AREA_IMAGE_SECTOR_SIZE)
+#elif (MCUBOOT_IMAGE_NUMBER == 2)
 
-#else
-#error "Only MCUBOOT_IMAGE_NUMBER 1 are supported!"
+ /* Secure image primary slot */
+#define FLASH_AREA_0_ID            (1)
+#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000)
+#define FLASH_AREA_0_SIZE          (FLASH_S_PARTITION_SIZE)
+/* Non-secure image primary slot */
+#define FLASH_AREA_1_ID            (FLASH_AREA_0_ID + 1)
+#define FLASH_AREA_1_OFFSET        (FLASH_AREA_0_OFFSET + FLASH_AREA_0_SIZE)
+#define FLASH_AREA_1_SIZE          (FLASH_NS_PARTITION_SIZE)
+/* Secure image secondary slot */
+#define FLASH_AREA_2_ID            (FLASH_AREA_1_ID + 1)
+#define FLASH_AREA_2_OFFSET        (0x0)
+#define FLASH_AREA_2_SIZE          (FLASH_S_PARTITION_SIZE)
+/* Non-secure image secondary slot */
+#define FLASH_AREA_3_ID            (FLASH_AREA_2_ID + 1)
+#define FLASH_AREA_3_OFFSET        (FLASH_AREA_2_OFFSET + FLASH_AREA_2_SIZE)
+#define FLASH_AREA_3_SIZE          (FLASH_NS_PARTITION_SIZE)
+/* Scratch area */
+#define FLASH_AREA_SCRATCH_ID      (FLASH_AREA_3_ID + 1)
+#define FLASH_AREA_SCRATCH_OFFSET  (0x100800)
+#define FLASH_AREA_SCRATCH_SIZE    (0x800)
+/* The maximum number of status entries supported by the bootloader. */
+#define MCUBOOT_STATUS_MAX_ENTRIES ((FLASH_S_PARTITION_SIZE + \
+                                     FLASH_NS_PARTITION_SIZE) / \
+                                    FLASH_AREA_SCRATCH_SIZE)
+/* Maximum number of image sectors supported by the bootloader. */
+#define MCUBOOT_MAX_IMG_SECTORS    ((FLASH_S_PARTITION_SIZE + \
+                                     FLASH_NS_PARTITION_SIZE) / \
+                                    FLASH_AREA_IMAGE_SECTOR_SIZE)
+#else /* MCUBOOT_IMAGE_NUMBER > 2 */
+#error "Only MCUBOOT_IMAGE_NUMBER 1 and 2 are supported!"
 #endif /* MCUBOOT_IMAGE_NUMBER */
-
 /* Protected Storage (PS) Service definitions */
 #define FLASH_PS_AREA_OFFSET            (0x10000)
 #define FLASH_PS_AREA_SIZE              (0x8000)
@@ -121,6 +149,8 @@
 #define FLASH_DEV_NAME      Driver_FLASH0
 #define FLASH_DEV_NAME_2    Driver_SD
 #define FLASH_DEVICE_ID_2   102
+#define FLASH_DEV_NAME_3    Driver_SD
+#define FLASH_DEVICE_ID_3   103
 
 /* Smallest flash programmable unit in bytes */
 #define TFM_HAL_FLASH_PROGRAM_UNIT       (0x4)

@@ -70,6 +70,13 @@ void SystemInit (void)
   /* Initial the system */
   SYS_UnlockReg();
 
+  /* power gating */
+  M32(0x400001f4) = 0xfffffffful;
+  M32(0x400000dC) = 0ul;
+
+  /* GPIO clk */
+  CLK->AHBCLK |= (0xffful << 20) | (1ul << 14);
+
   /* Enable HIRC and waiting for stable */
   CLK->PWRCTL |= CLK_PWRCTL_HIRCEN_Msk;
   while((CLK->STATUS & CLK_STATUS_HIRCSTB_Msk) == 0);
@@ -140,11 +147,6 @@ void SystemInit (void)
   SYS->GPE_MFPH = (SYS->GPE_MFPH & (~(TRACE_CLK_PE12_Msk | TRACE_DATA0_PE11_Msk | TRACE_DATA1_PE10_Msk | TRACE_DATA2_PE9_Msk | TRACE_DATA3_PE8_Msk))) |
       TRACE_CLK_PE12 | TRACE_DATA0_PE11 | TRACE_DATA1_PE10 | TRACE_DATA2_PE9 | TRACE_DATA3_PE8;
 
-  /* power gating */
-  M32(0x400001f4) = 0xfffffffful;
-  M32(0x400000dC) = 0ul;
-  /* GPIO clk */
-  CLK->AHBCLK |= (0xffful << 20) | (1ul << 14);
 
   /* PD2 LED */
   PD2 = 1;
