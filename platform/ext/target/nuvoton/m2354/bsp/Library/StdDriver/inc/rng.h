@@ -54,3 +54,4 @@ int32_t RNG_ECDH(uint32_t u32KeySize);
 #endif
 
 #endif /* __RNG_H__ */
+
