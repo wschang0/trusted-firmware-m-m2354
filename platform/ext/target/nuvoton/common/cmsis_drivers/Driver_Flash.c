@@ -62,13 +62,12 @@ static const ARM_FLASH_CAPABILITIES DriverCapabilities =
 static int32_t is_range_valid(struct arm_flash_dev_t *flash_dev,
                               uint32_t offset)
 {
-    uint32_t flash_limit = 0;
+    uint32_t flash_size = 0;
     int32_t rc = 0;
 
-    flash_limit = (flash_dev->data->sector_count * flash_dev->data->sector_size)
-                  - 1;
+    flash_size = (flash_dev->data->sector_count * flash_dev->data->sector_size);
 
-    if(offset > flash_limit)
+    if(offset >= flash_size)
     {
         rc = -1;
     }
@@ -179,7 +178,7 @@ static int32_t ARM_Flash_ReadData(uint32_t addr, void *data, uint32_t cnt)
     uint32_t i, taddr;
 
     /* Check flash memory boundaries */
-    rc = is_range_valid(FLASH0_DEV, addr + cnt - 1);
+    rc = is_range_valid(FLASH0_DEV, addr + cnt);
     if (rc != 0) {
         return ARM_DRIVER_ERROR_PARAMETER;
     }
@@ -189,7 +188,7 @@ static int32_t ARM_Flash_ReadData(uint32_t addr, void *data, uint32_t cnt)
     for(i = 0; i < cnt; i++)
     {
         taddr = start_addr + i;
-        if(taddr >= (FLASH_AREA_0_OFFSET+FLASH_S_PARTITION_SIZE))
+        if(taddr >= SCU->FNSADDR)
             taddr += NS_OFFSET;
         pu8[i] = *(uint8_t*)taddr;
     }
@@ -205,7 +204,7 @@ static int32_t ARM_Flash_ProgramData(uint32_t addr, const void *data, uint32_t c
     int32_t i,j;
 
     /* Check flash memory boundaries and alignment with minimal write size */
-    rc  = is_range_valid(FLASH0_DEV, addr + cnt - 1);
+    rc  = is_range_valid(FLASH0_DEV, addr + cnt);
     rc |= is_write_aligned(FLASH0_DEV, addr);
     rc |= is_write_aligned(FLASH0_DEV, cnt);
     if(rc != 0)
@@ -229,8 +228,15 @@ static int32_t ARM_Flash_ProgramData(uint32_t addr, const void *data, uint32_t c
             if(j>=4)
             {
                 FMC_Write(start_addr+(i+1-4), u32Data);
+                // verify
+                if(M32(start_addr + i - 3) != u32Data)
+                {
+                    printf("flash write verify fail @ %08x W:%08x R:%08x\r\n", start_addr + i - 3, u32Data, M32(start_addr + i - 3));
+                }
+
                 j = 0;
                 u32Data = 0;
+
             }
         }
 

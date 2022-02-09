@@ -78,7 +78,7 @@ void SystemInit (void)
   while((CLK->STATUS & CLK_STATUS_PLLSTB_Msk) == 0);
 
   /* Set flash access delay cycle */
-  FMC->CYCCTL = 3;
+  FMC->CYCCTL = 4;
 
   /* Switch HCLK clock source to PLL */
   CLK->CLKSEL0 = (CLK->CLKSEL0 & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_PLL;
