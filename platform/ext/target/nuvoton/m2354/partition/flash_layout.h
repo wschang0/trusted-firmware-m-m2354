@@ -61,7 +61,7 @@
  * swapping.
  */
 #define FLASH_AREA_BL2_OFFSET      (0x0)
-#define FLASH_AREA_BL2_SIZE        (0x10000) /* 64 KB */
+#define FLASH_AREA_BL2_SIZE        (0x14000) /* 80 KB */
 
 #if !defined(MCUBOOT_IMAGE_NUMBER) || (MCUBOOT_IMAGE_NUMBER == 1)
 /* Secure + Non-secure image primary slot */
@@ -91,7 +91,7 @@
 
  /* Secure image primary slot */
 #define FLASH_AREA_0_ID            (1)
-#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000)
+#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000 - 0x4000)
 #define FLASH_AREA_0_SIZE          (FLASH_S_PARTITION_SIZE)
 /* Non-secure image primary slot */
 #define FLASH_AREA_1_ID            (FLASH_AREA_0_ID + 1)
@@ -121,13 +121,13 @@
 #error "Only MCUBOOT_IMAGE_NUMBER 1 and 2 are supported!"
 #endif /* MCUBOOT_IMAGE_NUMBER */
 /* Protected Storage (PS) Service definitions */
-#define FLASH_PS_AREA_OFFSET            (0x10000)
-#define FLASH_PS_AREA_SIZE              (0x8000)
+#define FLASH_PS_AREA_OFFSET            (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE)
+#define FLASH_PS_AREA_SIZE              (0x5000)
 
 /* Internal Trusted Storage (ITS) Service definitions */
 #define FLASH_ITS_AREA_OFFSET           (FLASH_PS_AREA_OFFSET + \
                                          FLASH_PS_AREA_SIZE)
-#define FLASH_ITS_AREA_SIZE             (0x7000)
+#define FLASH_ITS_AREA_SIZE             (0x5000)
 
 /* OTP_definitions */
 #define FLASH_OTP_NV_COUNTERS_AREA_OFFSET (FLASH_ITS_AREA_OFFSET + \

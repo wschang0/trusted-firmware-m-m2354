@@ -67,7 +67,7 @@ static int32_t is_range_valid(struct arm_flash_dev_t *flash_dev,
 
     flash_size = (flash_dev->data->sector_count * flash_dev->data->sector_size);
 
-    if(offset >= flash_size)
+    if(offset > flash_size)
     {
         rc = -1;
     }
