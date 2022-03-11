@@ -2,7 +2,7 @@
  *  FIPS-180-2 compliant SHA-256 implementation
  *
  *  Copyright (C) 2006-2021, ARM Limited, All Rights Reserved
- *  Copyright (c) 2020 Nuvoton Technology Corp. All rights reserved.
+ *  Copyright (c) 2022 Nuvoton Technology Corp. All rights reserved.
  * 
  *  SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,13 @@
  *  http://csrc.nist.gov/publications/fips/fips180-2/fips180-2.pdf
  */
 
-/* Includes ------------------------------------------------------------------*/
+#ifdef MBEDTLS_ALLOW_PRIVATE_ACCESS
+#undef MBEDTLS_ALLOW_PRIVATE_ACCESS
+#endif
+
+#include "common.h"
+
+
 #include "mbedtls/sha256.h"
 #include "mbedtls/error.h"
 
@@ -95,6 +101,11 @@ int mbedtls_sha256_starts(mbedtls_sha256_context *ctx, int is224)
         u32OpMode = SHA_MODE_SHA224;
     else
         u32OpMode = SHA_MODE_SHA256;
+
+    /* Reset Crypto */
+    SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;
+    SYS->IPRST0 ^= SYS_IPRST0_CRPTRST_Msk;
+
 
     /* Common register settings */
     ctx->ctl = CRPT_HMAC_CTL_DMAEN_Msk | (u32OpMode << CRPT_HMAC_CTL_OPMODE_Pos) |

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2019-2020, Arm Limited. All rights reserved.
- * Copyright (c) 2020 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (c) 2022 Nuvoton Technology Corp. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
