@@ -20,13 +20,13 @@
 
 #include "flash_layout.h"
 
-#define BL2_HEAP_SIZE           (0x0001000)
+#define BL2_HEAP_SIZE           (0x0004000)
 #define BL2_MSP_STACK_SIZE      (0x0002000)
 
-#define S_HEAP_SIZE             (0x0001000)
+#define S_HEAP_SIZE             (0x0002000)
 #define S_MSP_STACK_SIZE_INIT   (0x0000400)
 #define S_MSP_STACK_SIZE        (0x0000800)
-#define S_PSP_STACK_SIZE        (0x0000800)
+#define S_PSP_STACK_SIZE        (0x0000C00)
 
 #define NS_HEAP_SIZE            (0x0001000)
 #define NS_MSP_STACK_SIZE       (0x0000800)

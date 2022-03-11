@@ -310,8 +310,9 @@ void sau_and_idau_cfg(void)
 
 int32_t mpc_init_cfg(void)
 {
-    int32_t ret = ARM_DRIVER_OK;
     int32_t i;
+
+    /* Periperal partition settings are defined in partition_m2354.h */
 
     SCU->PNSSET[0] = SCU_INIT_PNSSET0_VAL;
     SCU->PNSSET[1] = SCU_INIT_PNSSET1_VAL;
@@ -432,6 +433,8 @@ int32_t mpc_init_cfg(void)
 
 void ppc_init_cfg(void)
 {
+    /* PD2 (Yellow) PD3 (Green) */
+    SCU->IONSSET[3] = 0xc;
 }
 
 void ppc_configure_to_non_secure(enum ppc_bank_e bank, uint16_t pos)

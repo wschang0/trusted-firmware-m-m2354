@@ -9,6 +9,7 @@
 cmake_policy(SET CMP0076 NEW)
 set(CMAKE_CURRENT_SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR})
 
+
 #========================= Platform region defs ===============================#
 target_include_directories(platform_region_defs
     INTERFACE
@@ -85,6 +86,10 @@ target_include_directories(platform_s
 
 target_sources(platform_s
     PRIVATE
+        $<$<NOT:$<BOOL:${PLATFORM_DUMMY_CRYPTO_KEYS}>>:${CMAKE_CURRENT_SOURCE_DIR}/crypto_keys.c>
+        $<$<NOT:$<BOOL:${PLATFORM_DUMMY_ROTPK}>>:${CMAKE_CURRENT_SOURCE_DIR}/tfm_rotpk.c>
+        $<$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>:${CMAKE_CURRENT_SOURCE_DIR}/tfm_initial_attestation_key_material.c>
+        $<$<AND:$<NOT:$<BOOL:${ATTEST_TEST_GET_PUBLIC_KEY}>>,$<NOT:$<BOOL:${SYMMETRIC_INITIAL_ATTESTATION}>>,$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>,$<BOOL:${TEST_S}>>:ext/common/template/tfm_initial_attest_pub_key.c>
         device/source/system_core_init.c
         device/source/device_definition.c
         ../common/cmsis_drivers/Driver_Flash.c
@@ -94,6 +99,7 @@ target_sources(platform_s
         ../common/native_drivers/timer_cmsdk_drv.c
         bsp/Library/StdDriver/src/timer.c
         bsp/Library/StdDriver/src/fmc.c
+        bsp/Library/StdDriver/src/rng.c
         ../common/services/src/tfm_platform_system.c
         target_cfg.c
         ../common/spm_hal.c
@@ -109,12 +115,14 @@ target_sources(platform_s
 target_compile_options(platform_s
     PUBLIC
         ${COMPILER_CMSE_FLAG}
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
 )
 
 #========================= Platform Non-Secure ================================#
 
 target_sources(platform_ns
     PRIVATE
+        $<$<AND:$<NOT:$<BOOL:${ATTEST_TEST_GET_PUBLIC_KEY}>>,$<NOT:$<BOOL:${SYMMETRIC_INITIAL_ATTESTATION}>>,$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>,$<BOOL:${TEST_S}>>:ext/common/template/tfm_initial_attest_pub_key.c>
         ../common/native_drivers/arm_uart_drv.c
         ../common/cmsis_drivers/Driver_USART.c
         device/source/device_definition.c
@@ -137,20 +145,28 @@ target_include_directories(platform_ns
         ../common/cmsis_drivers/config
 )
 
+target_compile_options(platform_ns
+    PUBLIC
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
+)
+
 #========================= Platform BL2 =======================================#
 
 if(BL2)
     target_sources(platform_bl2
         PRIVATE
-            ../common/boot_hal.c
+            $<$<NOT:$<BOOL:${PLATFORM_DUMMY_ROTPK}>>:${CMAKE_CURRENT_SOURCE_DIR}/tfm_rotpk.c>
+            $<$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>:${CMAKE_CURRENT_SOURCE_DIR}/tfm_initial_attestation_key_material.c>
             device/source/device_definition.c
             device/source/system_core_init.c
+            bsp/Library/StdDriver/src/fmc.c
+            bsp/Library/StdDriver/src/clk.c
+            bsp/Library/StdDriver/src/rng.c
+            ../common/boot_hal.c
             ../common/cmsis_drivers/Driver_Flash.c
             ../common/native_drivers/arm_uart_drv.c
             ../common/cmsis_drivers/Driver_SD.c
             ../common/cmsis_drivers/Driver_USART.c
-            bsp/Library/StdDriver/src/fmc.c
-            bsp/Library/StdDriver/src/clk.c
             ../common/bsp/StdDriver/src/sdh.c
             ../common/third_party/FatFs/src/ff.c
             ../common/SDGlue.c
@@ -177,9 +193,22 @@ if(BL2)
     target_compile_options(platform_bl2
         PUBLIC
             ${COMPILER_CMSE_FLAG}
-        PRIVATE
-            -DUSE_SDH
     )
 
+    target_compile_definitions(platform_bl2
+        PRIVATE
+            USE_SDH
+    )
+
+    target_compile_definitions(bootutil
+    PRIVATE
+        MBEDTLS_ALLOW_PRIVATE_ACCESS
+    )
 
 endif()
+
+
+#========================= For Nonsecure Regression =======================================#
+add_library(ns_regression INTERFACE)
+target_link_libraries(ns_regression INTERFACE libtfm_api_ns libtfm_ns_integration_test)
+

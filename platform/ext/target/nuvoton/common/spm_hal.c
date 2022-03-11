@@ -81,9 +81,12 @@ uint32_t tfm_spm_hal_get_ns_MSP(void)
 
 uint32_t tfm_spm_hal_get_ns_entry_point(void)
 {
-    printf("ns entry point = 0x%08x\r\n", memory_regions.non_secure_code_start + 4);
+    uint32_t ns_entry;
 
-    return *((uint32_t *)(memory_regions.non_secure_code_start+ 4));
+    ns_entry = *((uint32_t*)(memory_regions.non_secure_code_start + 4));
+    printf("ns entry point = 0x%08x\r\n", ns_entry);
+
+    return ns_entry;
 }
 
 enum tfm_plat_err_t tfm_spm_hal_set_secure_irq_priority(IRQn_Type irq_line)

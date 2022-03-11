@@ -13,6 +13,7 @@ if(BL2)
         PUBLIC
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/crypto.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha256_alt.c
+            ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/rsa_alt.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/trng_api.c
     )
 
@@ -26,6 +27,8 @@ if(BL2)
             ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/Include
             ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/StdDriver/inc
             ${PLATFORM_DIR}/ext/cmsis
+            ${MBEDCRYPTO_PATH}/library
+
     )
 
     target_link_libraries(bl2_crypto_hw
@@ -50,7 +53,15 @@ if(BL2)
             ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/Include
             ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/StdDriver/inc
             ${PLATFORM_DIR}/ext/cmsis
+            ${MBEDCRYPTO_PATH}/library
+
     )
+
+    target_compile_options(bootutil
+        PRIVATE
+            ${BL2_COMPILER_CP_FLAG}
+    )
+
 
 endif()
 ############################ Crypto Service ####################################
@@ -59,8 +70,18 @@ target_sources(crypto_service_crypto_hw
     PRIVATE
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/crypto.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha256_alt.c
-        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha1_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/aes_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ccm_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/gcm_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ecdh_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ecdsa_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/rsa_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/trng_api.c
+)
+
+target_compile_options(crypto_service_crypto_hw
+    PRIVATE
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
 )
 
 target_include_directories(crypto_service_crypto_hw
@@ -73,18 +94,21 @@ target_include_directories(crypto_service_crypto_hw
         ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/Include
         ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/StdDriver/inc
         ${PLATFORM_DIR}/ext/cmsis
+        ${MBEDCRYPTO_PATH}/library
 )
 
 target_include_directories(crypto_service_mbedcrypto
     PUBLIC
         ${PLATFORM_DIR}/ext/target/nuvoton/m2354/bsp/Device/Nuvoton/M2354/Include
-        ${PLATFORM_DIR}/ext/target/nuvoton/m2354/partition
         ${PLATFORM_DIR}/ext/target/nuvoton/m2354/accelerator
-        ${PLATFORM_DIR}/ext/target/nuvoton/m2354/bsp/Library/StdDriver/inc
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator
-        ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/Include
-        ${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/StdDriver/inc
-        ${PLATFORM_DIR}/ext/cmsis
+        ${MBEDCRYPTO_PATH}/library
+
+        #${PLATFORM_DIR}/ext/target/nuvoton/m2354/partition
+        #${PLATFORM_DIR}/ext/target/nuvoton/m2354/bsp/Library/StdDriver/inc
+        #${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/Include
+        #${PLATFORM_DIR}/ext/target/nuvoton/common/bsp/StdDriver/inc
+        #${PLATFORM_DIR}/ext/cmsis
 )
 
 target_link_libraries(crypto_service_crypto_hw
