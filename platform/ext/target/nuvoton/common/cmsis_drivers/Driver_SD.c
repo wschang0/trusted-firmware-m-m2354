@@ -157,22 +157,20 @@ static const ARM_FLASH_CAPABILITIES DriverCapabilities =
     0  /* erase_chip */
 };
 
-static int32_t is_range_valid(struct arm_flash_dev_t *flash_dev,
-                              uint32_t offset)
+static int32_t is_range_valid(struct arm_flash_dev_t* flash_dev,
+    uint32_t offset)
 {
-    uint32_t flash_limit = 0;
+    uint32_t flash_size = 0;
     int32_t rc = 0;
 
-    flash_limit = (flash_dev->data->sector_count * flash_dev->data->sector_size)
-                  - 1;
+    flash_size = (flash_dev->data->sector_count * flash_dev->data->sector_size);
 
-    if(offset > flash_limit)
+    if(offset > flash_size)
     {
         rc = -1;
     }
     return rc;
 }
-
 
 static ARM_FLASH_INFO NU_SD0_DEV_DATA =
 {
@@ -266,7 +264,7 @@ static int32_t SD_Initialize(ARM_Flash_SignalEvent_t cb_event)
             {
                 /* Cannot open file. Just return driver error */
                 s_pfile = NULL;
-                printf("No image file found(fwimage.bin or fwimage_ns.bin).\n\r");
+                printf("No image file found(%s or %s).\n\r", fname, fnamens);
             }
         }
     }
@@ -314,7 +312,7 @@ static int32_t SD_ReadData(uint32_t addr, void *data, uint32_t cnt)
     printf("read file 0x%08x %d\n\r", start_addr, cnt);
 
     /* Check flash memory boundaries */
-    rc = is_range_valid(SD0_DEV, addr + cnt - 1);
+    rc = is_range_valid(SD0_DEV, addr + cnt);
     if (rc != 0) {
         return ARM_DRIVER_ERROR_PARAMETER;
     }
@@ -362,7 +360,6 @@ static int32_t SD_ReadData(uint32_t addr, void *data, uint32_t cnt)
     /* padding 0xff if no enough data to read */
     memset(&pu8[len], 0xff, cnt - len);
 
-
     return ARM_DRIVER_OK;
 }
 
@@ -379,7 +376,7 @@ static int32_t SD_ProgramData(uint32_t addr, const void *data, uint32_t cnt)
     if(s_pfile == NULL)
         return ARM_DRIVER_ERROR;
 
-    rc = is_range_valid(SD0_DEV, start_addr + cnt - 1);
+    rc = is_range_valid(SD0_DEV, start_addr + cnt);
     if(rc != 0) {
         return ARM_DRIVER_ERROR_PARAMETER;
     }

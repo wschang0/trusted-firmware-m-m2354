@@ -228,15 +228,8 @@ static int32_t ARM_Flash_ProgramData(uint32_t addr, const void *data, uint32_t c
             if(j>=4)
             {
                 FMC_Write(start_addr+(i+1-4), u32Data);
-                // verify
-                if(M32(start_addr + i - 3) != u32Data)
-                {
-                    printf("flash write verify fail @ %08x W:%08x R:%08x\r\n", start_addr + i - 3, u32Data, M32(start_addr + i - 3));
-                }
-
                 j = 0;
                 u32Data = 0;
-
             }
         }
 
