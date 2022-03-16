@@ -1,20 +1,9 @@
 /*
  * Copyright (c) 2001-2019, Arm Limited and Contributors. All rights reserved.
- * Copyright (c) 2020 Nuvoton Technology Corp. All rights reserved.
+ * Copyright (c) 2022 Nuvoton Technology Corp. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-
-
-#if !defined(MBEDTLS_CONFIG_FILE)
-#include "mbedtls/config.h"
-#else
-#include MBEDTLS_CONFIG_FILE
-#endif
-
-#if defined(MBEDTLS_PLATFORM_C)
-#include "mbedtls/platform.h"
-#endif
 
 #include "NuMicro.h"
 
@@ -24,8 +13,7 @@
 
 int mbedtls_hardware_poll(void* data, unsigned char* output, size_t len, size_t* olen);
 
-int mbedtls_hardware_poll( void *data,
-                           unsigned char *output, size_t len, size_t *olen )
+int mbedtls_hardware_poll( void *data, unsigned char *output, size_t len, size_t *olen )
 {
     int32_t i;
     int32_t timeout = 0x1000;
