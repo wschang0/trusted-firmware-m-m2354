@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2018-2021, Arm Limited. All rights reserved.
+ * Copyright (c) 2022, Nuvoton Technology Corp. All rights reserved.
  *
  * SPDX-License-Identifier: BSD-3-Clause
  *
@@ -13,6 +14,12 @@
 #include "tfm_plat_otp.h"
 #include "tfm_strnlen.h"
 
+#include "NuMicro.h"
+
+typedef union {
+    uint32_t id;
+    uint8_t code[4];
+} ID_T;
 
 #define BOOT_SEED_INIT_KEY  (0xa792542e)
 static uint8_t boot_seed[32] = { 0 };
@@ -95,6 +102,8 @@ enum tfm_plat_err_t tfm_plat_get_boot_seed(uint32_t size, uint8_t *buf)
     uint32_t osize;
     int i;
 
+    /* Boot seed is come from TRNG when system reset */
+
     if(boot_seed_init != BOOT_SEED_INIT_KEY)
     {
         mbedtls_hardware_poll(0, boot_seed, 32, &osize);
@@ -117,25 +126,41 @@ enum tfm_plat_err_t tfm_plat_get_boot_seed(uint32_t size, uint8_t *buf)
 enum tfm_plat_err_t tfm_plat_get_implementation_id(uint32_t *size,
                                                    uint8_t  *buf)
 {
-    enum tfm_plat_err_t err;
-    size_t otp_size;
 
-    err = tfm_plat_otp_read(PLAT_OTP_ID_IMPLEMENTATION_ID, *size, buf);
-    if(err != TFM_PLAT_ERR_SUCCESS) {
-        return err;
+    ID_T uid;
+    int32_t i, j, timeout;
+
+    /* The UID of M2354 is used as implementation id of attenstation token */
+
+    FMC_ISP->ISPCTL |= FMC_ISPCTL_ISPEN_Msk;
+
+    FMC->ISPCMD = FMC_ISPCMD_READ_UID;
+    for(i = 0; i < 4; i++)
+    {
+        FMC->ISPADDR = i * 4;
+        FMC->ISPTRG = FMC_ISPTRG_ISPGO_Msk;
+        timeout = 0x10000;
+        while(FMC->ISPTRG & FMC_ISPTRG_ISPGO_Msk) {
+            if(timeout-- <= 0)
+            {
+                return TFM_PLAT_ERR_SYSTEM_ERR;
+            }
+        }
+        uid.id = FMC->ISPDAT;
+
+        for(j = 0; j < 4; j++)
+        {
+            buf[i * 4 + j] = uid.code[j];
+        }
     }
 
-    err =  tfm_plat_otp_get_size(PLAT_OTP_ID_IMPLEMENTATION_ID, &otp_size);
-    if(err != TFM_PLAT_ERR_SUCCESS) {
-        return err;
-    }
-
-    *size = otp_size;
+    *size = 16;
 
     return TFM_PLAT_ERR_SUCCESS;
 }
 
-enum tfm_plat_err_t tfm_plat_get_hw_version(uint32_t *size, uint8_t *buf)
+
+enum tfm_plat_err_t tfm_plat_get_hw_version(uint32_t* size, uint8_t* buf)
 {
     enum tfm_plat_err_t err;
     size_t otp_size;
@@ -145,7 +170,7 @@ enum tfm_plat_err_t tfm_plat_get_hw_version(uint32_t *size, uint8_t *buf)
         return err;
     }
 
-    err =  tfm_plat_otp_get_size(PLAT_OTP_ID_HW_VERSION, &otp_size);
+    err = tfm_plat_otp_get_size(PLAT_OTP_ID_HW_VERSION, &otp_size);
     if(err != TFM_PLAT_ERR_SUCCESS) {
         return err;
     }

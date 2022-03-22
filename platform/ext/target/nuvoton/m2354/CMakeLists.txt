@@ -102,6 +102,7 @@ target_sources(platform_s
         bsp/Library/StdDriver/src/rng.c
         ../common/services/src/tfm_platform_system.c
         target_cfg.c
+        ../common/attest_hal.c
         ../common/spm_hal.c
         ../common/tfm_hal_isolation.c
         ../common/tfm_hal_platform.c
@@ -141,7 +142,6 @@ target_include_directories(platform_ns
         bsp/Library/StdDriver/inc
         ../common/bsp/StdDriver/inc
         ../common/bsp/Include
-        ../common/bsp/StdDriver/inc
         ../common/cmsis_drivers/config
 )
 
@@ -209,6 +209,53 @@ endif()
 
 
 #========================= For Nonsecure Regression =======================================#
-add_library(ns_regression INTERFACE)
-target_link_libraries(ns_regression INTERFACE libtfm_api_ns libtfm_ns_integration_test)
+add_library(tfm_regression_ns 
+    STATIC
+        $<$<AND:$<NOT:$<BOOL:${ATTEST_TEST_GET_PUBLIC_KEY}>>,$<NOT:$<BOOL:${SYMMETRIC_INITIAL_ATTESTATION}>>,$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>,$<BOOL:${TEST_S}>>:${CMAKE_SOURCE_DIR}/platform/ext/common/template/tfm_initial_attest_pub_key.c>
+        ../common/native_drivers/arm_uart_drv.c
+        ../common/cmsis_drivers/Driver_USART.c
+        device/source/device_definition.c
+        device/source/system_core_init.c
+        
+)
+
+target_link_libraries(tfm_regression_ns
+    PUBLIC 
+    tfm_api_ns
+    tfm_qcbor_ns
+    tfm_ns_log
+    tfm_test_suite_qcbor_ns
+    tfm_qcbor_test
+    tfm_t_cose_ns
+    tfm_t_cose_test
+    tfm_test_suite_attestation_ns
+    tfm_test_suite_crypto_ns
+    tfm_test_suite_ipc_ns
+    tfm_test_suite_platform_ns
+    tfm_test_suite_t_cose_ns
+    tfm_test_suite_core_ns
+    tfm_test_suite_it_ns
+    tfm_test_suite_ps_ns
+    tfm_ns_integration_test
+)
+
+target_include_directories(tfm_regression_ns
+    PUBLIC
+        partition
+        ${PLATFORM_DIR}/ext/driver
+        ${PLATFORM_DIR}/ext/cmsis
+        bsp/Device/Nuvoton/M2354/Include
+        ../common/bsp/Include
+        ../common/bsp/StdDriver/inc
+        bsp/Library/StdDriver/inc
+        device/config
+        ../common/native_drivers
+        ../common/cmsis_drivers/config
+        device/include
+)
+
+target_compile_options(tfm_regression_ns
+    PUBLIC
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
+)
 
