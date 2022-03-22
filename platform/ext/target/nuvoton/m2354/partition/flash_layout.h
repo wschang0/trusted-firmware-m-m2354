@@ -61,7 +61,7 @@
  * swapping.
  */
 #define FLASH_AREA_BL2_OFFSET      (0x0)
-#define FLASH_AREA_BL2_SIZE        (0x14000) /* 80 KB */
+#define FLASH_AREA_BL2_SIZE        (0x15000) /* 84 KB */
 
 #if !defined(MCUBOOT_IMAGE_NUMBER) || (MCUBOOT_IMAGE_NUMBER == 1)
 /* Secure + Non-secure image primary slot */
@@ -91,7 +91,7 @@
 
  /* Secure image primary slot */
 #define FLASH_AREA_0_ID            (1)
-#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000 - 0x4000)
+#define FLASH_AREA_0_OFFSET        (FLASH_AREA_BL2_OFFSET + FLASH_AREA_BL2_SIZE + 0x10000 - 0x5000)
 #define FLASH_AREA_0_SIZE          (FLASH_S_PARTITION_SIZE)
 /* Non-secure image primary slot */
 #define FLASH_AREA_1_ID            (FLASH_AREA_0_ID + 1)
