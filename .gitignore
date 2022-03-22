@@ -8,6 +8,9 @@
 
 # Visual Studio Code
 .vscode/
+.vs/
+out/
+CMakeSettings.json
 
 # Garbage files
 /build*/
