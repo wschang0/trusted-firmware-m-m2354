@@ -216,46 +216,31 @@ add_library(tfm_regression_ns
         ../common/cmsis_drivers/Driver_USART.c
         device/source/device_definition.c
         device/source/system_core_init.c
-        
-)
+        ${PLATFORM_DIR}/ext/common/uart_stdout.c       
 
-target_link_libraries(tfm_regression_ns
-    PUBLIC 
-    tfm_api_ns
-    tfm_qcbor_ns
-    tfm_ns_log
-    tfm_test_suite_qcbor_ns
-    tfm_qcbor_test
-    tfm_t_cose_ns
-    tfm_t_cose_test
-    tfm_test_suite_attestation_ns
-    tfm_test_suite_crypto_ns
-    tfm_test_suite_ipc_ns
-    tfm_test_suite_platform_ns
-    tfm_test_suite_t_cose_ns
-    tfm_test_suite_core_ns
-    tfm_test_suite_it_ns
-    tfm_test_suite_ps_ns
-    tfm_ns_integration_test
 )
-
 target_include_directories(tfm_regression_ns
     PUBLIC
         partition
+        ${PLATFORM_DIR}/include
+        ${PLATFORM_DIR}/ext/common
         ${PLATFORM_DIR}/ext/driver
         ${PLATFORM_DIR}/ext/cmsis
         bsp/Device/Nuvoton/M2354/Include
+        ../common/
         ../common/bsp/Include
         ../common/bsp/StdDriver/inc
-        bsp/Library/StdDriver/inc
-        device/config
         ../common/native_drivers
         ../common/cmsis_drivers/config
+        bsp/Library/StdDriver/inc
+        device/config
         device/include
+        ${CMAKE_SOURCE_DIR}/interface/include
+        ${CMAKE_SOURCE_DIR}/secure_fw/partitions/lib/sprt/include
+        ${CMAKE_BINARY_DIR}/generated/interface/include/
 )
 
 target_compile_options(tfm_regression_ns
     PUBLIC
         $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
 )
-
