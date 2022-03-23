@@ -55,7 +55,7 @@
 __ALIGNED(4) static uint8_t s_u8in[AES_BLOCK_SIZE];
 __ALIGNED(4) static uint8_t s_u8out[AES_BLOCK_SIZE];
 
-
+#if defined(MBEDTLS_CIPHER_MODE_CBC)
 __STATIC_INLINE uint32_t nu_get32_le(const uint8_t* pos)
 {
     uint32_t val;
@@ -75,7 +75,7 @@ __STATIC_INLINE void nu_set32_le(uint8_t* pos, uint32_t val)
     *pos++ = (val >> 16) & 0xFF;
     *pos = (val >> 24) & 0xFF;
 }
-
+#endif
 
 
 /* Implementation that should never be optimized out by the compiler */
