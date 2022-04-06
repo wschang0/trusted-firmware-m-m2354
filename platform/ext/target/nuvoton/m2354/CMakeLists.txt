@@ -100,6 +100,7 @@ target_sources(platform_s
         bsp/Library/StdDriver/src/timer.c
         bsp/Library/StdDriver/src/fmc.c
         bsp/Library/StdDriver/src/rng.c
+        bsp/Library/StdDriver/src/tamper.c
         ../common/services/src/tfm_platform_system.c
         target_cfg.c
         ../common/attest_hal.c
@@ -162,6 +163,7 @@ if(BL2)
             bsp/Library/StdDriver/src/fmc.c
             bsp/Library/StdDriver/src/clk.c
             bsp/Library/StdDriver/src/rng.c
+            bsp/Library/StdDriver/src/tamper.c
             ../common/boot_hal.c
             ../common/cmsis_drivers/Driver_Flash.c
             ../common/native_drivers/arm_uart_drv.c
