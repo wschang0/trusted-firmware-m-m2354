@@ -1,0 +1,148 @@
+﻿{
+  "configurations": [
+    {
+      "name": "m2354",
+      "generator": "Unix Makefiles",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\build\\${name}\\install",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/CMake.exe",
+      "cmakeCommandArgs": " -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTEST_S=ON -DTEST_NS=ON  -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2  -DCMAKE_BUILD_TYPE=Debug -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=../../../toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=../../../../mbedcrypto-src -DMCUBOOT_PATH=../../../../mcuboot-src -DTFM_TEST_REPO_PATH=../../../../tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=../../../../psa_arch_tests-src",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "C:/Program Files/CMake/bin/CMake.exe",
+      "inheritEnvironments": [],
+      "variables": [
+        {
+          "name": "CMAKE_TOOLCHAIN_FILE",
+          "value": "",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "TFM_TOOLCHAIN_FILE",
+          "value": "D:\\MCU/TF-M_HAL\\trusted-firmware-m\\toolchain_ARMClang.cmake",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_MAKE_PROGRAM",
+          "value": "C:/cygwin64/bin/make.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CROSS_COMPILE",
+          "value": "arm-arm-none-eabi",
+          "type": "STRING"
+        },
+        {
+          "name": "TFM_PARTITION_PROTECTED_STORAGE",
+          "value": "True",
+          "type": "BOOL"
+        }
+      ]
+    },
+    {
+      "name": "m2351",
+      "generator": "Unix Makefiles",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe",
+      "cmakeCommandArgs": "-DTFM_PLATFORM=nuvoton/m2351 -DTEST_S=OFF -DTEST_NS=OFF -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2 -DMBEDCRYPTO_PATH=../../../../mbedcrypto-src -DMCUBOOT_PATH=../../../../mcuboot-src -DTFM_TEST_REPO_PATH=../../../../tfm_test_repo-src",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [ "linux_arm" ],
+      "variables": [
+        {
+          "name": "CMAKE_TOOLCHAIN_FILE",
+          "value": "",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "TFM_TOOLCHAIN_FILE",
+          "value": "../../../toolchain_ARMCLANG.cmake",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_MAKE_PROGRAM",
+          "value": "C:/cygwin64/bin/make.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CROSS_COMPILE",
+          "value": "arm-arm-none-eabi",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "name": "armgcc",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "inheritEnvironments": [ "gcc-arm" ],
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DCMAKE_BUILD_TYPE=Debug  -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=../../../toolchain_GNUARM.cmake -DTEST_S=ON -DTEST_NS=ON -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2 -DMBEDCRYPTO_PATH=../../../../lib/mbedtls -DMCUBOOT_PATH=../../../../lib/mcuboot -DTFM_TEST_REPO_PATH=../../../../lib/tf-m-tests",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "variables": [
+        {
+          "name": "CMAKE_TOOLCHAIN_FILE",
+          "value": "",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "TFM_TOOLCHAIN_FILE",
+          "value": "D:/MCU/TF-M_Review/trusted-firmware-m/toolchain_GNUARM.cmake",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_MAKE_PROGRAM",
+          "value": "C:/cygwin64/bin/make.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CROSS_COMPILE",
+          "value": "C:/Program Files (x86)/GNU Tools ARM Embedded/7 2018-q2-update/bin/arm-none-eabi",
+          "type": "STRING"
+        }
+      ],
+      "cmakeToolchain": "C:/Program Files (x86)/CMake/bin/CMake.exe",
+      "cmakeExecutable": "C:/Program Files (x86)/CMake/bin/CMake.exe"
+    },
+    {
+      "name": "an521",
+      "generator": "Unix Makefiles",
+      "configurationType": "Debug",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "cmakeCommandArgs": "-DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENC_IMAGES=ON  -DTEST_S=OFF -DTEST_NS=OFF  -DCMAKE_BUILD_TYPE=Debug  -DTFM_PLATFORM=arm/mps2/an521 -DTFM_TOOLCHAIN_FILE=../../../toolchain_ARMCLANG.cmake -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2 -DxMBEDCRYPTO_PATH=../../../../mbedcrypto-src -DxMCUBOOT_PATH=../../../../mcuboot-src -DxTFM_TEST_REPO_PATH=../../../../tfm_test_repo-src -DxPSA_ARCH_TESTS_PATH=../../../../psa_arch_tests-src",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "C:/Program Files/CMake/bin/CMake.exe",
+      "cmakeExecutable": "C:/Program Files (x86)/CMake/bin/CMake.exe",
+      "variables": [
+        {
+          "name": "CMAKE_TOOLCHAIN_FILE",
+          "value": "",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "TFM_TOOLCHAIN_FILE",
+          "value": "D:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMClang.cmake",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_MAKE_PROGRAM",
+          "value": "C:/cygwin64/bin/make.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CROSS_COMPILE",
+          "value": "arm-arm-none-eabi",
+          "type": "STRING"
+        }
+      ],
+      "inheritEnvironments": []
+    }
+  ]
+}
