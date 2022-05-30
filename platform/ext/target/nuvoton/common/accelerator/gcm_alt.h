@@ -53,8 +53,8 @@ typedef struct mbedtls_gcm_context
     int MBEDTLS_PRIVATE(mode);                             /*!< The operation to perform:
                                                #MBEDTLS_GCM_ENCRYPT or
                                                #MBEDTLS_GCM_DECRYPT. */
-    
-    
+
+
     uint32_t keySize;       /* Key size: 128/192/256 */
     uint32_t encDec;        /* 0: decrypt, 1: encrypt */
     uint32_t opMode;        /* AES_MODE_ECB/CBC/CFB */
@@ -69,7 +69,7 @@ typedef struct mbedtls_gcm_context
     uint32_t gcm_buf_bytes; /* Bytes in gcm_buf */
     uint32_t firstFlag;     /* A flag for the first data block */
     uint32_t endFlag;       /* final block is done */
-    
+
     uint8_t *add;
     size_t addlen;
 

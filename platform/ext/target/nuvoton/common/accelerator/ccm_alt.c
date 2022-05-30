@@ -234,12 +234,12 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
 
     if(ivlen > 16)
         return -1;
-    
+
     for(i=0;i<8;i++)
     {
         key[i] = CRPT->AES_KEY[i];
     }
-    
+
     SYS->IPRST0 = SYS_IPRST0_CRPTRST_Msk;
     SYS->IPRST0 = 0;
 
@@ -248,9 +248,9 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
         CRPT->AES_KEY[i] = key[i];
     }
 
-    
+
     AES_ENABLE_INT(CRPT);
-    
+
     /* Prepare the blocked buffer for GCM */
     memset(ctx->ccm_buf, 0, MAX_CCM_BUF);
     CCMPacker(iv, ivlen, A, alen, P, plen, ctx->ccm_buf, &size, tlen, enc);
@@ -258,10 +258,7 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
     ToBigEndian(ctx->ccm_buf, size + 16);
 
     plen_aligned = (plen & 0xful) ? ((plen + 15) / 16) * 16 : plen;
-    
-    
-    
-    
+
     if(ctx->keySize == 16)
     {
         CRPT->AES_CTL = (enc << CRPT_AES_CTL_ENCRPT_Pos) |
@@ -283,8 +280,8 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
                         (AES_KEY_SIZE_256 << CRPT_AES_CTL_KEYSZ_Pos) |
                         (AES_OUT_SWAP << CRPT_AES_CTL_OUTSWAP_Pos);
     }
-    
-    
+
+
     pu32 = (uint32_t *)&ctx->ccm_buf[size];
     CRPT->AES_IV[0] = pu32[0];
     CRPT->AES_IV[1] = pu32[1];
@@ -299,29 +296,26 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
     CRPT->AES_GCM_PCNT[1] = 0;
 
 
-    
+
     CRPT->AES_SADDR = (uint32_t)ctx->ccm_buf;
     CRPT->AES_DADDR = (uint32_t)ctx->out_buf;
     CRPT->AES_CNT   = size;
-    
 
     /* Start AES Eecrypt */
-    
     CRPT->AES_CTL |= CRPT_AES_CTL_START_Msk | (CRYPTO_DMA_ONE_SHOT << CRPT_AES_CTL_DMALAST_Pos);
-    
+
     /* Waiting for AES calculation */
     while((CRPT->INTSTS & CRPT_INTSTS_AESIF_Msk) == 0)
     {
         if(timeout-- < 0)
             return -1;
     }
-    
+
     /* Clear flag */
     CRPT->INTSTS = CRPT_INTSTS_AESIF_Msk;
-    
+
     memcpy(buf, ctx->out_buf, plen);
-    
-    
+
     if(tlen > 16)
     {
         tlen = 16;
@@ -350,7 +344,7 @@ int mbedtls_ccm_setkey( mbedtls_ccm_context *ctx,
 {
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     const mbedtls_cipher_info_t* cipher_info;
-    
+
     CCM_VALIDATE_RET( ctx != NULL );
     CCM_VALIDATE_RET( key != NULL );
 

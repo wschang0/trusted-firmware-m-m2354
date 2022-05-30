@@ -126,19 +126,19 @@ int mbedtls_aes_setkey_enc(mbedtls_aes_context *ctx, const unsigned char *key,
 
     switch(keybits)
     {
-    case 128: 
-        ctx->keySize = 16; 
+    case 128:
+        ctx->keySize = 16;
         ctx->keySizeOp = 0;
         break;
-    case 192: 
-        ctx->keySize = 24; 
+    case 192:
+        ctx->keySize = 24;
         ctx->keySizeOp = 1 << CRPT_AES_CTL_KEYSZ_Pos;
         break;
-    case 256: 
-        ctx->keySize = 32; 
+    case 256:
+        ctx->keySize = 32;
         ctx->keySizeOp = 2 << CRPT_AES_CTL_KEYSZ_Pos;
         break;
-    default: 
+    default:
         return(MBEDTLS_ERR_AES_INVALID_KEY_LENGTH);
     }
 
@@ -191,7 +191,7 @@ static int __nvt_aes_crypt(mbedtls_aes_context *ctx,
 
     /* Force AES free */
     CRPT->AES_CTL = CRPT_AES_CTL_STOP_Msk;
-    
+
     memcpy(s_u8in, input, dataSize);
 
     /* Enable AES interrupt */
@@ -397,10 +397,10 @@ int mbedtls_aes_crypt_cfb128(mbedtls_aes_context *ctx,
     AES_VALIDATE_RET(output != NULL);
 
     AES_VALIDATE_RET(*iv_off == 0);
-    
+
     /* Force AES free */
     CRPT->AES_CTL = CRPT_AES_CTL_STOP_Msk;
-    
+
     wcnt = ctx->keySize / 4;
     for(i = 0; i < wcnt; i++)
     {
@@ -599,7 +599,6 @@ int mbedtls_aes_crypt_ofb(mbedtls_aes_context* ctx,
     int32_t first = 1;
     uint32_t u32Tmp;
 
-    
     if(length == 0)
     {
         /* Just do nothing */

@@ -185,7 +185,7 @@ static int32_t ECC_GenPubKey(mbedtls_ecp_group* grp, mbedtls_mpi* d, mbedtls_ecp
 
     ECC_Copy((void *)crpt->ECC_A, grp->A.MBEDTLS_PRIVATE(p), mbedtls_mpi_size(&grp->A));
     ECC_Copy((void *)crpt->ECC_B, grp->B.MBEDTLS_PRIVATE(p), mbedtls_mpi_size(&grp->B));
-    
+
     ECC_Copy((void *)crpt->ECC_X1, grp->MBEDTLS_PRIVATE(T)->MBEDTLS_PRIVATE(X).MBEDTLS_PRIVATE(p), mbedtls_mpi_size(&grp->MBEDTLS_PRIVATE(T)->MBEDTLS_PRIVATE(X)));
     ECC_Copy((void *)crpt->ECC_Y1, grp->MBEDTLS_PRIVATE(T)->MBEDTLS_PRIVATE(Y).MBEDTLS_PRIVATE(p), mbedtls_mpi_size(&grp->MBEDTLS_PRIVATE(T)->MBEDTLS_PRIVATE(Y)));
     ECC_Copy((void*)crpt->ECC_N, grp->P.MBEDTLS_PRIVATE(p), mbedtls_mpi_size(&grp->P));
@@ -232,7 +232,7 @@ int32_t  ECC_ComputeShared(mbedtls_ecp_group *grp, mbedtls_mpi* z, const mbedtls
     uint32_t timeout = 200000000;
     int32_t len;
     int32_t ret;
-    
+
     /* Reset crypto */
     SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;
     SYS->IPRST0 = 0;
@@ -285,7 +285,7 @@ int32_t  ECC_ComputeShared(mbedtls_ecp_group *grp, mbedtls_mpi* z, const mbedtls
         if(timeout-- <= 0)
             return MBEDTLS_ERR_ECP_HW_ACCEL_FAILED;
     }
-    
+
     mbedtls_mpi_lset(z, 0);
 
     len = grp->pbits / 8 + ((grp->pbits & 0x7) != 0);

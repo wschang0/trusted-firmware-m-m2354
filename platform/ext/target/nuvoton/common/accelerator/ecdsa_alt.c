@@ -478,13 +478,13 @@ int mbedtls_ecdsa_sign( mbedtls_ecp_group *grp, mbedtls_mpi *r, mbedtls_mpi *s,
     ret = ECC_Sign(grp, r, s, d, buf, blen, f_rng, p_rng);
 
     return ret;
-                                    
+
 }
 #endif /* MBEDTLS_ECDSA_SIGN_ALT */
 
 #if defined(MBEDTLS_ECDSA_VERIFY_ALT)
 
-int  ECC_Verify(mbedtls_ecp_group * grp, 
+int  ECC_Verify(mbedtls_ecp_group * grp,
     const unsigned char* buf, size_t blen,
     const mbedtls_ecp_point * Q,
     const mbedtls_mpi * r,

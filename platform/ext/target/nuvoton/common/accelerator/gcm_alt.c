@@ -86,11 +86,11 @@ void mbedtls_gcm_init( mbedtls_gcm_context *ctx )
 {
     GCM_VALIDATE( ctx != NULL );
     memset( ctx, 0, sizeof( mbedtls_gcm_context ) );
-        
+
     /* Reset Crypto */
     SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;
     SYS->IPRST0 ^= SYS_IPRST0_CRPTRST_Msk;
-    
+
 }
 
 static int32_t ToBigEndian(uint8_t *pbuf, uint32_t u32Size)
@@ -152,7 +152,7 @@ int mbedtls_gcm_setkey( mbedtls_gcm_context *ctx,
 
     klen = keybits / 8;
     ctx->keySize = klen;
-    
+
     memcpy(au32Buf, key, klen);
 
     ToBigEndian((uint8_t *)au32Buf, klen);
@@ -160,14 +160,14 @@ int mbedtls_gcm_setkey( mbedtls_gcm_context *ctx,
     {
         CRPT->AES_KEY[i] = au32Buf[i];
     }
-    
+
     /* Prepare key size option */
     i = klen >> 3;
     keySizeOpt = (((i >> 2) << 1) | (i & 1)) << CRPT_AES_CTL_KEYSZ_Pos;
-    
+
     /* Basic options for AES */
-    ctx->basicOpt = CRPT_AES_CTL_INSWAP_Msk | 
-                    CRPT_AES_CTL_OUTSWAP_Msk | 
+    ctx->basicOpt = CRPT_AES_CTL_INSWAP_Msk |
+                    CRPT_AES_CTL_OUTSWAP_Msk |
                     CRPT_AES_CTL_DMAEN_Msk |
                     GCM_MODE |
                     keySizeOpt;
@@ -294,7 +294,7 @@ int32_t AES_GCMPacker(const uint8_t *iv, uint32_t iv_len, const uint8_t *A, uint
 static int32_t AES_Run(uint32_t u32Option)
 {
     int32_t timeout = 0x1000000;
-    
+
     CRPT->AES_CTL = u32Option | START;
     /* Waiting for AES calculation */
     while((CRPT->INTSTS & CRPT_INTSTS_AESIF_Msk) == 0)
@@ -303,7 +303,7 @@ static int32_t AES_Run(uint32_t u32Option)
             return -1;
     }
     CRPT->INTSTS = CRPT_INTSTS_AESIF_Msk;
-    
+
     return 0;
 }
 
@@ -372,7 +372,7 @@ static int32_t _GCMTag(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivl
 
 
         AES_Run(u32OptBasic | GHASH_MODE | DMAEN /*| DMALAST*/);
-        
+
 
     }
     else
@@ -568,7 +568,7 @@ static int32_t _GCM(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivlen,
     /* Set bytes count of A */
     CRPT->AES_GCM_ACNT[0] = alen;
     CRPT->AES_GCM_ACNT[1] = 0;
-    
+
     /* Set bytes count of P */
     CRPT->AES_GCM_PCNT[0] = plen;
     CRPT->AES_GCM_PCNT[1] = 0;
@@ -586,7 +586,7 @@ static int32_t _GCM(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivlen,
         CRPT->AES_CNT = size;
 
         ret = AES_Run(u32OptBasic | GCM_MODE | DMAEN);
-        
+
         memcpy(buf, ctx->out_buf, plen);
         memcpy(tag, ctx->out_buf + plen_aligned, tag_len);
 
@@ -657,14 +657,14 @@ static int32_t _GCM(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivlen,
             }
 
             memcpy(pout, ctx->out_buf, len);
-            
+
             pin += len;
             pout += len;
         }
-        
+
         memcpy(tag, ctx->out_buf+len_aligned, tag_len);
     }
-    
+
     if(ctx->mode)
     {
         /* Need to calculate Tag when plen % 16 == 1 or 15 */
@@ -687,21 +687,21 @@ int mbedtls_gcm_starts( mbedtls_gcm_context *ctx,
                         const unsigned char *iv,
                         size_t iv_len)
 {
-    
-    
+
+
     uint32_t size;
     size_t *pSz;
-    
-    
+
+
     AES_ENABLE_INT(CRPT);
-    
+
     if(mode == MBEDTLS_GCM_ENCRYPT)
         ctx->basicOpt |= CRPT_AES_CTL_ENCRPT_Msk;
-    
+
     /* Set byte count of IV */
     pSz = (size_t *)CRPT->AES_GCM_IVCNT;
     *pSz = iv_len;
-    
+
     AES_GCMPacker(iv, iv_len, 0, 0, 0, 0, ctx->gcm_buf, &size);
     ctx->gcm_buf_bytes = size;
 
@@ -732,20 +732,20 @@ int mbedtls_gcm_update_ad( mbedtls_gcm_context *ctx,
     uint32_t size;
     size_t *pSz;
     int32_t ret;
-    
+
     /* Set bytes count of A */
     pSz = (size_t *)CRPT->AES_GCM_ACNT;
     *pSz = add_len;
-    
+
     AES_GCMPacker(0, 0, add, add_len, 0, 0, ctx->gcm_buf + ctx->gcm_buf_bytes, &size);
     ctx->gcm_buf_bytes += size;
-    
+
     /* Configure DMA */
     CRPT->AES_SADDR = (uint32_t)ctx->gcm_buf;
     CRPT->AES_DADDR = (uint32_t)ctx->out_buf;
     CRPT->AES_FBADDR = (uint32_t)ctx->fb_buf;
     CRPT->AES_CNT   = ctx->gcm_buf_bytes;
-    
+
     /* Set a big number for unknown P length */
     CRPT->AES_GCM_PCNT[0] = (uint32_t)-1;
     CRPT->AES_GCM_PCNT[1] = 0;
@@ -765,15 +765,15 @@ int mbedtls_gcm_update_ad( mbedtls_gcm_context *ctx,
 int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
                         const unsigned char *input, size_t input_length,
                         unsigned char *output, size_t output_size,
-                        size_t *output_length )                       
+                        size_t *output_length )
 {
-    
+
 
     int32_t ret;
     int32_t len, len_aligned;
     uint32_t u32Size;
-    
-    
+
+
     GCM_VALIDATE_RET( ctx != NULL );
     GCM_VALIDATE_RET( length == 0 || input != NULL );
     GCM_VALIDATE_RET( length == 0 || output != NULL );
@@ -787,11 +787,11 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
     /* Error if length too large */
     if(len != input_length)
         return( MBEDTLS_ERR_GCM_BAD_INPUT );
-        
+
     if(len + ctx->gcm_buf_bytes > MAX_GCM_BUF)
         return (MBEDTLS_ERR_GCM_BAD_INPUT);
-    
-    
+
+
     len_aligned = (len & 0xf)?(len & (~0xful))+16:len;
 
     if(len == 0)
@@ -803,12 +803,12 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
             /* No any P/C data, just use one shot to redo */
             AES_Run(ctx->basicOpt);
             ctx->gcm_buf_bytes = 0;
-            
+
             /* The tag should be in out_buf if P len is 0 */
             memcpy(ctx->tag, ctx->out_buf, 16);
             ctx->endFlag = 1;
             ctx->firstFlag = 0;
-            
+
         }
         else
         {
@@ -821,11 +821,11 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
             }
             ctx->gcm_buf_bytes = 0;
             ctx->endFlag = 1;
-            
+
             /* Output p/c data */
             memcpy(output, ctx->out_buf, len);
             *output_length = len;
-            
+
             /* Output tag */
             memcpy(ctx->tag, ctx->out_buf+len_aligned, 16);
         }
@@ -843,11 +843,11 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
             /* Over buffer size */
             return (MBEDTLS_ERR_GCM_BAD_INPUT);
         }
-            
+
         /* Do GCM with cascade */
         if(len & 0xf)
         {
-            
+
             /* No 16 bytes alignment, it should be last */
             CRPT->AES_GCM_PCNT[0] = ctx->len;
             CRPT->AES_CNT = u32Size;
@@ -871,7 +871,7 @@ int mbedtls_gcm_update( mbedtls_gcm_context *ctx,
         /* Output p/c data */
         memcpy(output, ctx->out_buf, len);
         *output_length = len;
-        
+
         if(ctx->endFlag)
         {
             /* Output tag */
@@ -891,10 +891,10 @@ int mbedtls_gcm_finish( mbedtls_gcm_context *ctx,
 
 
     int32_t ret;
-    
+
     GCM_VALIDATE_RET( ctx != NULL );
     GCM_VALIDATE_RET( tag != NULL );
-    
+
     if(ctx->endFlag == 0)
     {
         /* end the gcm */
@@ -905,13 +905,13 @@ int mbedtls_gcm_finish( mbedtls_gcm_context *ctx,
             return ret;
         }
         ctx->endFlag = 1;
-        
+
         /* The tag should be in out_buf if P len is 0 */
-        
+
         memcpy(ctx->tag, ctx->out_buf+ctx->gcm_buf_bytes, 16);
     }
-    
-    
+
+
     if(tag_len > 16)
     {
         tag_len = 16;
@@ -919,7 +919,7 @@ int mbedtls_gcm_finish( mbedtls_gcm_context *ctx,
     memcpy(tag, ctx->tag, tag_len);
 
     *output_length = 0;
-    
+
     return( 0 );
 }
 
