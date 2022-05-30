@@ -7,7 +7,7 @@
       "buildRoot": "d:\\out\\${name}",
       "installRoot": "d:\\out\\${name}\\install",
       "cmakeExecutable": "C:/Program Files/CMake/bin/CMake.exe",
-      "cmakeCommandArgs": "-DCMAKE_OBJECT_PATH_MAX=250 -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTEST_S=OFF -DTEST_NS=OFF -DTFM_ISOLATION_LEVEL=2  -DCMAKE_BUILD_TYPE=Debug -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src2 -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src2 -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src2 -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
+      "cmakeCommandArgs": "-DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTEST_S=ON -DTEST_NS=ON -DTFM_ISOLATION_LEVEL=2  -DCMAKE_BUILD_TYPE=Debug -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "cmakeToolchain": "C:/Program Files/CMake/bin/CMake.exe",
