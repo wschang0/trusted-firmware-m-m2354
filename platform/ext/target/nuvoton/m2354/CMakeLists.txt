@@ -86,7 +86,6 @@ target_include_directories(platform_s
 
 target_sources(platform_s
     PRIVATE
-        $<$<NOT:$<BOOL:${PLATFORM_DUMMY_CRYPTO_KEYS}>>:${CMAKE_CURRENT_SOURCE_DIR}/crypto_keys.c>
         $<$<NOT:$<BOOL:${PLATFORM_DUMMY_ROTPK}>>:${CMAKE_CURRENT_SOURCE_DIR}/tfm_rotpk.c>
         $<$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>:${CMAKE_CURRENT_SOURCE_DIR}/tfm_initial_attestation_key_material.c>
         $<$<AND:$<NOT:$<BOOL:${ATTEST_TEST_GET_PUBLIC_KEY}>>,$<NOT:$<BOOL:${SYMMETRIC_INITIAL_ATTESTATION}>>,$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>,$<BOOL:${TEST_S}>>:ext/common/template/tfm_initial_attest_pub_key.c>

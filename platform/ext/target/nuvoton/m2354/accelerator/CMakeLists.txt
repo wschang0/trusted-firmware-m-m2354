@@ -78,6 +78,7 @@ target_sources(crypto_service_crypto_hw
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ecdsa_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/rsa_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/trng_api.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/huk_derive_key.c
 )
 
 target_compile_options(crypto_service_crypto_hw
