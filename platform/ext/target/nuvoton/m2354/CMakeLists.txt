@@ -110,6 +110,7 @@ target_sources(platform_s
         ${CMAKE_SOURCE_DIR}/platform/ext/common/tfm_hal_isolation_mpu_v8m.c
         ${CMAKE_SOURCE_DIR}/platform/ext/common/tfm_hal_nvic.c
         $<$<BOOL:${TFM_PARTITION_PLATFORM}>:${CMAKE_CURRENT_SOURCE_DIR}/plat_test.c>
+        $<$<BOOL:${CRYPTO_NV_SEED}>:${CMAKE_CURRENT_SOURCE_DIR}/../common/accelerator/trng_api.c>
 )
 
 target_compile_options(platform_s
@@ -208,14 +209,14 @@ endif()
 
 
 #========================= For Nonsecure Regression =======================================#
-add_library(tfm_regression_ns 
+add_library(tfm_regression_ns
     STATIC
         $<$<AND:$<NOT:$<BOOL:${ATTEST_TEST_GET_PUBLIC_KEY}>>,$<NOT:$<BOOL:${SYMMETRIC_INITIAL_ATTESTATION}>>,$<NOT:$<BOOL:${PLATFORM_DUMMY_IAK}>>,$<BOOL:${TEST_S}>>:${CMAKE_SOURCE_DIR}/platform/ext/common/template/tfm_initial_attest_pub_key.c>
         ../common/native_drivers/arm_uart_drv.c
         ../common/cmsis_drivers/Driver_USART.c
         device/source/device_definition.c
         device/source/system_core_init.c
-        ${PLATFORM_DIR}/ext/common/uart_stdout.c       
+        ${PLATFORM_DIR}/ext/common/uart_stdout.c
 
 )
 target_include_directories(tfm_regression_ns

@@ -17,5 +17,5 @@ set(PLATFORM_DUMMY_CRYPTO_KEYS FALSE  CACHE BOOL   "Use dummy crypto keys. Shoul
 set(PLATFORM_DUMMY_NV_COUNTERS FALSE  CACHE BOOL   "Use dummy nv counter implementation. Should not be used in production.")
 set(PLATFORM_DUMMY_ROTPK       FALSE  CACHE BOOL   "Use dummy root of trust public key. Dummy key is the public key for the default keys in bl2. Should not be used in production.")
 set(PLATFORM_DUMMY_IAK         FALSE  CACHE BOOL   "Use dummy initial attestation_key. Should not be used in production.")
-    
+
 set(TFM_NS_CLIENT_IDENTIFICATION    OFF)
