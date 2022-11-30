@@ -110,6 +110,11 @@ enum tfm_plat_err_t read_otp_nv_counters_flash(uint32_t offset, void *data, uint
  */
 enum tfm_plat_err_t write_otp_nv_counters_flash(uint32_t offset, const void *data, uint32_t cnt);
 
+
+enum tfm_plat_err_t init_otp_nv_counters_otp(void); 
+enum tfm_plat_err_t read_otp_nv_counters_otp(uint32_t offset, void* data, uint32_t cnt);
+enum tfm_plat_err_t write_otp_nv_counters_otp(uint32_t offset, const void* data, uint32_t cnt);
+
 #ifdef __cplusplus
 }
 #endif

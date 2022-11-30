@@ -12,10 +12,12 @@ set(ITS_NUM_ASSETS          12     CACHE STRING    "The maximum number of assets
 set(CRYPTO_HW_ACCELERATOR   ON     CACHE BOOL      "Whether to enable the crypto hardware accelerator on supported platforms")
 set(CRYPTO_NV_SEED          OFF    CACHE BOOL      "Use stored NV seed to provide entropy")
 
-set(PLATFORM_DUMMY_NV_SEED     FALSE  CACHE BOOL   "Use dummy NV seed implementation. Should not be used in production.")
-set(PLATFORM_DUMMY_CRYPTO_KEYS FALSE  CACHE BOOL   "Use dummy crypto keys. Should not be used in production.")
-set(PLATFORM_DUMMY_NV_COUNTERS FALSE  CACHE BOOL   "Use dummy nv counter implementation. Should not be used in production.")
-set(PLATFORM_DUMMY_ROTPK       FALSE  CACHE BOOL   "Use dummy root of trust public key. Dummy key is the public key for the default keys in bl2. Should not be used in production.")
-set(PLATFORM_DUMMY_IAK         FALSE  CACHE BOOL   "Use dummy initial attestation_key. Should not be used in production.")
-
 set(TFM_NS_CLIENT_IDENTIFICATION    OFF)
+
+set(MBEDCRYPTO_BUILD_TYPE               minsizerel  CACHE STRING    "Build type of Mbed Crypto library")
+set(TFM_DUMMY_PROVISIONING              ON        CACHE BOOL      "Provision with dummy values. NOT to be used in production")              
+set(PLATFORM_DEFAULT_OTP_WRITEABLE      ON        CACHE BOOL      "Use on chip flash with write support")
+set(PLATFORM_DEFAULT_NV_COUNTERS        OFF       CACHE BOOL      "Use default nv counter implementation.")
+set(PS_CRYPTO_AEAD_ALG                  PSA_ALG_GCM CACHE STRING    "The AEAD algorithm to use for authenticated encryption in Protected Storage")
+set(NVT_ENABLE_ETM_DEBUG                ON         CACHE BOOL       "Enable ETM debug interface")
+set(NVT_USE_HIRC48M                     ON         CACHE BOOL       "Set sytem clock as HIRC48M")
