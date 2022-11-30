@@ -65,12 +65,13 @@ void SystemInit (void)
 
 //#if __DOMAIN_NS == 0
 
-#if (defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3L) && defined(BL2))
+//#if (defined (__ARM_FEATURE_CMSE) && (__ARM_FEATURE_CMSE == 3L) && defined(BL2))
+#ifdef NVT_SYS_INIT
 
     /* Initial the system */
     SYS_UnlockReg();
 
-#ifdef NV_ENABLE_ETM
+#ifdef NVT_ENABLE_ETM
     /* Init ETM Trace */
     SYS->GPE_MFPH = (SYS->GPE_MFPH & (~(TRACE_CLK_PE12_Msk | TRACE_DATA0_PE11_Msk | TRACE_DATA1_PE10_Msk | TRACE_DATA2_PE9_Msk | TRACE_DATA3_PE8_Msk))) |
         TRACE_CLK_PE12 | TRACE_DATA0_PE11 | TRACE_DATA1_PE10 | TRACE_DATA2_PE9 | TRACE_DATA3_PE8;
@@ -90,12 +91,13 @@ void SystemInit (void)
                    CLK_AHBCLK_GPECKEN_Msk | CLK_AHBCLK_GPFCKEN_Msk | CLK_AHBCLK_GPGCKEN_Msk | CLK_AHBCLK_GPHCKEN_Msk;
 
     /* Enable HIRC and waiting for stable */
-    CLK->PWRCTL |= CLK_PWRCTL_HIRCEN_Msk;
-    while((CLK->STATUS & CLK_STATUS_HIRCSTB_Msk) == 0);
+    CLK->PWRCTL |= CLK_PWRCTL_HIRC48EN_Msk;
+    while((CLK->STATUS & CLK_STATUS_HIRC48STB_Msk) == 0);
 
     /* Force to use HIRC */
-    CLK->CLKSEL0 = (CLK->CLKSEL0  & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_HIRC;
+    CLK->CLKSEL0 = (CLK->CLKSEL0  & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_HIRC48;
 
+#ifndef NVT_HIRC48M
     /* Enable PLL and waiting for stable */
     CLK->PLLCTL = CLK_PLLCTL_96MHz_HIRC;
     while((CLK->STATUS & CLK_STATUS_PLLSTB_Msk) == 0);
@@ -106,6 +108,7 @@ void SystemInit (void)
     /* Switch HCLK clock source to PLL */
     CLK->CLKSEL0 = (CLK->CLKSEL0 & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_PLL;
     CLK->CLKDIV0 = (CLK->CLKDIV0 & (~CLK_CLKDIV0_HCLKDIV_Msk)) | (0 << CLK_CLKDIV0_HCLKDIV_Pos);
+#endif
 
     /* Enable Crypto Accelerator */
     CLK->AHBCLK |= CLK_AHBCLK_CRPTCKEN_Msk;
@@ -165,7 +168,7 @@ void SystemInit (void)
     SAU->RBAR = 0x50000000;
     SAU->RLAR = (0x5FFFFFFF & SAU_RLAR_LADDR_Msk) | SAU_RLAR_ENABLE_Msk;
 
-#ifndef NU_DISABLE_TAMPER
+#ifndef NVT_DISABLE_TAMPER
     CLK->APBCLK0 |= CLK_APBCLK0_TAMPERCKEN_Msk;
 
     /* Reset tamper coreblock */
