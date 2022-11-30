@@ -103,7 +103,7 @@ static int32_t is_sector_aligned(struct arm_flash_dev_t *flash_dev,
 static ARM_FLASH_INFO ARM_FLASH0_DEV_DATA =
 {
     .sector_info  = NULL,                  /* Uniform sector layout */
-    .sector_count = FMC_APROM_SIZE / FMC_FLASH_PAGE_SIZE,
+    .sector_count = (FMC_APROM_SIZE + FMC_LDROM_SIZE) / FMC_FLASH_PAGE_SIZE,
     .sector_size  = FMC_FLASH_PAGE_SIZE,
     .page_size    = FMC_FLASH_PAGE_SIZE,
     .program_unit = 4,
@@ -189,7 +189,7 @@ static int32_t ARM_Flash_ReadData(uint32_t addr, void *data, uint32_t cnt)
     for(i = 0; i < cnt; i++)
     {
         taddr = start_addr + i;
-        if(taddr >= SCU->FNSADDR)
+        if((taddr >= SCU->FNSADDR) && (taddr < FMC_APROM_SIZE))
             taddr += NS_OFFSET;
         pu8[i] = *(uint8_t*)taddr;
     }
