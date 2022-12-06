@@ -19,5 +19,5 @@ set(TFM_DUMMY_PROVISIONING              ON        CACHE BOOL      "Provision wit
 set(PLATFORM_DEFAULT_OTP_WRITEABLE      ON        CACHE BOOL      "Use on chip flash with write support")
 set(PLATFORM_DEFAULT_NV_COUNTERS        OFF       CACHE BOOL      "Use default nv counter implementation.")
 set(PS_CRYPTO_AEAD_ALG                  PSA_ALG_GCM CACHE STRING    "The AEAD algorithm to use for authenticated encryption in Protected Storage")
-set(NVT_ENABLE_ETM_DEBUG                ON         CACHE BOOL       "Enable ETM debug interface")
-set(NVT_USE_HIRC48M                     ON         CACHE BOOL       "Set sytem clock as HIRC48M")
+set(NVT_ENABLE_ETM_DEBUG                OFF        CACHE BOOL       "Enable ETM debug interface")
+set(NVT_USE_HIRC48M                     OFF        CACHE BOOL       "Set sytem clock as HIRC48M")

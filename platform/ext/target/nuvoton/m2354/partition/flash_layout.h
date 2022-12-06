@@ -201,11 +201,18 @@
 #define OTP_NV_COUNTERS_FLASH_DEV       Driver_FLASH0
 
 /* Nuvoton OTP counter definitions */
+#ifdef NVT_FLASH_OTP
 #define NVT_OTP_NV_COUNTERS_AREA_SIZE   (2048)
 #define NVT_OTP_NV_COUNTERS_AREA_ADDR   (0x100000) 
 #define NVT_OTP_NV_COUNTERS_SECTOR_SIZE (0x800)
 #define NVT_OTP_NV_COUNTERS_BACKUP_AREA_ADDR (NVT_OTP_NV_COUNTERS_AREA_ADDR + NVT_OTP_NV_COUNTERS_AREA_SIZE)
 #define NVT_OTP_DEV                     Driver_FLASH0
+#else
+#define NVT_OTP_NV_COUNTERS_AREA_SIZE   (2048)
+#define NVT_OTP_NV_COUNTERS_AREA_ADDR   (0x0)
+#define NVT_OTP_NV_COUNTERS_SECTOR_SIZE (0x800)
+#define NVT_OTP_DEV                     Driver_OTP0
+#endif
 
 
 /* Use SRAM1 memory to store Code data */

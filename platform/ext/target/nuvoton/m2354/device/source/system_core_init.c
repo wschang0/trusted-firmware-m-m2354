@@ -91,13 +91,14 @@ void SystemInit (void)
                    CLK_AHBCLK_GPECKEN_Msk | CLK_AHBCLK_GPFCKEN_Msk | CLK_AHBCLK_GPGCKEN_Msk | CLK_AHBCLK_GPHCKEN_Msk;
 
     /* Enable HIRC and waiting for stable */
-    CLK->PWRCTL |= CLK_PWRCTL_HIRC48EN_Msk;
-    while((CLK->STATUS & CLK_STATUS_HIRC48STB_Msk) == 0);
+    CLK->PWRCTL |= CLK_PWRCTL_HIRC48EN_Msk | CLK_PWRCTL_HIRCEN_Msk;
+    while((CLK->STATUS & (CLK_STATUS_HIRC48STB_Msk | CLK_STATUS_HIRCSTB_Msk)) == 0);
 
     /* Force to use HIRC */
     CLK->CLKSEL0 = (CLK->CLKSEL0  & (~CLK_CLKSEL0_HCLKSEL_Msk)) | CLK_CLKSEL0_HCLKSEL_HIRC48;
 
 #ifndef NVT_HIRC48M
+
     /* Enable PLL and waiting for stable */
     CLK->PLLCTL = CLK_PLLCTL_96MHz_HIRC;
     while((CLK->STATUS & CLK_STATUS_PLLSTB_Msk) == 0);

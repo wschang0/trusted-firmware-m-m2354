@@ -19,33 +19,35 @@ extern "C" {
 #define OTP_NV_COUNTERS_IS_VALID    0x3072C0DEU
 
 __PACKED_STRUCT flash_otp_nv_counters_region_t {
-    /* Must be the first item */
-    uint32_t init_value;
+    /* Must be the first item */                // size, offset
+    uint32_t init_value;                        // 4,   0
 
 #ifdef PLATFORM_DEFAULT_OTP
     __PACKED_STRUCT {
-        uint8_t huk[32];
-        uint8_t iak[32];
-        uint8_t iak_len[4];
-        uint8_t iak_type[4];
-        uint8_t iak_id[32];
-
-        uint8_t boot_seed[32];
-        uint8_t lcs[4];
-        uint8_t implementation_id[32];
-        uint8_t hw_version[24];
-        uint8_t verification_service_url[32];
-        uint8_t profile_definition[32];
+        uint8_t huk[32];                        // 32,  4
+        uint8_t iak[32];                        // 32,  36
+        uint8_t iak_len[4];                     // 4,   68
+        uint8_t iak_type[4];                    // 4,   72
+        uint8_t iak_id[32];                     // 32,  76
+                        
+        uint8_t boot_seed[32];                  // 32,  108
+        uint8_t dummy0[4];                      // 4,   140
+        uint8_t lcs[4];                         // 4,   144
+        uint8_t dummy1[4];                      // 4,   148
+        uint8_t implementation_id[32];          // 32,  152
+        uint8_t hw_version[24];                 // 24,  184
+        uint8_t verification_service_url[32];   // 32,  208
+        uint8_t profile_definition[32];         // 32,  240
 
 #ifdef BL2
-        uint8_t bl2_rotpk_0[32];
-        uint8_t bl2_rotpk_1[32];
+        uint8_t bl2_rotpk_0[32];                // 32,  272
+        uint8_t bl2_rotpk_1[32];                // 32,  304
 
-        uint8_t bl2_nv_counter_0[16];
-        uint8_t bl2_nv_counter_1[16];
+        uint8_t bl2_nv_counter_0[16];           // 16,  336
+        uint8_t bl2_nv_counter_1[16];           // 16,  352
 
-        uint8_t bl2_nv_counter_2[16];
-        uint8_t bl2_rotpk_2[32];
+        uint8_t bl2_nv_counter_2[16];           // 16,  368
+        uint8_t bl2_rotpk_2[32];                // 32,  384
 #endif /* BL2 */
 
 #ifdef BL1
@@ -53,20 +55,20 @@ __PACKED_STRUCT flash_otp_nv_counters_region_t {
         uint8_t bl1_nv_counter_0[16];
 #endif /* BL1 */
 
-        uint8_t entropy_seed[64];
+        uint8_t entropy_seed[64];               // 64,  416
     };
 #endif /* PLATFORM_DEFAULT_OTP */
 
 //#ifdef PLATFORM_DEFAULT_NV_COUNTERS
     __PACKED_STRUCT {
-        uint32_t flash_nv_counters[FLASH_NV_COUNTER_AM];
+        uint32_t flash_nv_counters[FLASH_NV_COUNTER_AM];    // 12,  480
     };
 //#endif /* PLATFORM_DEFAULT_NV_COUNTERS */
 
     /* Must be last item, so that it can be written separately after the main
      * write operation has succeeded
      */
-    uint32_t is_valid;
+    uint32_t is_valid;                          // 4,   492
 };
 
 /**

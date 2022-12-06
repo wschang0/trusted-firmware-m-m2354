@@ -20,7 +20,9 @@
 #include <string.h>
 
 static enum tfm_plat_err_t create_or_restore_layout(void);
+#ifdef NVT_FLASH_OTP
 static enum tfm_plat_err_t create_or_restore_layout_otp(void);
+#endif
 
 #ifdef OTP_NV_COUNTERS_RAM_EMULATION
 
@@ -65,7 +67,9 @@ enum tfm_plat_err_t write_otp_nv_counters_flash(uint32_t offset, const void *dat
 
 #if defined(OTP_WRITEABLE)
 static enum tfm_plat_err_t make_backup(void);
+# ifdef NVT_FLASH_OTP
 static enum tfm_plat_err_t make_backup_otp(void);
+# endif
 #endif
 
 /* Compilation time checks to be sure the defines are well defined */
@@ -117,6 +121,7 @@ static uint8_t block[OTP_NV_COUNTERS_WRITE_BLOCK_SIZE];
 
 /* Import the CMSIS flash device driver */
 extern ARM_DRIVER_FLASH OTP_NV_COUNTERS_FLASH_DEV;
+extern ARM_DRIVER_FLASH NVT_OTP_DEV;
 
 enum tfm_plat_err_t read_otp_nv_counters_flash(uint32_t offset, void *data, uint32_t cnt)
 {
@@ -229,7 +234,7 @@ enum tfm_plat_err_t init_otp_nv_counters_otp(void)
 
 
     if(init_value != OTP_NV_COUNTERS_INITIALIZED || is_valid != OTP_NV_COUNTERS_IS_VALID) {
-#if defined(OTP_WRITEABLE)
+#if defined(OTP_WRITEABLE) && defined(NVT_FLASH_OTP)
         err = create_or_restore_layout_otp();
     }
     else
@@ -370,7 +375,7 @@ enum tfm_plat_err_t write_otp_nv_counters_flash(uint32_t offset, const void *dat
             return TFM_PLAT_ERR_SYSTEM_ERR;
         }
 
-        if (idx + copy_size >= offset && idx < offset + cnt) {
+        if (((idx + copy_size) > offset) && (idx < (offset + cnt))) {
             input_copy_size = sizeof(block) - ((offset + input_idx) % sizeof(block));
             if (input_idx + input_copy_size > cnt) {
                 input_copy_size = cnt - input_idx;
@@ -502,7 +507,7 @@ static enum tfm_plat_err_t create_or_restore_layout(void)
     return err;
 }
 
-
+#ifdef NVT_FLASH_OTP
 static enum tfm_plat_err_t erase_flash_region_otp(size_t start, size_t size)
 {
     enum tfm_plat_err_t err = TFM_PLAT_ERR_SUCCESS;
@@ -523,6 +528,7 @@ static enum tfm_plat_err_t erase_flash_region_otp(size_t start, size_t size)
 
     return err;
 }
+
 static enum tfm_plat_err_t copy_flash_region_otp(size_t from, size_t to, size_t size)
 {
     enum tfm_plat_err_t err = TFM_PLAT_ERR_SUCCESS;
@@ -563,12 +569,20 @@ static enum tfm_plat_err_t make_backup_otp(void)
 
     return err;
 }
+#endif
+
 enum tfm_plat_err_t write_otp_nv_counters_otp(uint32_t offset, const void* data, uint32_t cnt)
 {
+
+#ifndef NVT_FLASH_OTP
+
+    return NVT_OTP_DEV.ProgramData(NVT_OTP_NV_COUNTERS_AREA_ADDR + offset, data, cnt);
+
+#else
     enum tfm_plat_err_t err = TFM_PLAT_ERR_SUCCESS;
-    size_t copy_size;
     size_t idx;
     size_t start;
+    size_t copy_size;
     size_t end;
     size_t input_idx = 0;
     size_t input_copy_size;
@@ -606,7 +620,7 @@ enum tfm_plat_err_t write_otp_nv_counters_otp(uint32_t offset, const void* data,
             return TFM_PLAT_ERR_SYSTEM_ERR;
         }
 
-        if(idx + copy_size >= offset && idx < offset + cnt) {
+        if(((idx + copy_size) > offset) && (idx < (offset + cnt))) {
             input_copy_size = sizeof(block) - ((offset + input_idx) % sizeof(block));
             if(input_idx + input_copy_size > cnt) {
                 input_copy_size = cnt - input_idx;
@@ -651,7 +665,11 @@ enum tfm_plat_err_t write_otp_nv_counters_otp(uint32_t offset, const void* data,
     }
 
     return err;
+
+#endif
 }
+
+#ifdef NVT_FLASH_OTP
 static enum tfm_plat_err_t restore_backup_otp(void)
 {
     enum tfm_plat_err_t err = TFM_PLAT_ERR_SUCCESS;
@@ -738,7 +756,7 @@ static enum tfm_plat_err_t create_or_restore_layout_otp(void)
     }
     return err;
 }
-
+#endif /* NVT_FLASH_OTP */
 #endif /*  OTP_WRITEABLE */
 
 #endif /* OTP_NV_COUNTERS_RAM_EMULATION */

@@ -13,5 +13,11 @@
 # Set architecture and CPU
 set(TFM_SYSTEM_PROCESSOR cortex-m23)
 set(TFM_SYSTEM_ARCHITECTURE armv8-m.base)
-
 set(CRYPTO_HW_ACCELERATOR_TYPE nuvoton)
+set(NVT_FLASH_OTP                       OFF         CACHE BOOL       "Use Flash to implement OTP")
+
+add_compile_definitions(
+    $<$<BOOL:${NVT_FLASH_OTP}>:NVT_FLASH_OTP>
+)
+
+            

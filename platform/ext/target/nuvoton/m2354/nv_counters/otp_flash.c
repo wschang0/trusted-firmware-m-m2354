@@ -18,13 +18,13 @@
 #include <string.h>
 #include <stddef.h>
 
-static void bit_inverse(uint8_t *data, size_t len)
+static void bit_inverse(uint8_t *data, const uint8_t *src, size_t len)
 {
     int32_t i;
 
     for(i = 0; i < len; i++)
     {
-        data[i] = ~data[i];
+        data[i] = ~src[i];
     }
 }
 
@@ -77,7 +77,7 @@ enum tfm_plat_err_t tfm_plat_otp_read(enum tfm_otp_element_id_t id,
             return write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, boot_seed), out_len, out);
         case PLAT_OTP_ID_LCS:
             err = write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, lcs), out_len, out);
-            bit_inverse(out, out_len);
+            bit_inverse(out, out, out_len);
             return err;
         case PLAT_OTP_ID_IMPLEMENTATION_ID:
             return write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, implementation_id), out_len, out);
@@ -163,6 +163,8 @@ static enum tfm_plat_err_t read_from_input(enum tfm_otp_element_id_t id,
 enum tfm_plat_err_t tfm_plat_otp_write(enum tfm_otp_element_id_t id,
                                        size_t in_len, const uint8_t *in)
 {
+    uint32_t buf;
+
     switch (id) {
     case PLAT_OTP_ID_HUK:
         return read_from_input(id, offsetof(struct flash_otp_nv_counters_region_t, huk), in_len, in);
@@ -178,8 +180,12 @@ enum tfm_plat_err_t tfm_plat_otp_write(enum tfm_otp_element_id_t id,
     case PLAT_OTP_ID_BOOT_SEED:
         return read_from_input(id, offsetof(struct flash_otp_nv_counters_region_t, boot_seed), in_len, in);
     case PLAT_OTP_ID_LCS:
-        bit_inverse(in, in_len);
-        return read_from_input(id, offsetof(struct flash_otp_nv_counters_region_t, lcs), in_len, in);
+        if(in_len > 4)
+        {
+            return TFM_PLAT_ERR_INVALID_INPUT;
+        }
+        bit_inverse((uint8_t *)&buf, in, in_len);
+        return read_from_input(id, offsetof(struct flash_otp_nv_counters_region_t, lcs), in_len, (uint8_t *)&buf);
     case PLAT_OTP_ID_IMPLEMENTATION_ID:
         return read_from_input(id, offsetof(struct flash_otp_nv_counters_region_t, implementation_id), in_len, in);
     case PLAT_OTP_ID_HW_VERSION:
