@@ -125,9 +125,15 @@
 #define FLASH_PS_AREA_SIZE              (0x5000)
 
 /* Internal Trusted Storage (ITS) Service definitions */
+#ifndef ITS_DATA_FLASH
 #define FLASH_ITS_AREA_OFFSET           (FLASH_PS_AREA_OFFSET + \
                                          FLASH_PS_AREA_SIZE)
 #define FLASH_ITS_AREA_SIZE             (0x5000)
+#else /* ITS_DATA_FLASH */
+#define FLASH_ITS_AREA_OFFSET           (0x110000)
+#define FLASH_ITS_AREA_SIZE             (0x2000)
+#endif /* ITS_DATA_FLASH */
+
 
 /* OTP_definitions */
 #define FLASH_OTP_NV_COUNTERS_AREA_OFFSET (FLASH_ITS_AREA_OFFSET + \

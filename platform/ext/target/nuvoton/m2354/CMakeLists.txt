@@ -124,6 +124,13 @@ target_compile_options(platform_s
         $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
 )
 
+target_compile_definitions(platform_s
+PRIVATE
+    
+    $<$<BOOL:${NVT_ITS_DATA_FLASH}>:ITS_DATA_FLASH>
+    
+)
+
 
 #========================= Platform Non-Secure ================================#
 

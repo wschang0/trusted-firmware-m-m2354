@@ -25,6 +25,7 @@
 #include "flash_layout.h"
 #include "region_defs.h"
 
+
 #ifndef ARG_UNUSED
 #define ARG_UNUSED(arg)  ((void)arg)
 #endif
@@ -103,7 +104,12 @@ static int32_t is_sector_aligned(struct arm_flash_dev_t *flash_dev,
 static ARM_FLASH_INFO ARM_FLASH0_DEV_DATA =
 {
     .sector_info  = NULL,                  /* Uniform sector layout */
-    .sector_count = (FMC_APROM_SIZE + FMC_LDROM_SIZE) / FMC_FLASH_PAGE_SIZE,
+#ifndef ITS_DATA_FLASH
+    .sector_count = FMC_LDROM_END / FMC_FLASH_PAGE_SIZE,
+#else
+    .sector_count = FMC_DTFSH_END / FMC_FLASH_PAGE_SIZE,
+#endif
+
     .sector_size  = FMC_FLASH_PAGE_SIZE,
     .page_size    = FMC_FLASH_PAGE_SIZE,
     .program_unit = 4,
@@ -138,6 +144,8 @@ static ARM_FLASH_CAPABILITIES ARM_Flash_GetCapabilities(void)
 
 static int32_t ARM_Flash_Initialize(ARM_Flash_SignalEvent_t cb_event)
 {
+    uint32_t u32Low, u32High;
+
     ARG_UNUSED(cb_event);
     /* Nothing to be done */
 
@@ -145,6 +153,20 @@ static int32_t ARM_Flash_Initialize(ARM_Flash_SignalEvent_t cb_event)
     FMC_ENABLE_AP_UPDATE();
     FMC_ENABLE_LD_UPDATE();
 
+
+#if defined(ITS_DATA_FLASH)
+
+    FMC_ENABLE_SCRAMBLE();
+    
+    FMC_ReadOTP(1, &u32Low, &u32High);
+    u32Low = u32Low ^ u32High ^ 0x5f8ab315;
+    FMC_SetScrambleKey(u32Low);
+
+#else
+    ARG_UNUSED(u32Low);
+    ARG_UNUSED(u32High);
+
+#endif
 
     return ARM_DRIVER_OK;
 }

@@ -122,15 +122,10 @@ enum tfm_plat_err_t tfm_plat_read_nv_counter(enum tfm_nv_counter_t counter_id,
     switch(counter_id) {
 #ifdef TFM_PARTITION_PROTECTED_STORAGE
     case (PLAT_NV_COUNTER_PS_0):
-
-        printf("PLAT_NV_COUNTER_PS_0\r\n");
-
         return read_nv_counter_flash(FLASH_NV_COUNTER_ID_PS_0, size, val);
     case (PLAT_NV_COUNTER_PS_1):
-        printf("PLAT_NV_COUNTER_PS_1\r\n");
         return read_nv_counter_flash(FLASH_NV_COUNTER_ID_PS_1, size, val);
     case (PLAT_NV_COUNTER_PS_2):
-        printf("PLAT_NV_COUNTER_PS_2\r\n");
         return read_nv_counter_flash(FLASH_NV_COUNTER_ID_PS_2, size, val);
 #endif /* TFM_PARTITION_PROTECTED_STORAGE */
 
