@@ -85,6 +85,7 @@
 void mbedtls_gcm_init( mbedtls_gcm_context *ctx )
 {
     GCM_VALIDATE( ctx != NULL );
+
     memset( ctx, 0, sizeof( mbedtls_gcm_context ) );
 
     /* Reset Crypto */
@@ -98,6 +99,8 @@ static int32_t ToBigEndian(uint8_t *pbuf, uint32_t u32Size)
     uint32_t i;
     uint8_t u8Tmp;
     uint32_t u32Tmp;
+
+    GCM_VALIDATE(pbuf != NULL);
 
     /* pbuf must be word alignment */
     if((uint32_t)pbuf & 0x3)
@@ -148,7 +151,11 @@ int mbedtls_gcm_setkey( mbedtls_gcm_context *ctx,
 
     GCM_VALIDATE_RET( ctx != NULL );
     GCM_VALIDATE_RET( key != NULL );
-    GCM_VALIDATE_RET( keybits == 128 || keybits == 192 || keybits == 256 );
+
+    if(!(keybits == 128 || keybits == 192 || keybits == 256))
+    {
+        return MBEDTLS_ERR_GCM_BAD_INPUT;
+    }
 
     klen = keybits / 8;
     ctx->keySize = klen;
@@ -182,6 +189,8 @@ static void swap64(uint8_t *p)
     uint8_t tmp;
     int32_t i;
 
+    GCM_VALIDATE_RET(p != NULL);
+
     for(i = 0; i < 4; i++)
     {
         tmp = p[i];
@@ -200,12 +209,15 @@ NOTE: pbuf must be word alignment
 
 */
 
-int32_t AES_GCMPacker(const uint8_t *iv, uint32_t iv_len, const uint8_t *A, uint32_t A_len, const uint8_t *P, uint32_t P_len, uint8_t *pbuf, uint32_t *psize)
+static int32_t AES_GCMPacker(const uint8_t *iv, uint32_t iv_len, const uint8_t *A, uint32_t A_len, const uint8_t *P, uint32_t P_len, uint8_t *pbuf, uint32_t *psize)
 {
     uint32_t i;
     uint32_t iv_len_aligned, A_len_aligned, P_len_aligned;
     uint32_t u32Offset = 0;
     uint8_t *pu8;
+
+    GCM_VALIDATE_RET(iv != NULL);
+
 
     /* IV Section:
 
@@ -517,33 +529,18 @@ static int32_t _GCMTag(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivl
     return ret;
 }
 
-#if 0
-static void dump(char* buf, int size, char* str)
-{
-    int i;
-    printf("\r\n%s:", str);
-    for(i = 0; i < size; i++)
-    {
-        if((i % 16) == 0)
-            printf("\r\n");
-        printf("%02x ", buf[i]);
-    }
-    printf("\r\n");
 
-}
-#endif
-
-static int32_t _GCM(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivlen, const uint8_t *A, uint32_t alen, const uint8_t *P, uint32_t plen, uint8_t *buf, uint8_t *tag, uint32_t tag_len)
+static int32_t _GCM(mbedtls_gcm_context *ctx, const uint8_t *iv, size_t ivlen, const uint8_t *A, size_t alen, const uint8_t *P, size_t plen, uint8_t *buf, uint8_t *tag, uint32_t tag_len)
 {
     int32_t ret;
-    int32_t plen_cur;
-    int32_t len, len_aligned;
+    size_t plen_cur;
+    size_t len, len_aligned;
     const uint8_t *pin;
     uint8_t *pout;
     int32_t i;
     uint32_t u32OptBasic;
-    uint32_t plen_aligned;
-    uint32_t size;
+    size_t plen_aligned;
+    size_t size;
     uint32_t key[8];
 
     for(i = 0; i < 8; i++)
@@ -562,16 +559,16 @@ static int32_t _GCM(mbedtls_gcm_context *ctx, const uint8_t *iv, uint32_t ivlen,
     u32OptBasic = ctx->basicOpt;
 
     /* Set byte count of IV */
-    CRPT->AES_GCM_IVCNT[0] = ivlen;
-    CRPT->AES_GCM_IVCNT[1] = 0;
+    CRPT->AES_GCM_IVCNT[0] = ivlen & 0xfffffffful;
+    CRPT->AES_GCM_IVCNT[1] = (uint64_t)ivlen >> 32;
 
     /* Set bytes count of A */
-    CRPT->AES_GCM_ACNT[0] = alen;
-    CRPT->AES_GCM_ACNT[1] = 0;
+    CRPT->AES_GCM_ACNT[0] = alen & 0xfffffffful;
+    CRPT->AES_GCM_ACNT[1] = (uint64_t)alen >> 32;
 
     /* Set bytes count of P */
-    CRPT->AES_GCM_PCNT[0] = plen;
-    CRPT->AES_GCM_PCNT[1] = 0;
+    CRPT->AES_GCM_PCNT[0] = plen & 0xfffffffful;
+    CRPT->AES_GCM_PCNT[1] = (uint64_t)plen >> 32;
 
     plen_aligned = (plen & 0xful) ? ((plen + 16) / 16) * 16 : plen;
     if(plen <= GCM_PBLOCK_SIZE)

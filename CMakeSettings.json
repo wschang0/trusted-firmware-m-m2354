@@ -7,7 +7,42 @@
       "buildRoot": "d:\\out\\${name}",
       "installRoot": "d:\\out\\${name}\\install",
       "cmakeExecutable": "C:/Program Files/CMake/bin/CMake.exe",
-      "cmakeCommandArgs": "-DTEST_S=OFF -DTEST_NS=OFF -DTEST_NS_ATTESTATION=ON -DTEST_NS_IPC=ON -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2  -DCMAKE_BUILD_TYPE=Debug -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
+      "cmakeCommandArgs": "-DTEST_PSA_API=ON -DTEST_S=OFF -DTEST_NS=OFF -DTEST_S_CRYPTO=ON -DTEST_NS_CRYPTO=OFF -DTEST_S_ITS=OFF -DTEST_NS_ITS=OFF -DTFM_PARTITION_PROTECTED_STORAGE=ON -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2  -DCMAKE_BUILD_TYPE=Debug -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
+      "buildCommandArgs": "",
+      "ctestCommandArgs": "",
+      "cmakeToolchain": "",
+      "inheritEnvironments": [],
+      "variables": [
+        {
+          "name": "CMAKE_TOOLCHAIN_FILE",
+          "value": "",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_MAKE_PROGRAM",
+          "value": "C:/cygwin64/bin/make.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CROSS_COMPILE",
+          "value": "arm-arm-none-eabi",
+          "type": "STRING"
+        },
+        {
+          "name": "TFM_PARTITION_PROTECTED_STORAGE",
+          "value": "True",
+          "type": "BOOL"
+        }
+      ]
+    },
+    {
+      "name": "m2354_PSA_API",
+      "generator": "Unix Makefiles",
+      "configurationType": "Debug",
+      "buildRoot": "d:\\out\\${name}",
+      "installRoot": "d:\\out\\${name}\\install",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/CMake.exe",
+      "cmakeCommandArgs": "-DTEST_PSA_API=CRYPTO -DTARGET=tgt_dev_apis_tfm_m2354  -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2  -DCMAKE_BUILD_TYPE=Debug -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "cmakeToolchain": "",

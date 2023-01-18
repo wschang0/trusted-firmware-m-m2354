@@ -57,9 +57,6 @@
 #define CCM_ENCRYPT 1
 #define CCM_DECRYPT 0
 
-
-
-
 #define START       CRPT_AES_CTL_START_Msk
 #define DMAEN       CRPT_AES_CTL_DMAEN_Msk
 #define DMALAST     CRPT_AES_CTL_DMALAST_Msk
@@ -72,19 +69,19 @@
 #define GHASH_MODE  (AES_MODE_GHASH << CRPT_AES_CTL_OPMODE_Pos)
 #define CTR_MODE    (AES_MODE_CTR << CRPT_AES_CTL_OPMODE_Pos)
 
-
-
-
-int32_t ToBigEndian(uint8_t *pbuf, uint32_t u32Size)
+static int32_t ToBigEndian(uint8_t *pbuf, uint32_t u32Size)
 {
     uint32_t i;
     uint8_t u8Tmp;
     uint32_t u32Tmp;
 
+    CCM_VALIDATE_RET(pbuf != NULL);
+    CCM_VALIDATE_RET(u32Size != 0);
+
     /* pbuf must be word alignment */
     if((uint32_t)pbuf & 0x3)
     {
-        printf("The buffer must be 32-bit alignment.");
+        /* The buffer must be 32 - bit alignment */
         return -1;
     }
 
@@ -139,13 +136,25 @@ int32_t ToBigEndian(uint8_t *pbuf, uint32_t u32Size)
 
 */
 
-int32_t CCMPacker(const uint8_t *iv, uint32_t ivlen, const uint8_t *A, uint32_t alen, const uint8_t *P, uint32_t plen, uint8_t *pbuf, uint32_t *psize, uint32_t tlen, int32_t enc)
+static int32_t CCMPacker(const uint8_t *iv, size_t ivlen, 
+    const uint8_t *A, size_t alen,
+    const uint8_t *P, size_t plen,
+    uint8_t *pbuf, size_t *psize,
+    size_t tlen, int32_t enc)
 {
     uint32_t i, j;
-    uint32_t alen_aligned, plen_aligned;
+    size_t alen_aligned, plen_aligned;
     uint32_t u32Offset = 0;
     uint8_t u8Tmp;
     uint32_t q;
+
+    CCM_VALIDATE_RET(iv != NULL);
+    CCM_VALIDATE_RET(ivlen < 15);
+    CCM_VALIDATE_RET(A != NULL);
+    CCM_VALIDATE_RET(P != NULL);
+    CCM_VALIDATE_RET(pbuf != NULL);
+    CCM_VALIDATE_RET(psize != NULL);
+    CCM_VALIDATE_RET(tlen >= 2);
 
 
     /* Flags in B0
@@ -225,16 +234,25 @@ int32_t CCMPacker(const uint8_t *iv, uint32_t ivlen, const uint8_t *A, uint32_t 
 }
 
 
-static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, uint32_t ivlen, const uint8_t *A, uint32_t alen, const uint8_t *P, uint32_t plen, uint8_t *buf, uint8_t *tag, uint32_t tlen)
+static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, size_t ivlen, 
+    const uint8_t *A, size_t alen, 
+    const uint8_t *P, size_t plen, 
+    uint8_t *buf, uint8_t *tag, size_t tlen)
 {
-    uint32_t size, plen_aligned;
+    size_t size, plen_aligned;
     int32_t timeout = 0x1000000;
     uint32_t *pu32;
     uint32_t key[8], i;
 
-    if(ivlen > 16)
-        return -1;
+    CCM_VALIDATE_RET(iv != NULL);
+    CCM_VALIDATE_RET((ivlen < 14) && (ivlen >= 7));
+    CCM_VALIDATE_RET(A != NULL);
+    CCM_VALIDATE_RET(P != NULL);
+    CCM_VALIDATE_RET(pbuf != NULL);
+    CCM_VALIDATE_RET(psize != NULL);
+    CCM_VALIDATE_RET(tlen >= 2);
 
+    /* Backup the key before reset hardware */
     for(i=0;i<8;i++)
     {
         key[i] = CRPT->AES_KEY[i];
@@ -243,6 +261,7 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
     SYS->IPRST0 = SYS_IPRST0_CRPTRST_Msk;
     SYS->IPRST0 = 0;
 
+    /* Restore the key */
     for(i=0;i<8;i++)
     {
         CRPT->AES_KEY[i] = key[i];
@@ -254,6 +273,12 @@ static int32_t _CCM(mbedtls_ccm_context *ctx, int32_t enc, const uint8_t *iv, ui
     /* Prepare the blocked buffer for GCM */
     memset(ctx->ccm_buf, 0, MAX_CCM_BUF);
     CCMPacker(iv, ivlen, A, alen, P, plen, ctx->ccm_buf, &size, tlen, enc);
+
+    if(size + 16 > MAX_CCM_BUF)
+    {
+        /* ccm buffer overrun */
+        return -1;
+    }
 
     ToBigEndian(ctx->ccm_buf, size + 16);
 
@@ -344,12 +369,17 @@ int mbedtls_ccm_setkey( mbedtls_ccm_context *ctx,
 {
     int ret = MBEDTLS_ERR_ERROR_CORRUPTION_DETECTED;
     const mbedtls_cipher_info_t* cipher_info;
-
-    CCM_VALIDATE_RET( ctx != NULL );
-    CCM_VALIDATE_RET( key != NULL );
-
     uint32_t au32Buf[8];
     int32_t i, klen;
+
+    CCM_VALIDATE_RET(ctx != NULL);
+    CCM_VALIDATE_RET(key != NULL);
+    
+    /* key buffer size limited to 32 bytes */
+    if(keybits / 8 > 32)
+    {
+        return MBEDTLS_ERR_CCM_BAD_INPUT;
+    }
 
     cipher_info = mbedtls_cipher_info_from_values(cipher, keybits, MBEDTLS_MODE_ECB);
     if(cipher_info == NULL)

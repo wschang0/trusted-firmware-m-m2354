@@ -43,10 +43,6 @@ extern "C" {
 #endif /* MBEDTLS_RSA_C */
 
 
-#ifdef MBEDTLS_SHA256_C
-//#define MBEDTLS_SHA256_ALT
-#endif /* MBEDTLS_SHA256_C */
-
 #ifdef MBEDTLS_ECDH_C
 #define MBEDTLS_ECDH_GEN_PUBLIC_ALT
 #define MBEDTLS_ECDH_COMPUTE_SHARED_ALT

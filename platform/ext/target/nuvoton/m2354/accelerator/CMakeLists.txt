@@ -12,7 +12,6 @@ if(BL2)
     target_sources(bl2_crypto_hw
         PUBLIC
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/crypto.c
-            ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha256_alt.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/aes_alt.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/rsa_alt.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/trng_api.c
@@ -70,7 +69,6 @@ endif()
 target_sources(crypto_service_crypto_hw
     PRIVATE
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/crypto.c
-        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha256_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/aes_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ccm_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/gcm_alt.c

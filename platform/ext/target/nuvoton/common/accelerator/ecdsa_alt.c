@@ -55,7 +55,7 @@
 #define ECDSA_VALIDATE( cond )        \
     MBEDTLS_INTERNAL_VALIDATE( cond )
 
-//#if defined( MBEDTLS_ECDSA_SIGN_ALT || MBEDTLS_ECDSA_VERIFY_ALT )
+
 #if( defined(MBEDTLS_ECDSA_SIGN_ALT) || defined(MBEDTLS_ECDSA_VERIFY_ALT) )
 
 #define ECCOP_POINT_MUL     (0x0UL << CRPT_ECC_CTL_ECCOP_Pos)
@@ -97,20 +97,25 @@ cleanup:
 /* Clean ECC reg to zero */
 static void ECC_ZeroReg(unsigned int * reg)
 {
+    ECDSA_VALIDATE_RET(reg != NULL);
+
     for(int i = 0; i < 18; i++)
     {
         reg[i] = 0;
     }
 }
 
-static void ECC_Copy(uint32_t *dest, uint32_t *src, uint32_t size)
+static void ECC_Copy(uint32_t *dest, uint32_t *src, size_t size)
 {
     uint32_t u32Data, *pu32Dest, *pu32Src;
     int32_t i;
-    uint32_t len;
+    size_t len;
     uint8_t* pu8;
 
-    len = (uint32_t)size;
+    ECDSA_VALIDATE_RET(dest != NULL);
+    ECDSA_VALIDATE_RET(src != NULL);
+
+    len = size;
     pu32Dest = (uint32_t*)dest;
     pu32Src = (uint32_t*)src;
     for(i = 0; i < len / 4; i++)
@@ -136,6 +141,8 @@ static void ECC_InitCurve(mbedtls_ecp_group* grp)
 {
     CRPT_T* crpt = CRPT;
 
+    ECDSA_VALIDATE_RET(grp != NULL);
+
     SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;
     SYS->IPRST0 = 0;
     ECC_ENABLE_INT(crpt);
@@ -151,6 +158,7 @@ static void ECC_InitCurve(mbedtls_ecp_group* grp)
 /* Add mission parameters of the curve */
 static int ECC_FixCurve(mbedtls_ecp_group* grp)
 {
+    ECDSA_VALIDATE_RET(grp != NULL);
 
     if(grp->MBEDTLS_PRIVATE(T) == NULL)
     {
@@ -216,6 +224,8 @@ static int run_ecc_codec(mbedtls_ecp_group* grp, uint32_t mode)
     uint32_t eccop;
     uint32_t timeout = 200000000;
 
+    ECDSA_VALIDATE_RET(grp != NULL);
+
     eccop = mode & CRPT_ECC_CTL_ECCOP_Msk;
     if(eccop == ECCOP_MODULE)
     {
@@ -271,7 +281,7 @@ int mbedtls_ecdsa_can_do( mbedtls_ecp_group_id gid )
 }
 
 
-int32_t  ECC_Sign(mbedtls_ecp_group* grp, mbedtls_mpi* r, mbedtls_mpi* s,
+static int32_t ECC_Sign(mbedtls_ecp_group* grp, mbedtls_mpi* r, mbedtls_mpi* s,
     const mbedtls_mpi* d, const unsigned char* buf, size_t blen,
     int (*f_rng)(void*, unsigned char*, size_t), void* p_rng)
 {
@@ -281,6 +291,12 @@ int32_t  ECC_Sign(mbedtls_ecp_group* grp, mbedtls_mpi* r, mbedtls_mpi* s,
     mbedtls_mpi e;
     mbedtls_mpi k, *pk;
 
+    ECDSA_VALIDATE_RET(grp != NULL);
+    ECDSA_VALIDATE_RET(r != NULL);
+    ECDSA_VALIDATE_RET(s != NULL);
+    ECDSA_VALIDATE_RET(d != NULL);
+    ECDSA_VALIDATE_RET(buf != NULL);
+    
 
     /* Fail cleanly on curves such as Curve25519 that can't be used for ECDSA */
     if(!mbedtls_ecdsa_can_do(grp->id) || grp->N.MBEDTLS_PRIVATE(p) == NULL)
@@ -484,7 +500,7 @@ int mbedtls_ecdsa_sign( mbedtls_ecp_group *grp, mbedtls_mpi *r, mbedtls_mpi *s,
 
 #if defined(MBEDTLS_ECDSA_VERIFY_ALT)
 
-int  ECC_Verify(mbedtls_ecp_group * grp,
+static int ECC_Verify(mbedtls_ecp_group * grp,
     const unsigned char* buf, size_t blen,
     const mbedtls_ecp_point * Q,
     const mbedtls_mpi * r,
@@ -496,6 +512,12 @@ int  ECC_Verify(mbedtls_ecp_group * grp,
     int32_t   i, ret = 0;
     mbedtls_mpi e;
     int32_t u1_zero_flag = 0;
+
+    ECDSA_VALIDATE_RET(grp != NULL);
+    ECDSA_VALIDATE_RET(buf != NULL);
+    ECDSA_VALIDATE_RET(Q != NULL);
+    ECDSA_VALIDATE_RET(r != NULL);
+    ECDSA_VALIDATE_RET(s != NULL);
 
     /* Reset crypto */
     SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;

@@ -68,12 +68,15 @@
 
 
 
-static void ECC_Copy(uint32_t *dest, uint32_t *src, uint32_t size)
+static void ECC_Copy(uint32_t *dest, uint32_t *src, size_t size)
 {
     uint32_t u32Data, *pu32Dest, *pu32Src;
     int32_t i;
-    uint32_t len;
+    size_t len;
     uint8_t* pu8;
+
+    ECDH_VALIDATE_RET(dest != NULL);
+    ECDH_VALIDATE_RET(src != NULL);
 
     len = (uint32_t)size;
     pu32Dest = (uint32_t*)dest;
@@ -100,6 +103,7 @@ static void ECC_Copy(uint32_t *dest, uint32_t *src, uint32_t size)
 /* Add mission parameters of the curve */
 static int ECC_FixCurve(mbedtls_ecp_group* grp)
 {
+    ECDH_VALIDATE_RET(grp != NULL);
 
     if(grp->MBEDTLS_PRIVATE(T) == NULL)
     {
@@ -165,6 +169,10 @@ static int32_t ECC_GenPubKey(mbedtls_ecp_group* grp, mbedtls_mpi* d, mbedtls_ecp
     uint32_t timeout = 200000000;
     int32_t len;
 
+    ECDH_VALIDATE_RET(grp != NULL);
+    ECDH_VALIDATE_RET(d != NULL);
+    ECDH_VALIDATE_RET(q != NULL);
+
     /* Reset crypto */
     SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;
     SYS->IPRST0 = 0;
@@ -226,12 +234,18 @@ static int32_t ECC_GenPubKey(mbedtls_ecp_group* grp, mbedtls_mpi* d, mbedtls_ecp
 }
 
 
-int32_t  ECC_ComputeShared(mbedtls_ecp_group *grp, mbedtls_mpi* z, const mbedtls_ecp_point* Q, const mbedtls_mpi* d)
+int32_t  ECC_ComputeShared(mbedtls_ecp_group *grp, mbedtls_mpi* z, const mbedtls_ecp_point* Q, 
+    const mbedtls_mpi* d)
 {
     CRPT_T* crpt;
     uint32_t timeout = 200000000;
     int32_t len;
     int32_t ret;
+
+    ECDH_VALIDATE_RET(grp != NULL);
+    ECDH_VALIDATE_RET(z != NULL);
+    ECDH_VALIDATE_RET(Q != NULL);
+    ECDH_VALIDATE_RET(d != NULL);
 
     /* Reset crypto */
     SYS->IPRST0 |= SYS_IPRST0_CRPTRST_Msk;

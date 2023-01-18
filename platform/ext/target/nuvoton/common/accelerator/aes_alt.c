@@ -51,9 +51,20 @@
 #define AES_BLOCK_SIZE  (16)
 
 
+/* AES DMA compatible backup buffer if user buffer doesn't meet requirements
+ *
+ * AES DMA buffer location requires to be:
+ * (1) Word-aligned
+ * (2) Located in 0x2xxxxxxx region. Check linker files to ensure global variables are placed in this region.
+ *
+ * AES DMA buffer size MAX_DMA_CHAIN_SIZE must be a multiple of 16-byte block size.
+ * Its value is estimated to trade memory footprint off against performance.
+ *
+ */
+#define MAX_DMA_CHAIN_SIZE (AES_BLOCK_SIZE*6)
 
-__ALIGNED(4) static uint8_t s_u8in[AES_BLOCK_SIZE];
-__ALIGNED(4) static uint8_t s_u8out[AES_BLOCK_SIZE];
+__ALIGNED(4) static uint8_t s_u8in[MAX_DMA_CHAIN_SIZE];
+__ALIGNED(4) static uint8_t s_u8out[MAX_DMA_CHAIN_SIZE];
 
 #if defined(MBEDTLS_CIPHER_MODE_CBC)
 __STATIC_INLINE uint32_t nu_get32_le(const uint8_t* pos)
@@ -85,17 +96,6 @@ static void mbedtls_zeroize(void *v, size_t n)
     while(n--) *p++ = 0;
 }
 
-/* AES DMA compatible backup buffer if user buffer doesn't meet requirements
- *
- * AES DMA buffer location requires to be:
- * (1) Word-aligned
- * (2) Located in 0x2xxxxxxx region. Check linker files to ensure global variables are placed in this region.
- *
- * AES DMA buffer size MAX_DMA_CHAIN_SIZE must be a multiple of 16-byte block size.
- * Its value is estimated to trade memory footprint off against performance.
- *
- */
-#define MAX_DMA_CHAIN_SIZE (AES_BLOCK_SIZE*6)
 
 void mbedtls_aes_init(mbedtls_aes_context *ctx)
 {
@@ -178,16 +178,23 @@ exit:
  *
  * NOTE: dataSize requires to be:
  *       1) Multiple of block size 16
- *       2) <= MAX_DMA_CHAIN_SIZE
+ *       2) <= static allocated buffer size (sizeof(s_u8in))
  */
 static int __nvt_aes_crypt(mbedtls_aes_context *ctx,
                            const unsigned char *input,
                            unsigned char *output, size_t dataSize)
 {
+
     int32_t i, wcnt, timeout = 0x10000000;
 
-    if(dataSize > AES_BLOCK_SIZE)
-        return -1;
+    AES_VALIDATE_RET(ctx != NULL);
+    AES_VALIDATE_RET(input != NULL);
+    AES_VALIDATE_RET(output != NULL);
+
+    /* The size should be smaller or equal to DMA buffer */
+    AES_VALIDATE_RET(dataSize > MAX_DMA_CHAIN_SIZE);
+    /* The size should be block alignment */
+    AES_VALIDATE_RET((dataSize & (AES_BLOCK_SIZE-1)) == 0);
 
     /* Force AES free */
     CRPT->AES_CTL = CRPT_AES_CTL_STOP_Msk;
@@ -201,7 +208,6 @@ static int __nvt_aes_crypt(mbedtls_aes_context *ctx,
      * H/W channel. Always use H/W channel #0. */
 
     /* AES_IN_OUT_SWAP: Let H/W know both input/output data are arranged in little-endian */
-    //AES_Open(CRPT, 0, ctx->encDec, ctx->opMode, ctx->keySize, AES_IN_OUT_SWAP);
     CRPT->AES_CTL = ctx->encDec | ctx->opMode | ctx->keySizeOp |
                     (AES_IN_OUT_SWAP << CRPT_AES_CTL_OUTSWAP_Pos) | CRPT_AES_CTL_KINSWAP_Msk | CRPT_AES_CTL_DMAEN_Msk;
 
@@ -212,16 +218,12 @@ static int __nvt_aes_crypt(mbedtls_aes_context *ctx,
     CRPT->AES_IV[3] = ctx->iv[3];
 
 
-    //AES_SetKey(CRPT, 0, ctx->keys, ctx->keySize);
-
     wcnt = ctx->keySize / 4;
     for(i = 0; i < wcnt; i++)
     {
         CRPT->AES_KEY[i] = ctx->keys[i];
     }
 
-
-    //AES_SetDMATransfer(CRPT, 0, (uint32_t)pIn, (uint32_t)pOut, dataSize);
     CRPT->AES_SADDR = (uint32_t)s_u8in;
     CRPT->AES_DADDR = (uint32_t)s_u8out;
     CRPT->AES_CNT = dataSize;
@@ -229,7 +231,6 @@ static int __nvt_aes_crypt(mbedtls_aes_context *ctx,
     /* Clear flag */
     CRPT->INTSTS = CRPT_INTSTS_AESIF_Msk;
 
-    //AES_Start(CRPT, 0, CRYPTO_DMA_ONE_SHOT);
     CRPT->AES_CTL |= CRPT_AES_CTL_START_Msk;
 
     while((CRPT->INTSTS & CRPT_INTSTS_AESIF_Msk) == 0)
@@ -252,6 +253,10 @@ void mbedtls_aes_encrypt(mbedtls_aes_context *ctx,
                          const unsigned char input[AES_BLOCK_SIZE],
                          unsigned char output[AES_BLOCK_SIZE])
 {
+    AES_VALIDATE_RET(ctx != NULL);
+    AES_VALIDATE_RET(input != NULL);
+    AES_VALIDATE_RET(output != NULL);
+
     ctx->encDec = CRPT_AES_CTL_ENCRPT_Msk;
     __nvt_aes_crypt(ctx, input, output, AES_BLOCK_SIZE);
 }
@@ -263,6 +268,10 @@ void mbedtls_aes_decrypt(mbedtls_aes_context *ctx,
                          const unsigned char input[AES_BLOCK_SIZE],
                          unsigned char output[AES_BLOCK_SIZE])
 {
+    AES_VALIDATE_RET(ctx != NULL);
+    AES_VALIDATE_RET(input != NULL);
+    AES_VALIDATE_RET(output != NULL);
+
     ctx->encDec = 0;
     __nvt_aes_crypt(ctx, input, output, AES_BLOCK_SIZE);
 }
@@ -303,7 +312,7 @@ int mbedtls_aes_crypt_cbc(mbedtls_aes_context *ctx,
                           const unsigned char *input,
                           unsigned char *output)
 {
-    int length = len;
+    size_t length = len;
     int blockChainLen;
     uint8_t au8Tmp[AES_BLOCK_SIZE];
 
@@ -313,10 +322,10 @@ int mbedtls_aes_crypt_cbc(mbedtls_aes_context *ctx,
     AES_VALIDATE_RET(iv != NULL);
     AES_VALIDATE_RET(input != NULL);
     AES_VALIDATE_RET(output != NULL);
-
-    if(length & (AES_BLOCK_SIZE - 1))
+    
+    /* Make sure len is block alignment */
+    if(len & (AES_BLOCK_SIZE - 1))
         return(MBEDTLS_ERR_AES_INVALID_INPUT_LENGTH);
-
 
     ctx->opMode = AES_MODE_CBC << CRPT_AES_CTL_OPMODE_Pos;
     /* Fetch IV byte data in big-endian */
@@ -383,7 +392,7 @@ int mbedtls_aes_crypt_cfb128(mbedtls_aes_context *ctx,
 {
 
     int32_t i, wcnt, timeout = 0x10000000;
-    uint32_t len;
+    size_t len;
     uint32_t u32Ctl;
     int32_t first = 1;
     uint32_t u32Tmp;
@@ -594,10 +603,16 @@ int mbedtls_aes_crypt_ofb(mbedtls_aes_context* ctx,
                           unsigned char* output)
 {
     int32_t i, wcnt, timeout = 0x10000000;
-    uint32_t len;
+    size_t len;
     uint32_t u32Ctl;
     int32_t first = 1;
     uint32_t u32Tmp;
+
+    AES_VALIDATE_RET(ctx != NULL);
+    AES_VALIDATE_RET(iv_off != NULL);
+    AES_VALIDATE_RET(iv != NULL);
+    AES_VALIDATE_RET(input != NULL);
+    AES_VALIDATE_RET(output != NULL);
 
     if(length == 0)
     {
@@ -605,22 +620,9 @@ int mbedtls_aes_crypt_ofb(mbedtls_aes_context* ctx,
         return (0);
     }
 
-    if((ctx == NULL) || (iv == NULL) || (input == NULL) || (output == NULL))
-    {
-        return MBEDTLS_ERR_AES_INVALID_INPUT_LENGTH;
-    }
-
-    if((iv_off != NULL) && (*iv_off != 0))
-    {
-        /* only support iv_off == 0 */
-        return MBEDTLS_ERR_AES_INVALID_INPUT_LENGTH;
-    }
-
-
     if(*iv_off != 0)
     {
-        printf("iv_off is not zero!\n");
-
+        return(MBEDTLS_ERR_AES_BAD_INPUT_DATA);
     }
 
     wcnt = ctx->keySize / 4;

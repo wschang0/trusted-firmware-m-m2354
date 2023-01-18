@@ -83,7 +83,7 @@ int RSA_Run(void);
 void rsa_dma_buf_init(mbedtls_rsa_context* ctx, mbedtls_mpi* ed);
 void memcpy_be(void* dest, void* src, uint32_t size);
 
-
+/* Trigger to start RSA hardware */
 int RSA_Run(void)
 {
     uint32_t timeout = 2000000000;
@@ -98,7 +98,9 @@ int RSA_Run(void)
     while((CRPT->INTSTS & CRPT_INTSTS_RSAIF_Msk) == 0)
     {
         if(timeout-- == 0)
+        {
             return (-1);
+        }
     }
 
     return (0);
@@ -109,37 +111,13 @@ void rsa_dma_buf_init(mbedtls_rsa_context* ctx, mbedtls_mpi* ed)
     mbedtls_mpi_grow(ed, ctx->MBEDTLS_PRIVATE(len));
     mbedtls_mpi_grow(&ctx->M, ctx->MBEDTLS_PRIVATE(len));
     mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(N), ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(P), ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(Q), ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->CP, ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->CQ, ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(DP), ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(DQ), ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(RP), ctx->MBEDTLS_PRIVATE(len));
-    //mbedtls_mpi_grow(&ctx->MBEDTLS_PRIVATE(RQ), ctx->MBEDTLS_PRIVATE(len));
 
     CRPT->RSA_SADDR[0] = (uint32_t)ctx->M.MBEDTLS_PRIVATE(p);// Message
     CRPT->RSA_SADDR[1] = (uint32_t)ctx->MBEDTLS_PRIVATE(N).MBEDTLS_PRIVATE(p);
     CRPT->RSA_SADDR[2] = (uint32_t)ed->MBEDTLS_PRIVATE(p);   // Public key or private key
-    //CRPT->RSA_SADDR[3] = (uint32_t)ctx->MBEDTLS_PRIVATE(P).MBEDTLS_PRIVATE(p);
-    //CRPT->RSA_SADDR[4] = (uint32_t)ctx->MBEDTLS_PRIVATE(Q).MBEDTLS_PRIVATE(p);
-
-    //CRPT->RSA_MADDR[0] = (uint32_t)ctx->CP.MBEDTLS_PRIVATE(p);
-    //CRPT->RSA_MADDR[1] = (uint32_t)ctx->CQ.MBEDTLS_PRIVATE(p);
-    //CRPT->RSA_MADDR[2] = (uint32_t)ctx->MBEDTLS_PRIVATE(DP).MBEDTLS_PRIVATE(p);
-    //CRPT->RSA_MADDR[3] = (uint32_t)ctx->MBEDTLS_PRIVATE(DQ).MBEDTLS_PRIVATE(p);
-    //CRPT->RSA_MADDR[4] = (uint32_t)ctx->MBEDTLS_PRIVATE(RP).MBEDTLS_PRIVATE(p);
-    //CRPT->RSA_MADDR[5] = (uint32_t)ctx->MBEDTLS_PRIVATE(RQ).MBEDTLS_PRIVATE(p);
 
     /* Initial memory space for RSA */
-    //CRPT->RSA_MADDR[6] = (uint32_t)ctx->rsa__e;
     CRPT->RSA_DADDR = (uint32_t)ctx->rsa_buf;
-
-    //mbedtls_mpi_lset(&ctx->M, 0);
-    //mbedtls_mpi_lset(&ctx->CP, 0);
-    //mbedtls_mpi_lset(&ctx->CQ, 0);
-    //memset(ctx->rsa__e, 0, 512 + 16);
-    //memset(ctx->rsa_buf, 0, 512);
 
 }
 
@@ -846,6 +824,11 @@ int mbedtls_rsa_public(mbedtls_rsa_context* ctx,
 
     int err;
 
+    RSA_VALIDATE_RET(ctx != NULL);
+    RSA_VALIDATE_RET(input != NULL);
+    RSA_VALIDATE_RET(output != NULL);
+
+
     if((ctx->MBEDTLS_PRIVATE(len) != 128) && (ctx->MBEDTLS_PRIVATE(len) != 256) && (ctx->MBEDTLS_PRIVATE(len) != 384) && (ctx->MBEDTLS_PRIVATE(len) != 512))
         return MBEDTLS_ERR_RSA_BAD_INPUT_DATA;
 
@@ -857,8 +840,6 @@ int mbedtls_rsa_public(mbedtls_rsa_context* ctx,
     CRPT->RSA_CTL = RSA_MODE_NORMAL | ((ctx->MBEDTLS_PRIVATE(len) / 128 - 1) << CRPT_RSA_CTL_KEYLENG_Pos);
 
     mbedtls_mpi_init(&ctx->M);
-    //mbedtls_mpi_init(&ctx->CP);
-    //mbedtls_mpi_init(&ctx->CQ);
 
     mbedtls_mpi_read_binary(&ctx->M, input, ctx->MBEDTLS_PRIVATE(len));
 
@@ -871,13 +852,9 @@ int mbedtls_rsa_public(mbedtls_rsa_context* ctx,
     }
 
     mbedtls_mpi_free(&ctx->M);
-    //mbedtls_mpi_free(&ctx->CP);
-    //mbedtls_mpi_free(&ctx->CQ);
 
     /* output */
     memcpy_be(output, ctx->rsa_buf, ctx->MBEDTLS_PRIVATE(len));
-
-    //dump(output, 32, "output");
 
     return 0;
 }
@@ -891,8 +868,12 @@ int mbedtls_rsa_private(mbedtls_rsa_context* ctx,
     const unsigned char* input,
     unsigned char* output)
 {
-
     int     err;
+
+    RSA_VALIDATE_RET(ctx != NULL);
+    RSA_VALIDATE_RET(input != NULL);
+    RSA_VALIDATE_RET(output != NULL);
+
 
     if((ctx->MBEDTLS_PRIVATE(len) != 128) && (ctx->MBEDTLS_PRIVATE(len) != 256) && (ctx->MBEDTLS_PRIVATE(len) != 384) && (ctx->MBEDTLS_PRIVATE(len) != 512))
     {
@@ -913,8 +894,6 @@ int mbedtls_rsa_private(mbedtls_rsa_context* ctx,
     CRPT->RSA_CTL = RSA_MODE_NORMAL | ((ctx->MBEDTLS_PRIVATE(len) / 128 - 1) << CRPT_RSA_CTL_KEYLENG_Pos);
 
     mbedtls_mpi_init(&ctx->M);
-    //mbedtls_mpi_init(&ctx->CP);
-    //mbedtls_mpi_init(&ctx->CQ);
 
     mbedtls_mpi_read_binary(&ctx->M, input, ctx->MBEDTLS_PRIVATE(len));
 
@@ -927,8 +906,6 @@ int mbedtls_rsa_private(mbedtls_rsa_context* ctx,
     }
 
     mbedtls_mpi_free(&ctx->M);
-    //mbedtls_mpi_free(&ctx->CP);
-    //mbedtls_mpi_free(&ctx->CQ);
 
     /* Output */
     memcpy_be(output, ctx->rsa_buf, ctx->MBEDTLS_PRIVATE(len));
