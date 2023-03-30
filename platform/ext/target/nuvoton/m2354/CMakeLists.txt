@@ -100,6 +100,7 @@ target_sources(platform_s
         ../common/native_drivers/arm_uart_drv.c
         ../common/native_drivers/mpu_armv8m_drv.c
         ../common/native_drivers/timer_cmsdk_drv.c
+        ../common/bsp/StdDriver/src/keystore.c
         bsp/Library/StdDriver/src/timer.c
         bsp/Library/StdDriver/src/fmc.c
         bsp/Library/StdDriver/src/rng.c
@@ -188,6 +189,7 @@ if(BL2)
             ../common/cmsis_drivers/Driver_SD.c
             ../common/cmsis_drivers/Driver_USART.c
             ../common/bsp/StdDriver/src/sdh.c
+            ../common/bsp/StdDriver/src/keystore.c
             ../common/third_party/FatFs/src/ff.c
             ../common/SDGlue.c
             ../common/diskio.c

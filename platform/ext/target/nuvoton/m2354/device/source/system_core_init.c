@@ -117,6 +117,9 @@ void SystemInit (void)
     /* Enable SDH for secondary slot */
     CLK->AHBCLK |= CLK_AHBCLK_SDH0CKEN_Msk;
 
+    /* Enable Key Store */
+    CLK->AHBCLK |= CLK_AHBCLK_KSCKEN_Msk;
+
     /* Set multi-function pin for SDH */
     /* CD: PB12(9) */
     SYS->GPB_MFPH = (SYS->GPB_MFPH & (~SYS_GPB_MFPH_PB12MFP_Msk)) | SD0_nCD_PB12;

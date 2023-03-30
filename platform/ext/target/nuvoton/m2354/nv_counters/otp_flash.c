@@ -17,6 +17,7 @@
 #include "nvt_flash_otp_nv_counters_backend.h"
 #include <string.h>
 #include <stddef.h>
+#include "NuMicro.h"
 
 static void bit_inverse(uint8_t *data, const uint8_t *src, size_t len)
 {
@@ -32,6 +33,55 @@ enum tfm_plat_err_t tfm_plat_otp_init(void)
 {
     return init_otp_nv_counters_otp();
 }
+
+
+static enum tfm_plat_err_t ks_write_to_output(enum tfm_otp_element_id_t id,
+    uint32_t offset, size_t out_len,
+    uint8_t* out)
+{
+    enum tfm_plat_err_t err = TFM_PLAT_ERR_SUCCESS;
+    size_t value_size;
+    size_t copy_size;
+    uint32_t au32KeyBuf[8];
+    int32_t idx;
+    
+    value_size = 32;
+    copy_size = out_len < value_size ? out_len : value_size;
+
+    /* Initial Key Store */
+    KS_Open();
+
+    /* Get key index of Key Store OTP */
+    if(id == PLAT_OTP_ID_HUK)
+    {
+        idx = 2;
+    }
+    else if(id == PLAT_OTP_ID_IAK)
+    {
+        idx = 3;
+    }
+    else
+    {
+        return TFM_PLAT_ERR_INVALID_INPUT;
+    }
+
+    /* Read to tmp buffer for word alignment */
+    err = KS_Read(KS_OTP, idx, au32KeyBuf, 8);
+    if(err < 0)
+    {
+        /* Fail to read key. */
+        return TFM_PLAT_ERR_SYSTEM_ERR;
+    }
+
+    /* Output the key */
+    memcpy(out, au32KeyBuf, copy_size);
+
+    /* Clear key buffer */
+    memset(au32KeyBuf, 0, 32);
+
+    return TFM_PLAT_ERR_SUCCESS;
+}
+
 
 static enum tfm_plat_err_t write_to_output(enum tfm_otp_element_id_t id,
                                         uint32_t offset, size_t out_len,
@@ -63,9 +113,9 @@ enum tfm_plat_err_t tfm_plat_otp_read(enum tfm_otp_element_id_t id,
 
     switch (id) {
         case PLAT_OTP_ID_HUK:
-            return write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, huk), out_len, out);
+            return ks_write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, huk), out_len, out);
         case PLAT_OTP_ID_IAK:
-            return write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, iak), out_len, out);
+            return ks_write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, iak), out_len, out);
         case PLAT_OTP_ID_IAK_LEN:
             return write_to_output(id, offsetof(struct flash_otp_nv_counters_region_t, iak_len), out_len, out);
         case PLAT_OTP_ID_IAK_TYPE:
