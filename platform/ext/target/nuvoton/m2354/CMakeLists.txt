@@ -122,7 +122,7 @@ target_sources(platform_s
 target_compile_options(platform_s
     PUBLIC
         ${COMPILER_CMSE_FLAG}
-        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2 -Ic:/Keil_v5/ARM/ARMCLANG/include>
 )
 
 target_compile_definitions(platform_s
@@ -161,7 +161,7 @@ target_include_directories(platform_ns
 
 target_compile_options(platform_ns
     PUBLIC
-        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2 -Ic:/Keil_v5/ARM/ARMCLANG/include>
 )
 
 
@@ -215,6 +215,7 @@ if(BL2)
     target_compile_options(platform_bl2
         PUBLIC
             ${COMPILER_CMSE_FLAG}
+            $<$<COMPILE_LANGUAGE:C>:-gdwarf-2 -Ic:/Keil_v5/ARM/ARMCLANG/include>
     )
 
     target_compile_definitions(platform_bl2
@@ -268,6 +269,6 @@ target_include_directories(tfm_regression_ns
 
 target_compile_options(tfm_regression_ns
     PUBLIC
-        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2>
+        $<$<COMPILE_LANGUAGE:C>:-gdwarf-2 -Ic:/Keil_v5/ARM/ARMCLANG/include>
 )
 
