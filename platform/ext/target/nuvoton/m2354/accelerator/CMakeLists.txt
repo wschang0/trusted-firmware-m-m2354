@@ -14,6 +14,7 @@ if(BL2)
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/crypto.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/aes_alt.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/rsa_alt.c
+            ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha256_alt.c
             ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/trng_api.c
     )
 
@@ -75,6 +76,7 @@ target_sources(crypto_service_crypto_hw
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ecdh_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/ecdsa_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/rsa_alt.c
+        ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/sha256_alt.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/trng_api.c
         ${PLATFORM_DIR}/ext/target/nuvoton/common/accelerator/huk_derive_key.c
 )
