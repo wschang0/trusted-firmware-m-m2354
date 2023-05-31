@@ -1,7 +1,7 @@
 ﻿{
   "configurations": [
     {
-      "name": "0_m2354",
+      "name": "m2354",
       "generator": "Unix Makefiles",
       "configurationType": "Debug",
       "buildRoot": "d:/out/${name}",
@@ -22,11 +22,6 @@
           "name": "CROSS_COMPILE",
           "value": "arm-arm-none-eabi",
           "type": "STRING"
-        },
-        {
-          "name": "TFM_PARTITION_PROTECTED_STORAGE",
-          "value": "True",
-          "type": "BOOL"
         }
       ]
     },
@@ -66,7 +61,7 @@
       ]
     },
     {
-      "name": "zm2351",
+      "name": "m2351",
       "generator": "Unix Makefiles",
       "configurationType": "Debug",
       "buildRoot": "d:/out/${name}",
@@ -100,7 +95,7 @@
       ]
     },
     {
-      "name": "zan521-2",
+      "name": "an521-2",
       "generator": "Unix Makefiles",
       "configurationType": "Debug",
       "buildRoot": "d:/out/${name}",
