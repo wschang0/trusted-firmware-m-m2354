@@ -1,0 +1,50 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "ARMCLANG",
+            "displayName": "M2354 TF-M ARMCLANG",
+            "description": "",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/../out/",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/../out/install",
+                "TFM_PLATFORM": "nuvoton/m2354",
+                "TEST_S_ATTESTATION": "ON",
+                "TEST_S_CRYPTO": "ON",
+                "TEST_NS_CRYPTO": "ON",
+                "TEST_S": "ON",
+                "TEST_NS": "ON",
+                "MCUBOOT_FIH_PROFILE": "MEDIUM",
+                "TFM_PSA_API": "ON",
+                "TFM_TOOLCHAIN_FILE": "d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake",
+                "MBEDCRYPTO_PATH": "d:/MCU/TF-M_Review/mbedcrypto-src",
+                "MCUBOOT_PATH": "d:/MCU/TF-M_Review/mcuboot-src",
+                "TFM_TEST_REPO_PATH": "d:/MCU/TF-M_Review/tfm_test_repo-src",
+                "PSA_ARCH_TESTS_PATH": "d:/MCU/TF-M_Review/psa_arch_tests-src"
+            }
+        },
+        {
+            "name": "GNUARM",
+            "displayName": "M2354 TF-M GNUARM",
+            "description": "",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/../out",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/../out/install",
+                "TFM_PLATFORM": "nuvoton/m2354",
+                "TEST_S": "OFF",
+                "TEST_NS": "ON",
+                "MCUBOOT_FIH_PROFILE": "MEDIUM",
+                "TFM_PSA_API": "ON",
+                "TFM_TOOLCHAIN_FILE": "d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_GNUARM.cmake",
+                "MBEDCRYPTO_PATH": "d:/MCU/TF-M_Review/mbedcrypto-src",
+                "MCUBOOT_PATH": "d:/MCU/TF-M_Review/mcuboot-src",
+                "TFM_TEST_REPO_PATH": "d:/MCU/TF-M_Review/tfm_test_repo-src",
+                "PSA_ARCH_TESTS_PATH": "d:/MCU/TF-M_Review/psa_arch_tests-src"
+            }
+        }
+    ]
+}

@@ -3,11 +3,11 @@
     {
       "name": "m2354",
       "generator": "Unix Makefiles",
-      "configurationType": "Debug",
+      "configurationType": "RelWithDebInfo",
       "buildRoot": "d:/out/${name}",
       "installRoot": "d:/out/${name}/install",
       "cmakeExecutable": "C:/Program Files/CMake/bin/CMake.exe",
-      "cmakeCommandArgs": "-DTEST_S=ON -DTEST_NS=ON  -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=OFF -DMCUBOOT_ENC_IMAGES=OFF -DTFM_PROFILE=profile_medium -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
+      "cmakeCommandArgs": "-DTEST_S=OFF -DTEST_NS=OFF -DMCUBOOT_FIH_PROFILE=MEDIUM -DMCUBOOT_ENCRYPT_RSA=ON -DMCUBOOT_ENC_IMAGES=ON -DTFM_PSA_API=ON -DTFM_ISOLATION_LEVEL=2 -DTFM_PLATFORM=nuvoton/m2354 -DTFM_TOOLCHAIN_FILE=d:/MCU/TF-M_Review/trusted-firmware-m/toolchain_ARMCLANG.cmake -DMBEDCRYPTO_PATH=d:/MCU/TF-M_Review/mbedcrypto-src -DMCUBOOT_PATH=d:/MCU/TF-M_Review/mcuboot-src -DTFM_TEST_REPO_PATH=d:/MCU/TF-M_Review/tfm_test_repo-src -DPSA_ARCH_TESTS_PATH=d:/MCU/TF-M_Review/psa_arch_tests-src",
       "buildCommandArgs": "",
       "ctestCommandArgs": "",
       "cmakeToolchain": "",
